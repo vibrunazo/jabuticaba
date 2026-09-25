@@ -60,7 +60,7 @@ Never edit `data/` or `schemas/` by hand.
 
 ## Deployment
 
-The site deploys to Netlify (https://jabuticabas.netlify.app) on every push to
+The site (https://jabuticabas.org) deploys to Netlify on every push to
 `master`, with a preview deploy per pull request. Build settings live in
 `netlify.toml`; change them there, not in the Netlify dashboard. Deploys currently
 use `build:preview`, because every item is still a mock.
