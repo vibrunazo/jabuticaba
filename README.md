@@ -2,6 +2,8 @@
 
 A rigorous, reproducible, peer-reviewed-by-nobody-yet index of how Brazilian things are.
 
+**Live:** https://jabuticabas.org
+
 > **Status:** early development. Methodology and schema drafts are in
 > [`docs/design/`](docs/design/).
 
