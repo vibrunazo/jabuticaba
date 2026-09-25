@@ -1,0 +1,20 @@
+---
+import { type Locale, t } from "../i18n/ui.ts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<BaseLayout locale={locale}>
+  <main class="mx-auto max-w-3xl px-4 py-16">
+    <h1 class="font-serif text-4xl text-brand-navy dark:text-ink">{t(locale, "site.name")}</h1>
+    <p class="mt-4 text-lg text-ink-muted">{t(locale, "site.tagline")}</p>
+    <p class="mt-8 border-t border-rule pt-4 text-sm text-ink-muted">
+      {t(locale, "home.placeholder")}
+    </p>
+  </main>
+</BaseLayout>

@@ -1,0 +1,35 @@
+{
+  "name": "jabuticaba",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The Jabuticaba Index: a rigorous, reproducible measure of how Brazilian things are.",
+  "license": "CC0-1.0",
+  "packageManager": "pnpm@12.6.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "lint": "biome check .",
+    "fix": "biome check --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "verify": "biome check . && astro check && vitest run && astro build"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.5",
+    "tailwindcss": "^4.3.3",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@biomejs/biome": "^2.5.14",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.1"
+  }
+}

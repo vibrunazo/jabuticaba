@@ -386,6 +386,10 @@ Rule codes are stable. A removed rule's code is never reused.
   Astro. `pnpm validate`, `pnpm index`, the tests and the Astro config all import
   from it.
 - The JSON Schema is generated with Zod's built-in JSON Schema export.
+- **To investigate:** Astro 7 processes Markdown with Sätteri instead of
+  remark/rehype. The citation syntax (`[@id]`) and `jabuticaba:` links need either a
+  Sätteri extension, remark re-enabled for these files, or pre-processing of the
+  body before it is rendered. Decide when the detail page is built.
 
 ## 12. Complete example (mock)
 

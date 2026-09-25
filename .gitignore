@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+.astro/
+
+# test output
+coverage/
+test-results/
+playwright-report/
+
+# logs and env
+*.log
+.env
+.env.*
+
+# editors and OS
+.DS_Store
+Thumbs.db
+.idea/

@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. Components must use these (e.g. `bg-surface`, `text-ink`),
+ * never arbitrary values like `text-[#123456]`.
+ * Placeholder palette: to be refined in the design phase.
+ */
+@theme {
+  --color-surface: #fbfaf7;
+  --color-surface-raised: #ffffff;
+  --color-ink: #14213d;
+  --color-ink-muted: #5b6475;
+  --color-rule: #d9dce3;
+  --color-brand-navy: #0b1f4b;
+  --color-brand-green: #1f7a4d;
+  --color-brand-yellow: #f2c230;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", ui-serif, Georgia, serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-surface: #0b1426;
+    --color-surface-raised: #122039;
+    --color-ink: #e8ecf4;
+    --color-ink-muted: #9aa5ba;
+    --color-rule: #24334f;
+  }
+}

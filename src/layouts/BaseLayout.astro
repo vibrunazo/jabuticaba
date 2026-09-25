@@ -1,0 +1,26 @@
+---
+import "../styles/global.css";
+import { type Locale, localeTags, t } from "../i18n/ui.ts";
+
+interface Props {
+  locale: Locale;
+  title?: string;
+}
+
+const { locale, title } = Astro.props;
+const siteName = t(locale, "site.name");
+const pageTitle = title ? `${title} · ${siteName}` : siteName;
+---
+
+<!doctype html>
+<html lang={localeTags[locale]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={t(locale, "site.tagline")} />
+    <title>{pageTitle}</title>
+  </head>
+  <body class="bg-surface text-ink font-sans antialiased">
+    <slot />
+  </body>
+</html>
