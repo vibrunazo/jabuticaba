@@ -1,0 +1,40 @@
+{
+  "$schema": "../../../schemas/item.schema.json",
+  "id": "priority-line",
+  "status": "mock",
+  "methodologyVersion": "0.1",
+  "lastReviewed": "2026-09-25",
+  "category": "justice",
+  "since": 2000,
+  "presence": [
+    { "place": "PT", "level": "widespread", "sources": ["fictional-decree"] },
+    { "place": "AR", "level": "regional", "sources": ["fictional-survey"] },
+    { "place": "MX", "level": ["marginal", "regional"], "sources": ["fictional-survey"] },
+    { "place": "ES", "level": "marginal", "sources": ["fictional-survey"] }
+  ],
+  "intensity": { "value": { "min": 2, "max": 3 }, "sources": ["fictional-survey"] },
+  "awareness": { "value": { "min": 0, "max": 1 }, "sources": [], "editorial": true },
+  "sources": [
+    {
+      "id": "fictional-decree",
+      "type": "government",
+      "title": "Decreto Fictício nº 0.000, de 1º de abril de 2020",
+      "publisher": "Diário Oficial Imaginário",
+      "url": "https://example.org/fictional-decree",
+      "published": "2020-04-01",
+      "accessed": "2026-09-25",
+      "language": "pt"
+    },
+    {
+      "id": "fictional-survey",
+      "type": "academic",
+      "title": "A Global Survey of Allegedly Unique Things",
+      "publisher": "University of Nowhere Press",
+      "authors": ["A. Nonymous", "P. Laceholder"],
+      "url": "https://example.org/fictional-survey",
+      "published": "2024-06",
+      "accessed": "2026-09-25",
+      "language": "en"
+    }
+  ]
+}

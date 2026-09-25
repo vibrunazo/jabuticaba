@@ -245,8 +245,9 @@ How aware Brazilians who know the thing are that it is uncommon abroad.
 | 3     | Commonly acknowledged as Brazilian                                      |
 | 4     | A national symbol *because* it is Brazilian                             |
 
-Items whose `awareness` range reaches no higher than 1 get the "hidden jabuticaba"
-badge. The jabuticaba fruit, the capybara and the vira-lata caramelo sit at 3–4;
+Items whose `awareness` range reaches no higher than 1 **and** whose score is above
+50% get the "hidden jabuticaba" badge. The score condition keeps the badge off
+things that are barely jabuticabas at all. The jabuticaba fruit, the capybara and the vira-lata caramelo sit at 3–4;
 the obscure institutional items tend to sit at 0.
 
 ### 7.2 `since`
@@ -362,4 +363,5 @@ Anchor fixtures used as unit tests of the formula (not site content):
 - Evidence grade is computed from source types, not rated by hand.
 - `absent` added as a presence level, distinct from unlisted.
 - `brazil-centered` is the default projection in every locale.
+- "Hidden jabuticaba" badge requires a score above 50% (section 7.1).
 - Subnational data uses ISO 3166-2 for any country, not just Brazil; it is not scored.

@@ -53,6 +53,18 @@ describe("isHiddenJabuticaba", () => {
     ).toBe(false);
   });
 
+  it("requires a score above 50", () => {
+    const widespread = (count: number) =>
+      Array.from({ length: count }, (_, i) => makePresence(`P${i}`, "widespread"));
+    const barelyBrazilian = makeItem({
+      presence: widespread(40),
+      intensity: { value: 1, sources: [] },
+      awareness: { value: 0, sources: [] },
+    });
+    expect(computeItemScore(barelyBrazilian).score.point).toBeLessThanOrEqual(50);
+    expect(isHiddenJabuticaba(barelyBrazilian)).toBe(false);
+  });
+
   it("never changes the score", () => {
     const hidden = makeItem({ awareness: { value: 0, sources: [] } });
     const famous = makeItem({ awareness: { value: 4, sources: [] } });

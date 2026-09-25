@@ -307,7 +307,7 @@ Computed from the files by pure functions:
 | `exclusivity`       | methodology 3.1                               |
 | `rarity`, `score`, `scoreLow`, `scoreHigh` | methodology 4–5        |
 | `evidenceGrade`     | methodology 6                                 |
-| `hiddenJabuticaba`  | `awareness` range high end ≤ 1                 |
+| `hiddenJabuticaba`  | `awareness` range high end ≤ 1 and score > 50 (methodology 7.1) |
 | `sovereignStates`   | presence places mapped through `places.json`  |
 | `availableLocales`  | which locale files exist                      |
 | `backlinks`         | reverse of every other item's `related`       |

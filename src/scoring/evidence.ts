@@ -6,9 +6,10 @@ import type { Item } from "../schema/item.ts";
 import {
   EVIDENCE_GRADE_THRESHOLDS,
   HIDDEN_JABUTICABA_MAX_AWARENESS,
+  HIDDEN_JABUTICABA_MIN_SCORE,
   SOURCE_STRENGTH,
 } from "./constants.ts";
-import { ratingBounds } from "./formula.ts";
+import { computeItemScore, ratingBounds } from "./formula.ts";
 
 export type EvidenceGrade = "A" | "B" | "C" | "D";
 
@@ -47,7 +48,15 @@ export function computeEvidenceGrade(
   return "D";
 }
 
-/** Methodology 7.1: the whole awareness range is at or below the threshold. */
-export function isHiddenJabuticaba(item: Pick<Item, "awareness">): boolean {
-  return ratingBounds(item.awareness.value).high <= HIDDEN_JABUTICABA_MAX_AWARENESS;
+/**
+ * Methodology 7.1: the whole awareness range is at or below the threshold, and the
+ * score is above the minimum (a barely-Brazilian thing can't be a hidden jabuticaba).
+ */
+export function isHiddenJabuticaba(
+  item: Pick<Item, "awareness" | "presence" | "intensity">,
+): boolean {
+  return (
+    ratingBounds(item.awareness.value).high <= HIDDEN_JABUTICABA_MAX_AWARENESS &&
+    computeItemScore(item).score.point > HIDDEN_JABUTICABA_MIN_SCORE
+  );
 }

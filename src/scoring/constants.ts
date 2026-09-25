@@ -53,5 +53,10 @@ export const EVIDENCE_GRADE_THRESHOLDS = [
   { grade: "C", minStrength: 1.0 },
 ] as const;
 
-/** Items whose awareness range reaches no higher than this are "hidden jabuticabas". Methodology 7.1. */
+/**
+ * "Hidden jabuticaba": the awareness range reaches no higher than MAX_AWARENESS,
+ * and the score (point estimate) is above MIN_SCORE, so it really is a jabuticaba.
+ * Methodology 7.1.
+ */
 export const HIDDEN_JABUTICABA_MAX_AWARENESS = 1;
+export const HIDDEN_JABUTICABA_MIN_SCORE = 50;

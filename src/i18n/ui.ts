@@ -17,7 +17,8 @@ export const localeTags: Record<Locale, string> = {
 
 const pt = {
   "site.name": "Índice Jabuticaba®",
-  "site.tagline": "Medindo, com rigor científico, o quão brasileiras as coisas são.",
+  "site.tagline": "Categorizando as singularidades brasileiras. Da capivara ao precatório.",
+  "site.description": "Medindo, com rigor científico, o quão brasileiras as coisas são.",
   "nav.switchLanguage": "English",
   "ranking.title": "Classificação geral",
   "ranking.intro":
@@ -47,7 +48,8 @@ export type UiKey = keyof typeof pt;
 
 const en: Record<UiKey, string> = {
   "site.name": "Jabuticaba Index®",
-  "site.tagline": "Measuring, with scientific rigor, how Brazilian things are.",
+  "site.tagline": "Categorizing Brazilian singularities. From the capybara to the precatório.",
+  "site.description": "Measuring, with scientific rigor, how Brazilian things are.",
   "nav.switchLanguage": "Português",
   "ranking.title": "Overall ranking",
   "ranking.intro":

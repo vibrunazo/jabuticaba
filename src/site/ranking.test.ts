@@ -46,9 +46,11 @@ describe("buildRanking", () => {
     expect(buildRanking([orphan], texts, "pt", { includeUnpublished: false })).toEqual([]);
   });
 
-  it("marks hidden jabuticabas", () => {
-    const rows = buildRanking([common, rare], texts, "pt", { includeUnpublished: false });
-    expect(rows.find((r) => r.id === "common")?.hiddenJabuticaba).toBe(true);
-    expect(rows.find((r) => r.id === "rare")?.hiddenJabuticaba).toBe(false);
+  it("marks hidden jabuticabas: low awareness and a score above 50", () => {
+    const hiddenRare = { ...rare, awareness: { value: 0, sources: [] } };
+    const rows = buildRanking([common, hiddenRare], texts, "pt", { includeUnpublished: false });
+    // Both have awareness 0, but "common" scores below 50.
+    expect(rows.find((r) => r.id === "rare")?.hiddenJabuticaba).toBe(true);
+    expect(rows.find((r) => r.id === "common")?.hiddenJabuticaba).toBe(false);
   });
 });
