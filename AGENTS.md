@@ -36,17 +36,25 @@ Design documents (read the relevant one before touching that area):
 
 ## Commands
 
-| Command        | What it does                                               |
-|----------------|------------------------------------------------------------|
-| `pnpm dev`     | Dev server at http://localhost:4321                        |
-| `pnpm verify`  | **The gate.** Lint + type check + tests + build            |
-| `pnpm fix`     | Auto-format and apply safe lint fixes (Biome)              |
-| `pnpm lint`    | Lint and format check only                                 |
-| `pnpm check`   | Type check (`astro check`, includes `.astro` files)        |
-| `pnpm test`    | Unit tests (Vitest)                                        |
-| `pnpm build`   | Static build into `dist/`                                  |
+| Command              | What it does                                                        |
+|----------------------|---------------------------------------------------------------------|
+| `pnpm dev`           | Dev server at http://localhost:4321                                 |
+| `pnpm verify`        | **The gate.** Lint, type check, tests, content validation, generated-file checks, build |
+| `pnpm fix`           | Auto-format and apply safe lint fixes (Biome)                       |
+| `pnpm lint`          | Lint and format check only                                          |
+| `pnpm check`         | Type check (`astro check`, includes `.astro` files)                 |
+| `pnpm test`          | Unit tests (Vitest)                                                 |
+| `pnpm validate`      | Validate all content (rules J001…, see the schema doc)              |
+| `pnpm index`         | Compute the index; rewrites `data/index-results.csv`                |
+| `pnpm schema`        | Regenerate `schemas/item.schema.json` from the Zod schema           |
+| `pnpm build`         | **Production** build: fails if any mock item exists (J060)          |
+| `pnpm build:preview` | Build that allows mock and draft items                              |
 
 Run `pnpm fix` before `pnpm verify` to clear formatting errors automatically.
+
+**After changing content or scoring code, run `pnpm index`.** After changing
+`src/schema/`, run `pnpm schema`. Both outputs are committed, and `pnpm verify` fails
+when they are stale. Never edit `data/` or `schemas/` by hand.
 
 ## Versions and known traps
 
@@ -87,18 +95,28 @@ over your memory.
 ## Project layout
 
 ```
-content/            # data only (jabuticaba items, reference data); no code
-docs/design/        # design documents; the source of truth for decisions
+content/
+  jabuticabas/<id>/   # one folder per item: item.json, pt.md, en.md
+  reference/          # places.json (ISO codes), subdivisions/<country>.json
+data/                 # GENERATED: index-results.csv (committed)
+schemas/              # GENERATED: item.schema.json (committed)
+docs/design/          # design documents; the source of truth for decisions
+scripts/              # command-line entry points (validate, index, schema); thin wrappers
 src/
-  components/       # Astro components
-  i18n/             # UI dictionary and locale helpers
-  layouts/          # page layouts
-  pages/            # routes: pt-BR at /, English at /en/
-  styles/           # global.css with the Tailwind @theme tokens
+  schema/             # Zod schemas: the single source of truth for content shape
+  scoring/            # the index: constants.ts (every tunable number), formula.ts, evidence.ts
+  validation/         # cross-file rules J0xx (rules.ts)
+  content-files/      # reading content/ from disk; Markdown helpers
+  testing/            # builders for test data (makeItem, …); used only by tests
+  content.config.ts   # Astro collections, using the same Zod schemas
+  components/ layouts/ pages/ styles/ i18n/
 ```
 
-(Planned, not yet created: `src/schema/` for the Zod schemas, `src/scoring/` for the
-index formula and constants, `scripts/` for the validate/index/geo commands.)
+- To change a weight or threshold of the index, edit only `src/scoring/constants.ts`.
+- `src/schema/`, `src/scoring/` and `src/validation/` must never import from Astro:
+  they also run in plain Node.
+- A new validation rule gets a new code (never reuse one), an entry in the rule
+  table of `docs/design/02-content-schema.md`, and a test in `rules.test.ts`.
 
 ## When you are unsure
 

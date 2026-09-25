@@ -1,0 +1,35 @@
+{
+  "$schema": "../../../schemas/item.schema.json",
+  "id": "caramel-mutt",
+  "status": "mock",
+  "methodologyVersion": "0.1",
+  "lastReviewed": "2026-09-25",
+  "category": "nature",
+  "presence": [
+    { "place": "AR", "level": "widespread", "sources": ["fictional-dog-atlas"] },
+    { "place": "MX", "level": "widespread", "sources": ["fictional-dog-atlas"] },
+    { "place": "IN", "level": "widespread", "sources": ["fictional-dog-atlas"] },
+    { "place": "TR", "level": "widespread", "sources": ["fictional-dog-atlas"] },
+    { "place": "TH", "level": "widespread", "sources": ["fictional-dog-atlas"] },
+    { "place": "PE", "level": ["regional", "widespread"], "sources": ["fictional-dog-atlas"] },
+    { "place": "DE", "level": ["absent", "marginal"], "sources": ["fictional-dog-atlas"] }
+  ],
+  "intensity": {
+    "value": { "min": 1, "max": 2 },
+    "sources": ["fictional-dog-atlas"]
+  },
+  "awareness": { "value": 4, "sources": [], "editorial": true },
+  "sources": [
+    {
+      "id": "fictional-dog-atlas",
+      "type": "dataset",
+      "title": "Atlas Mundial Imaginário de Cães Sem Raça Definida",
+      "publisher": "Instituto de Pesquisas Imaginárias",
+      "url": "https://example.org/dog-atlas",
+      "published": "2025-03",
+      "accessed": "2026-09-25",
+      "language": "pt"
+    }
+  ],
+  "related": ["capybara"]
+}

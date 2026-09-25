@@ -11,24 +11,30 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/validate.ts --production && astro build",
+    "build:preview": "astro build",
     "preview": "astro preview",
     "check": "astro check",
     "lint": "biome check .",
     "fix": "biome check --write .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "verify": "biome check . && astro check && vitest run && astro build"
+    "validate": "node scripts/validate.ts",
+    "index": "node scripts/compute-index.ts",
+    "schema": "node scripts/generate-json-schema.ts",
+    "verify": "biome check . && astro check && vitest run && node scripts/validate.ts && node scripts/generate-json-schema.ts --check && node scripts/compute-index.ts --check && astro build"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.5",
     "tailwindcss": "^4.3.3",
+    "yaml": "^2.9.1",
     "zod": "^4.6.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@biomejs/biome": "^2.5.14",
+    "@types/node": "^24.13.6",
     "typescript": "^6.0.3",
     "vitest": "^5.0.1"
   }

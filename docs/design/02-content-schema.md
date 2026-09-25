@@ -341,7 +341,7 @@ Scope: **all** = every status; **pub** = `published` only (a warning for `draft`
 | J003 | error   | all   | Each file matches its Zod schema. |
 | J010 | error   | all   | `slug` is unique per locale. |
 | J011 | error   | all   | `related` ids exist, are not the item itself, and have no duplicates. |
-| J020 | error   | all   | `place` exists in `places.json`. |
+| J020 | error   | all   | `place` exists in `places.json`; `subdivision` exists in `subdivisions/<country>.json`. |
 | J021 | error   | all   | `place` is not `BR`. |
 | J022 | error   | all   | `place` is unique within `presence` (likewise `subdivision` within `subdivisions`). |
 | J023 | error   | all   | In a level range, `low` is below `high`. |
@@ -375,6 +375,9 @@ Scope: **all** = every status; **pub** = `published` only (a warning for `draft`
 | J072 | error   | CI    | `data/geo/` matches the `geo:build` output. |
 
 Rule codes are stable. A removed rule's code is never reused.
+
+Implementation status: every rule is implemented except **J024, J027 and J072**,
+which need the map geometry from `pnpm geo:build` (not built yet).
 
 ## 11. Implementation notes
 
