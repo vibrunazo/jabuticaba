@@ -247,6 +247,31 @@ describe("runRules", () => {
     expect(codesFor(snapshotOf(folder))).toEqual(expect.arrayContaining(["J054", "J055", "J056"]));
   });
 
+  it("J080/J081/J082: cover images", () => {
+    const image = { file: "cover.webp", credit: { author: "Someone", license: "CC0-1.0" } };
+    const missingFile = makeFolder(makeItem({ image }));
+    const codes = codesFor(snapshotOf(missingFile));
+    expect(codes).toContain("J080");
+    expect(codes).toContain("J081");
+
+    const complete = makeFolder(
+      makeItem({ image }),
+      [
+        {
+          locale: "pt",
+          file: "pt.md",
+          text: makeLocaleText({ slug: "x", imageAlt: "Uma foto." }),
+          body: "",
+        },
+      ],
+      ["cover.webp"],
+    );
+    expect(codesFor(snapshotOf(complete))).toEqual([]);
+
+    const unused = makeFolder(makeItem(), undefined, ["cover.jpg"]);
+    expect(codesFor(snapshotOf(unused))).toEqual(["J082"]);
+  });
+
   it("J060: mocks fail a production build", () => {
     const snapshot = snapshotOf(makeFolder(makeItem()));
     expect(codesFor(snapshot, { ...OPTIONS, production: true })).toContain("J060");

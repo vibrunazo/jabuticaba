@@ -7,6 +7,7 @@ definition: "Entregador profissional que trabalha com motocicleta própria."
 justifications:
   intensity: "Um pouco mais comum no Brasil (dado fictício)."
   awareness: "O nome engana: muitos acham que é invenção nacional."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 A profissão é comum em dezenas de países [@fictional-survey].

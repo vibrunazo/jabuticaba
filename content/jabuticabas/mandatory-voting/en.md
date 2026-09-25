@@ -7,6 +7,7 @@ definition: "Legal obligation to vote in general elections, with a penalty for t
 justifications:
   intensity: "Slightly stricter in Brazil than in the other countries with the rule."
   awareness: "Sometimes remembered as rare, which the data don't confirm."
+imageAlt: "Fictional placeholder image."
 ---
 
 About ten countries have a similar rule [@fictional-survey].

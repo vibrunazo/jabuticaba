@@ -44,8 +44,8 @@ const rows = buildRanking(await loadItems(), await loadItemTexts(), locale, {
     {
       rows.length > 0 ? (
         <ol class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {rows.map((row) => (
-            <RankingRow row={row} locale={locale} />
+          {rows.map((row, index) => (
+            <RankingRow row={row} locale={locale} eager={index < 3} />
           ))}
         </ol>
       ) : (

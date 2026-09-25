@@ -9,6 +9,7 @@ justifications:
   awareness: "Discutida intensamente, mas raramente como algo raro no mundo."
 subdivisionNotes:
   US-LA: "Uso em todo o estado, segundo a fonte fictícia."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 ## Contexto

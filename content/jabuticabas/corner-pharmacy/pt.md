@@ -7,6 +7,7 @@ definition: "Alta densidade de drogarias de rede em áreas urbanas, com várias 
 justifications:
   intensity: "Densidade maior que a de países comparáveis (dado fictício)."
   awareness: "Percebido como normal."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 A imprensa registra densidade parecida em poucos países [@fictional-gazette]. O resto vem de fórum [@fictional-forum].

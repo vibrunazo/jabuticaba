@@ -7,6 +7,7 @@ definition: "Carbonated soft drink flavored with guaraná (Paullinia cupana), so
 justifications:
   intensity: "Consumed nationwide in Brazil; abroad, almost only in Brazilian grocery stores (fictional data)."
   awareness: "Recognized as typically Brazilian."
+imageAlt: "Fictional placeholder image."
 ---
 
 Guaraná grows in the Amazon [@fictional-survey], but the soda is consumed at scale almost only in Brazil [@fictional-census].

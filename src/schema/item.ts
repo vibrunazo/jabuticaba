@@ -86,6 +86,23 @@ export const awarenessInputSchema = z.strictObject({
   ...evidenceShape,
 });
 
+/** The cover image lives in the item folder under one of these names. */
+export const IMAGE_FILE_PATTERN = /^cover\.(webp|jpg|jpeg|png|avif)$/;
+
+export const imageSchema = z.strictObject({
+  file: z.string().regex(IMAGE_FILE_PATTERN, {
+    error: "must be cover.webp, cover.jpg, cover.jpeg, cover.png or cover.avif",
+  }),
+  credit: z.strictObject({
+    author: z.string().min(1),
+    /** SPDX identifier when possible, e.g. "CC-BY-4.0", "CC0-1.0". */
+    license: z.string().min(1),
+    /** Where the image was found (e.g. its Wikimedia Commons page). */
+    url: httpsUrlSchema.optional(),
+  }),
+});
+export type ItemImage = z.infer<typeof imageSchema>;
+
 export const sourceSchema = z.strictObject({
   id: idSchema,
   type: z.enum(SOURCE_TYPES),
@@ -117,5 +134,6 @@ export const itemSchema = z.strictObject({
   awareness: awarenessInputSchema,
   sources: z.array(sourceSchema),
   related: z.array(idSchema).optional(),
+  image: imageSchema.optional(),
 });
 export type Item = z.infer<typeof itemSchema>;

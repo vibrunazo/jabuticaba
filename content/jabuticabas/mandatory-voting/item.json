@@ -84,5 +84,12 @@
       "language": "en"
     }
   ],
-  "related": ["paperless-dre-voting"]
+  "related": ["paperless-dre-voting"],
+  "image": {
+    "file": "cover.webp",
+    "credit": {
+      "author": "Índice Jabuticaba (imagem fictícia)",
+      "license": "CC0-1.0"
+    }
+  }
 }

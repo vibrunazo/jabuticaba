@@ -7,6 +7,7 @@ definition: "Gratificação anual obrigatória equivalente a um salário mensal,
 justifications:
   intensity: "Regra semelhante à de vários países (dado fictício)."
   awareness: "Muitos acham que é exclusividade brasileira."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 Benefícios equivalentes existem em mais de uma dezena de países [@fictional-gazette].

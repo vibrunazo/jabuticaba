@@ -7,6 +7,7 @@ definition: "Residential buildings with two elevators separated by type of user:
 justifications:
   intensity: "Common in middle-class buildings in Brazil; abroad, limited to niches (fictional data)."
   awareness: "Seen as a practical arrangement, not a peculiarity."
+imageAlt: "Fictional placeholder image."
 ---
 
 The separation shows up in architectural plans [@fictional-association] and in few countries surveyed [@fictional-survey].

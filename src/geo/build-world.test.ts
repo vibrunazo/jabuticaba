@@ -46,6 +46,17 @@ describe("polygonsByCode", () => {
     expect([...result.keys()].sort()).toEqual(["NO", "SJ"]);
   });
 
+  it("draws Crimea as part of Ukraine", () => {
+    const russia: SourceCountry = {
+      id: "643",
+      name: "Russia",
+      geometry: { type: "MultiPolygon", coordinates: [square(40, 55), square(34, 45)] },
+    };
+    const result = polygonsByCode([russia], (n) => ({ "643": "RU" })[n]);
+    expect(result.get("RU")).toHaveLength(1);
+    expect(result.get("UA")).toHaveLength(1);
+  });
+
   it("codes Kosovo and merges Northern Cyprus into Cyprus", () => {
     const countries: SourceCountry[] = [
       { id: undefined, name: "Kosovo", geometry: { type: "Polygon", coordinates: square(21, 42) } },

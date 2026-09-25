@@ -21,5 +21,7 @@ export const localeTextSchema = z.strictObject({
   }),
   presenceNotes: z.record(placeCodeSchema, text(1000)).optional(),
   subdivisionNotes: z.record(subdivisionCodeSchema, text(1000)).optional(),
+  /** Describes the cover image for screen readers; required when item.json has an image. */
+  imageAlt: text(250).optional(),
 });
 export type LocaleText = z.infer<typeof localeTextSchema>;

@@ -1,4 +1,9 @@
 ---
+/**
+ * Item detail page. Order follows what readers want first: the score and the map,
+ * then the definition, article, breakdown (with the evidence grade) and sources.
+ */
+import { Image } from "astro:assets";
 import { formatPartialDate, formatRange } from "../i18n/format.ts";
 import { categoryLabel } from "../i18n/labels.ts";
 import { defaultLocale, format, type Locale, localizedPath, t } from "../i18n/ui.ts";
@@ -6,6 +11,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { METHODOLOGY_VERSION } from "../scoring/constants.ts";
 import { renderCitations, resolveItemLinks } from "../site/citations.ts";
 import {
+  coverImage,
   loadItemTexts,
   loadReference,
   loadRenderedBody,
@@ -71,14 +77,16 @@ const eyebrow = [
   format(locale, "item.rankOf", { rank: detail.rank, total: detail.total }),
   sinceText && format(locale, "item.since", { year: sinceText }),
 ].filter(Boolean);
+const evidenceTooltip = format(locale, "item.evidenceGradeTooltip", { grade: detail.evidenceGrade });
+const image = detail.item.image;
+const cover = image && coverImage(detail.item.id, image.file);
 
 let section = 0;
 const next = () => ++section;
 ---
 
 <BaseLayout locale={locale} alternates={detail.alternates} title={text.title} description={text.summary}>
-  <!-- Same outer width as the header (left edges line up); the content itself stays readable. -->
-  <main class="mx-auto max-w-6xl px-4 pt-8"><div class="max-w-4xl">
+  <main class="mx-auto max-w-6xl px-4 pt-8">
     <a
       href={localizedPath(locale, "/")}
       class="font-mono text-xs uppercase tracking-wider text-ink-muted hover:text-accent"
@@ -86,47 +94,92 @@ const next = () => ++section;
       ← {t(locale, "nav.backToRanking")}
     </a>
 
-    <header class="mt-6">
-      <p class="font-mono text-xs uppercase tracking-wider text-accent">{eyebrow.join(" · ")}</p>
-      <h1 class="mt-3 max-w-3xl font-serif text-4xl font-semibold leading-tight tracking-tight text-heading sm:text-5xl">
-        {text.title}
-      </h1>
-      <p class="mt-4 max-w-2xl text-lg leading-relaxed text-ink-muted">{text.summary}</p>
-      <div class="mt-4 flex flex-wrap gap-1.5">
-        {detail.item.status === "mock" && <Badge tone="warning">{t(locale, "badge.mock")}</Badge>}
-        {detail.item.status === "draft" && <Badge tone="warning">{t(locale, "badge.draft")}</Badge>}
-        {detail.hiddenJabuticaba && <Badge tone="accent">{t(locale, "badge.hiddenJabuticaba")}</Badge>}
-        {text.translationStatus === "machine" && <Badge>{t(locale, "item.machineTranslation")}</Badge>}
-      </div>
-    </header>
+    <div class="mt-6 grid items-start gap-8 lg:grid-cols-5">
+      <div class="lg:col-span-3">
+        <header>
+          <p class="font-mono text-xs uppercase tracking-wider text-accent">{eyebrow.join(" · ")}</p>
+          <h1 class="mt-3 font-serif text-4xl font-semibold leading-tight tracking-tight text-heading sm:text-5xl">
+            {text.title}
+          </h1>
+          <p class="mt-4 max-w-2xl text-lg leading-relaxed text-ink-muted">{text.summary}</p>
+          <div class="mt-4 flex flex-wrap gap-1.5">
+            {detail.item.status === "mock" && <Badge tone="warning">{t(locale, "badge.mock")}</Badge>}
+            {detail.item.status === "draft" && <Badge tone="warning">{t(locale, "badge.draft")}</Badge>}
+            {detail.hiddenJabuticaba && <Badge tone="accent">{t(locale, "badge.hiddenJabuticaba")}</Badge>}
+            {text.translationStatus === "machine" && <Badge>{t(locale, "item.machineTranslation")}</Badge>}
+          </div>
+        </header>
 
-    <section class="mt-8 grid gap-6 rounded-sm border border-rule bg-surface-raised p-6 sm:grid-cols-3" aria-label={t(locale, "item.index")}>
-      <div>
-        <p class="font-mono text-xs uppercase tracking-wider text-ink-muted">{t(locale, "item.index")}</p>
-        <p class="mt-1 text-6xl font-semibold tracking-tight text-heading">
-          {score.score.point}<span class="text-3xl font-normal text-ink-muted">%</span>
-        </p>
-        <p class="mt-1 text-sm text-ink-muted">
-          {format(locale, "item.rangeLabel", { range: formatRange(locale, score.score.low, score.score.high) })}
-        </p>
+        <section
+          class="mt-6 rounded-md border border-rule bg-surface-raised p-5 shadow-sm"
+          aria-label={t(locale, "item.index")}
+        >
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <p class="font-mono text-xs uppercase tracking-wider text-ink-muted">{t(locale, "item.index")}</p>
+              <p class="mt-1 text-6xl font-semibold tracking-tight text-heading">
+                {score.score.point}<span class="text-3xl font-normal text-ink-muted">%</span>
+              </p>
+              <p class="mt-1 text-sm text-ink-muted">
+                {format(locale, "item.rangeLabel", { range: formatRange(locale, score.score.low, score.score.high) })}
+              </p>
+            </div>
+            <a
+              href="#evidence"
+              title={evidenceTooltip}
+              aria-label={evidenceTooltip}
+              class="flex flex-col items-center gap-1 text-ink-muted hover:text-accent"
+            >
+              <span class="flex size-9 items-center justify-center rounded-sm border border-rule font-mono text-base font-medium text-heading">
+                {detail.evidenceGrade}
+              </span>
+              <span class="font-mono text-xs uppercase tracking-wider">{t(locale, "item.evidenceShort")}</span>
+            </a>
+          </div>
+          <div class="mt-5 px-2">
+            <ScoreScale low={score.score.low} point={score.score.point} high={score.score.high} label={scoreLabel} />
+          </div>
+        </section>
       </div>
-      <div class="flex flex-col justify-between gap-6 sm:col-span-2">
-        <div class="px-2 pt-2">
-          <ScoreScale low={score.score.low} point={score.score.point} high={score.score.high} label={scoreLabel} />
-        </div>
-        <div class="flex items-start gap-3">
-          <span class="flex size-10 shrink-0 items-center justify-center rounded-sm border border-rule font-mono text-lg font-medium text-heading">
-            {detail.evidenceGrade}
-          </span>
-          <p class="text-sm text-ink-muted">
-            <span class="font-medium text-ink">{t(locale, "item.evidenceGrade")}.</span>
-            {" "}{t(locale, "item.evidenceGradeHint")}
-          </p>
-        </div>
+
+      {
+        cover && image && (
+          <figure class="lg:col-span-2">
+            <Image
+              src={cover}
+              alt={text.imageAlt ?? ""}
+              widths={[480, 960]}
+              sizes="(min-width: 1152px) 440px, (min-width: 1024px) 38vw, 100vw"
+              loading="eager"
+              class="aspect-3/2 w-full rounded-md border border-rule object-cover"
+            />
+            <figcaption class="mt-2 text-xs text-ink-muted">
+              {image.credit.url ? (
+                <a href={image.credit.url} class="hover:text-accent hover:underline" rel="noopener">
+                  {format(locale, "item.imageCredit", { author: image.credit.author, license: image.credit.license })}
+                </a>
+              ) : (
+                format(locale, "item.imageCredit", { author: image.credit.author, license: image.credit.license })
+              )}
+            </figcaption>
+          </figure>
+        )
+      }
+    </div>
+
+    <section class="mt-14">
+      <SectionHeading number={next()} id="map">{t(locale, "item.mapTitle")}</SectionHeading>
+      {detail.presence.length === 0 && <p class="mt-4 text-ink-muted">{t(locale, "item.mapAlone")}</p>}
+      <div class="mt-4">
+        <WorldMap locale={locale} presence={detail.presence} />
+      </div>
+      <div class="max-w-4xl">
+        <PresenceTable locale={locale} rows={detail.presence} sources={detail.sources} placeCount={score.placeCount} />
+        <SubdivisionTable locale={locale} rows={detail.subdivisions} sources={detail.sources} />
       </div>
     </section>
 
-    <div class="mt-14 space-y-14">
+    <div class="mt-14 max-w-4xl space-y-14">
       <section>
         <SectionHeading number={next()} id="definition">{t(locale, "item.definitionTitle")}</SectionHeading>
         <p class="mt-4 max-w-3xl border-l-2 border-accent pl-4 font-serif text-xl leading-relaxed text-ink">
@@ -142,16 +195,6 @@ const next = () => ++section;
           </section>
         )
       }
-
-      <section>
-        <SectionHeading number={next()} id="map">{t(locale, "item.mapTitle")}</SectionHeading>
-        {detail.presence.length === 0 && <p class="mt-4 text-ink-muted">{t(locale, "item.mapAlone")}</p>}
-        <div class="mt-4">
-          <WorldMap locale={locale} presence={detail.presence} />
-        </div>
-        <PresenceTable locale={locale} rows={detail.presence} sources={detail.sources} placeCount={score.placeCount} />
-        <SubdivisionTable locale={locale} rows={detail.subdivisions} sources={detail.sources} />
-      </section>
 
       <section>
         <SectionHeading number={next()} id="breakdown">{t(locale, "item.breakdownTitle")}</SectionHeading>
@@ -183,13 +226,13 @@ const next = () => ++section;
           </section>
         )
       }
-    </div>
 
-    <p class="mt-14 border-t border-rule pt-4 font-mono text-xs text-ink-muted">
-      {format(locale, "item.lastReviewed", {
-        date: formatPartialDate(locale, detail.item.lastReviewed),
-        version: detail.item.methodologyVersion || METHODOLOGY_VERSION,
-      })}
-    </p>
-  </div></main>
+      <p class="border-t border-rule pt-4 font-mono text-xs text-ink-muted">
+        {format(locale, "item.lastReviewed", {
+          date: formatPartialDate(locale, detail.item.lastReviewed),
+          version: detail.item.methodologyVersion || METHODOLOGY_VERSION,
+        })}
+      </p>
+    </div>
+  </main>
 </BaseLayout>

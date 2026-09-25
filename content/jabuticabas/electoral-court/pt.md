@@ -7,6 +7,7 @@ definition: "Órgão do Judiciário que acumula a administração, a regulamenta
 justifications:
   intensity: "Avaliação editorial: nenhum dado comparável foi encontrado (dado fictício)."
   awareness: "Tratado como a forma natural de organizar eleições."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 Modelos parecidos existem em alguns países da região [@fictional-encyclopedia].

@@ -7,6 +7,7 @@ definition: "Tempo obrigatório de rádio e televisão cedido aos partidos duran
 justifications:
   intensity: "Dados insuficientes; faixa ampla de propósito (dado fictício)."
   awareness: "Conhecido por todos; raridade pouco discutida."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 As únicas fontes encontradas foram discussões em fórum [@fictional-forum], o que explica a faixa de incerteza.

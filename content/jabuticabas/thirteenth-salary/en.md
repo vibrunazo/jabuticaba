@@ -7,6 +7,7 @@ definition: "Mandatory annual bonus equal to one monthly salary, paid at the end
 justifications:
   intensity: "Rule similar to that of several countries (fictional data)."
   awareness: "Many think it is exclusively Brazilian."
+imageAlt: "Fictional placeholder image."
 ---
 
 Equivalent benefits exist in more than a dozen countries [@fictional-gazette].

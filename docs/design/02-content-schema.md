@@ -27,6 +27,7 @@ content/                               # data only; no code
 ├── jabuticabas/
 │   └── capybara/                      # folder name == item id
 │       ├── item.json                  # language-neutral data
+│       ├── cover.webp                 # optional cover image
 │       ├── pt.md                      # pt-BR text (required)
 │       └── en.md                      # English text (optional)
 └── reference/
@@ -96,6 +97,7 @@ Every input the index uses (each presence entry, `intensity`, `awareness`,
 | `awareness`          | `AwarenessInput`             | yes  | Not scored. |
 | `sources`            | `Source[]`                   | yes  | May be empty only for `draft` items. |
 | `related`            | `Id[]`                       | no   | Other item ids. The site computes backlinks, so there is no need to list both directions. |
+| `image`              | `ItemImage`                  | no   | Cover image; see below. |
 
 `intensity` and `awareness` are top-level fields, not grouped under a shared key.
 Grouping them would suggest to agents that both are scored.
@@ -153,6 +155,18 @@ Rules:
 
 `{ value: Rating, sources: Id[], editorial?: true }`. See methodology 7.1.
 
+### `ItemImage`
+
+| Field            | Type        | Req. | Notes |
+|------------------|-------------|------|-------|
+| `file`           | string      | yes  | `cover.webp`, `cover.jpg`, `cover.jpeg`, `cover.png` or `cover.avif`, in the item folder. |
+| `credit.author`  | string      | yes  | Photographer or creator. |
+| `credit.license` | string      | yes  | SPDX identifier when possible (`CC-BY-4.0`, `CC0-1.0`…). Only use images whose license allows reuse. |
+| `credit.url`     | https URL   | no   | Where the image was found, e.g. its Wikimedia Commons page. Mock items: `example.org` only (J033). |
+
+The site resizes and compresses the file at build time, so upload the original
+(ideally at least 1200 px wide, 3:2). The credit is shown under the image.
+
 ### `Source`
 
 | Field        | Type          | Req. | Notes |
@@ -186,6 +200,7 @@ YAML frontmatter holds every short translatable string; the body holds the artic
 | `justifications`    | `{ intensity: string, awareness: string }` | yes | Why each rating has its value. |
 | `presenceNotes`     | map of `PlaceCode` → string           | no   | Explains specific presence entries. Keys must exist in `presence`. |
 | `subdivisionNotes`  | map of `SubdivisionCode` → string     | no   | Explains specific subdivision entries. Keys must exist in `subdivisions`. |
+| `imageAlt`          | string, 1–250 chars                  | if image | Describes the cover image for screen readers. Required in every locale when `item.json` has an `image`, forbidden otherwise (J081). |
 
 All locale files of an item must have **the same keys**, including the same sets of
 `presenceNotes` and `subdivisionNotes` keys (J052). A note added in Portuguese forces a translation.
@@ -337,7 +352,7 @@ Scope: **all** = every status; **pub** = `published` only (a warning for `draft`
 | Code | Level   | Scope | Rule |
 |------|---------|-------|------|
 | J001 | error   | all   | Folder name equals `id`. |
-| J002 | error   | all   | A folder contains only `item.json` and `<locale>.md` files for supported locales. |
+| J002 | error   | all   | A folder contains only `item.json`, `<locale>.md` files for supported locales, and cover images (`cover.webp`/`.jpg`/`.jpeg`/`.png`/`.avif`). |
 | J003 | error   | all   | Each file matches its Zod schema. |
 | J010 | error   | all   | `slug` is unique per locale. |
 | J011 | error   | all   | `related` ids exist, are not the item itself, and have no duplicates. |
@@ -371,6 +386,9 @@ Scope: **all** = every status; **pub** = `published` only (a warning for `draft`
 | J055 | warning | all   | The body contains external links; prefer citations. |
 | J056 | error   | all   | The body contains no `#` (h1) heading. |
 | J060 | error   | prod  | No item has `status: mock`. |
+| J080 | error   | all   | `image.file` exists in the item folder. |
+| J081 | error   | all   | `imageAlt` is present in every locale file if and only if the item has an `image`. |
+| J082 | warning | all   | A cover image file in the folder is not referenced by `image.file`. |
 | J070 | error   | CI    | `schemas/item.schema.json` matches the Zod schema. |
 | J071 | error   | CI    | `data/index-results.csv` matches the computed results. |
 | J072 | error   | CI    | `data/geo/` matches the `pnpm geo` output. |
@@ -475,7 +493,7 @@ Compare com o [vira-lata caramelo](jabuticaba:caramel-mutt).
 ## 13. Decisions
 
 1. One `category` per item; tags may be added later.
-2. Images (license, author, attribution) come in a later schema version.
+2. Images: one optional cover image per item, stored in the item folder (see `ItemImage`).
 3. Drafts appear in preview deploys, with a banner.
 
 ## 14. Planned: fine-grained range layers

@@ -7,6 +7,7 @@ definition: "Regime constitucional em que dívidas judiciais do poder público e
 justifications:
   intensity: "Avaliação editorial (dado fictício)."
   awareness: "Conhecido quase só por credores e advogados."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 O regime tem base constitucional [@fictional-decree].

@@ -40,6 +40,21 @@ describe("buildRanking", () => {
     expect(ptRows[0]?.untranslated).toBe(false);
   });
 
+  it("passes the cover image and its alt text in the shown locale", () => {
+    const withImage = {
+      ...rare,
+      image: { file: "cover.webp", credit: { author: "A", license: "CC0-1.0" } },
+    };
+    const imageTexts: ItemText[] = [
+      {
+        ...texts[0],
+        text: makeLocaleText({ title: "Raro", slug: "raro", imageAlt: "Foto." }),
+      } as ItemText,
+    ];
+    const rows = buildRanking([withImage], imageTexts, "pt", { includeUnpublished: false });
+    expect(rows[0]?.image).toEqual({ file: "cover.webp", alt: "Foto." });
+  });
+
   it("hides unpublished items unless asked", () => {
     const hidden = buildRanking([rare, mock], texts, "pt", { includeUnpublished: false });
     expect(hidden.map((r) => r.id)).toEqual(["rare"]);

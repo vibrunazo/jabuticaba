@@ -125,4 +125,14 @@ const valueClass = "font-mono text-sm tabular-nums text-ink sm:text-right";
       {format(locale, "item.ratingOf", { value: awarenessText })}
     </p>
   </div>
+  <div
+    id="evidence"
+    class="mt-4 grid scroll-mt-6 gap-x-6 gap-y-1 border-t border-rule pt-4 sm:grid-cols-3"
+  >
+    <div class="sm:col-span-2">
+      <span class="font-medium text-ink">{t(locale, "item.evidenceGrade")}</span>
+      <p class="mt-0.5 text-sm text-ink-muted">{t(locale, "item.evidenceGradeHint")}</p>
+    </div>
+    <p class="font-mono text-sm font-medium text-heading sm:text-right">{detail.evidenceGrade}</p>
+  </div>
 </div>

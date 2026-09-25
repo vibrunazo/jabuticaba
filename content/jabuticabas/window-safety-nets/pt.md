@@ -9,6 +9,7 @@ justifications:
   awareness: "Quase nenhum brasileiro sabe que isso é incomum."
 subdivisionNotes:
   BR-AM: "Menos comum em cidades com menos prédios altos."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 A instalação é considerada item básico de mudança [@fictional-census].

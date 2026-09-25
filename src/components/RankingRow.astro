@@ -1,10 +1,12 @@
 ---
 /**
- * One ranking entry, as a card in the ranking grid. The score and its error bar
- * sit at the top, next to each other, so the bar never touches a card border.
+ * One ranking entry, as a card in the ranking grid: cover image, title and
+ * summary, and the score with its error bar. Category is a small footnote.
  */
+import { Image } from "astro:assets";
 import { categoryLabel } from "../i18n/labels.ts";
 import { format, type Locale, t } from "../i18n/ui.ts";
+import { coverImage } from "../site/content.ts";
 import type { RankingRow } from "../site/ranking.ts";
 import Badge from "./Badge.astro";
 import ScoreErrorBar from "./ScoreErrorBar.astro";
@@ -12,53 +14,72 @@ import ScoreErrorBar from "./ScoreErrorBar.astro";
 interface Props {
   row: RankingRow;
   locale: Locale;
+  /** Load the image immediately (cards visible without scrolling). */
+  eager?: boolean;
 }
 
-const { row, locale } = Astro.props;
+const { row, locale, eager = false } = Astro.props;
 const scoreLabel = format(locale, "ranking.scoreLabel", {
   score: row.score.point,
   low: row.score.low,
   high: row.score.high,
 });
 const textLang = row.untranslated ? "pt-BR" : undefined;
+const cover = row.image && coverImage(row.id, row.image.file);
 ---
 
 <li
-  class="group relative flex flex-col rounded-md border border-rule bg-surface-raised p-5 shadow-sm transition hover:border-ink-muted hover:shadow-md motion-safe:hover:-translate-y-0.5"
+  class="group relative flex flex-col overflow-hidden rounded-md border border-rule bg-surface-raised shadow-sm transition hover:border-ink-muted hover:shadow-md motion-safe:hover:-translate-y-0.5"
 >
-  <div class="flex items-start justify-between gap-4">
-    <p class="pt-1.5 font-mono text-xs uppercase tracking-wider text-ink-muted">
-      {format(locale, "ranking.rank", { rank: row.rank })}
-      <span class="mx-1">·</span>
-      {categoryLabel(locale, row.category)}
-    </p>
-    <div class="w-28 shrink-0">
-      <p class="text-right text-3xl font-semibold leading-none text-heading" aria-hidden="true">
-        {row.score.point}<span class="text-base font-normal text-ink-muted">%</span>
-      </p>
-      <div class="mt-2.5 px-1">
-        <ScoreErrorBar
-          low={row.score.low}
-          point={row.score.point}
-          high={row.score.high}
-          label={scoreLabel}
+  <div class="relative aspect-3/2 bg-surface-sunken">
+    {
+      cover && row.image && (
+        <Image
+          src={cover}
+          alt={row.image.alt}
+          widths={[400, 800]}
+          sizes="(min-width: 1152px) 360px, (min-width: 1024px) 31vw, (min-width: 640px) 48vw, 100vw"
+          loading={eager ? "eager" : "lazy"}
+          class="size-full object-cover"
         />
-      </div>
-    </div>
+      )
+    }
+    <span class="absolute top-3 left-3 rounded-sm bg-surface/90 px-2 py-0.5 font-mono text-xs text-heading">
+      {format(locale, "ranking.rank", { rank: row.rank })}
+    </span>
   </div>
 
-  <h2 class="mt-4 font-serif text-xl font-semibold leading-snug text-heading" lang={textLang}>
-    <a href={row.href} class="after:absolute after:inset-0 group-hover:text-accent">
-      {row.title}
-    </a>
-  </h2>
-  <p class="mt-2 flex-1 text-sm leading-relaxed text-ink-muted" lang={textLang}>{row.summary}</p>
+  <div class="flex flex-1 flex-col p-4">
+    <div class="flex items-start gap-4">
+      <div class="min-w-0 flex-1">
+        <h2 class="font-serif text-lg font-semibold leading-snug text-heading" lang={textLang}>
+          <a href={row.href} class="after:absolute after:inset-0 group-hover:text-accent">
+            {row.title}
+          </a>
+        </h2>
+        <p class="mt-1.5 text-sm leading-relaxed text-ink-muted" lang={textLang}>{row.summary}</p>
+      </div>
+      <div class="w-20 shrink-0">
+        <p class="text-right text-2xl font-semibold leading-none text-heading" aria-hidden="true">
+          {row.score.point}<span class="text-sm font-normal text-ink-muted">%</span>
+        </p>
+        <div class="mt-2.5 px-1">
+          <ScoreErrorBar
+            low={row.score.low}
+            point={row.score.point}
+            high={row.score.high}
+            label={scoreLabel}
+          />
+        </div>
+      </div>
+    </div>
 
-  <div class="mt-4 flex flex-wrap gap-1.5">
-    <Badge>{format(locale, "badge.evidenceGrade", { grade: row.evidenceGrade })}</Badge>
-    {row.hiddenJabuticaba && <Badge tone="accent">{t(locale, "badge.hiddenJabuticaba")}</Badge>}
-    {row.untranslated && <Badge>{t(locale, "badge.untranslated")}</Badge>}
-    {row.status === "mock" && <Badge tone="warning">{t(locale, "badge.mock")}</Badge>}
-    {row.status === "draft" && <Badge tone="warning">{t(locale, "badge.draft")}</Badge>}
+    <div class="mt-auto flex flex-wrap items-center gap-x-2 gap-y-1.5 pt-4">
+      <span class="text-xs text-ink-muted">{categoryLabel(locale, row.category)}</span>
+      {row.hiddenJabuticaba && <Badge tone="accent">{t(locale, "badge.hiddenJabuticaba")}</Badge>}
+      {row.untranslated && <Badge>{t(locale, "badge.untranslated")}</Badge>}
+      {row.status === "mock" && <Badge tone="warning">{t(locale, "badge.mock")}</Badge>}
+      {row.status === "draft" && <Badge tone="warning">{t(locale, "badge.draft")}</Badge>}
+    </div>
   </div>
 </li>

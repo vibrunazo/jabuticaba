@@ -7,6 +7,7 @@ definition: "Tomadas e plugues no padrão brasileiro de três pinos redondos, ob
 justifications:
   intensity: "Padrão nacional obrigatório no Brasil; no exterior, adoção parcial em um país (dado fictício)."
   awareness: "Conhecido pela reclamação, não pela raridade."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 A norma tornou o padrão obrigatório [@fictional-decree].

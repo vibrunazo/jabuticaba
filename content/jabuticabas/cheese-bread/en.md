@@ -9,6 +9,7 @@ justifications:
   awareness: "Recognized as typically Brazilian."
 presenceNotes:
   PY: "Similar but not identical recipes, according to the fictional source."
+imageAlt: "Fictional placeholder image."
 ---
 
 Consumption is widespread [@fictional-census], and the exported version reaches several countries [@fictional-survey].

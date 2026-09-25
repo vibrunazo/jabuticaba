@@ -7,6 +7,7 @@ definition: "Funcionário que controla o acesso a prédios residenciais em tempo
 justifications:
   intensity: "Presente na maioria dos prédios de classe média nas grandes cidades (dado fictício)."
   awareness: "Raramente percebido como incomum."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 A profissão existe em poucos países com a mesma frequência [@fictional-survey].

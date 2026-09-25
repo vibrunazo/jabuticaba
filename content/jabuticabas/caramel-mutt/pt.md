@@ -7,6 +7,7 @@ definition: "Cães sem raça definida, de pelagem caramelo, vivendo livres em á
 justifications:
   intensity: "Populações de cães livres existem em boa parte do mundo; no Brasil são um pouco mais comuns."
   awareness: "Símbolo nacional assumido, presente em memes e campanhas."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 O vira-lata caramelo ocupa as ruas de dezenas de países [@fictional-dog-atlas].

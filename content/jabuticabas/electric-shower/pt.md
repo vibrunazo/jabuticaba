@@ -7,6 +7,7 @@ definition: "Chuveiro com resistência elétrica que aquece a água no ponto de 
 justifications:
   intensity: "Razão de prevalência fictícia de 8 vezes em relação ao segundo colocado."
   awareness: "Raramente reconhecido como peculiaridade nacional."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 Segundo a associação do setor [@fictional-association], o equipamento é comum em boa parte da América Latina.

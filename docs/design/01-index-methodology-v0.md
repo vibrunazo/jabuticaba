@@ -322,6 +322,9 @@ be researched and sourced before publication.
     (`PART_SPLITS`);
   - codes Kosovo as `XK`, and draws Northern Cyprus and Somaliland as part of
     Cyprus and Somalia, following ISO 3166-1 (`UNCODED_FEATURES`);
+  - draws Crimea as part of Ukraine (Natural Earth shows de facto control; ISO
+    3166-1, UN General Assembly resolution 68/262 and IBGE's maps don't). Taiwan
+    (`TW`) is its own entry, separate from China;
   - takes shapes from the 1:110m data (small and fast to draw) and turns places
     that only exist at 1:50m (Singapore, Cabo Verde, Caribbean islands…) into
     **points**, so they can still be marked;
@@ -337,9 +340,10 @@ be researched and sourced before publication.
   faint neutral for no data, and jabuticaba purple for Brazil. Uncertain places take the color of the highest
   possible level; the presence table below the map shows the full range.
 - Every map has a legend, per-country tooltips (SVG `<title>`) and a table view.
-- Two projections, both Equal Earth: `standard` ("Colonial": centred on
-  Greenwich, north up) and `brazil-centered` ("Sovereign": centred on 50° W,
-  rotated 180°, south up, following IBGE). `brazil-centered` is the default in
+- Two projections, both Equal Earth. `brazil-centered` ("Sovereign") follows
+  IBGE's south-up world maps: **centred on 60° W, rotated 180°**. Its edges fall on 120° E, which cuts Russia in half and puts mainland
+  China and Taiwan at opposite ends of the map. `standard` ("Colonial") is north
+  up, centred on Greenwich. `brazil-centered` is the default in
   every locale. A CSS-only toggle switches between them.
 - **Subdivision maps (planned):** items with `subdivisions` data currently show a
   table. Maps per country (Brazilian states, US states…) need admin-1 geometry
@@ -394,7 +398,10 @@ Anchor fixtures used as unit tests of the formula (not site content):
 - `intensity` is prevalence only; distinctiveness goes in the `definition`.
 - Evidence grade is computed from source types, not rated by hand.
 - `absent` added as a presence level, distinct from unlisted.
-- `brazil-centered` is the default projection in every locale.
+- `brazil-centered` is the default projection in every locale. It follows IBGE's
+  south-up maps: Equal Earth centred on 60° W. (Eckert III, used on IBGE's BRICS
+  poster, was tried and rejected: it makes Antarctica huge.)
+- Disputed areas follow ISO 3166-1: Crimea is drawn as Ukraine; Taiwan is separate.
 - "Hidden jabuticaba" badge requires a score above 50% (section 7.1).
 - Subnational data uses ISO 3166-2 for any country, not just Brazil; it is not scored.
 - **v0.2:** Brazilian exports count at half weight (`EXPORT_WEIGHT_FACTOR`). The

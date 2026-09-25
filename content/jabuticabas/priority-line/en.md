@@ -7,6 +7,7 @@ definition: "A dedicated line or checkout, required by law, for the elderly, pre
 justifications:
   intensity: "Required in practically every establishment in Brazil; abroad, rare or limited to public services (fictional data)."
   awareness: "Considered so normal that nobody asks whether it exists in other countries."
+imageAlt: "Fictional placeholder image."
 ---
 
 The requirement has a legal basis [@fictional-decree].

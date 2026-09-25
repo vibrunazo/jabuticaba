@@ -28,6 +28,8 @@ export interface RankingRow {
   untranslated: boolean;
   /** Detail page, in the language of the text shown. */
   href: string;
+  /** Cover image file name in the item folder, and its alt text. */
+  image: { file: string; alt: string } | undefined;
   score: Bounds;
   evidenceGrade: EvidenceGrade;
   hiddenJabuticaba: boolean;
@@ -71,6 +73,7 @@ export function buildRanking(
       summary: text.summary,
       untranslated: localText === undefined,
       href: localizedPath(textLocale, `/${text.slug}/`),
+      image: item.image && { file: item.image.file, alt: text.imageAlt ?? "" },
       score: result.result.score,
       evidenceGrade: result.evidenceGrade,
       hiddenJabuticaba: isHiddenJabuticaba(item),

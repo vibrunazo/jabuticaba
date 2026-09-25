@@ -2,7 +2,9 @@
  * Reads the Astro content collections and reference data. Only for use in .astro
  * files: this module depends on Astro, unlike the rest of the logic.
  */
+
 import { getCollection } from "astro:content";
+import type { ImageMetadata } from "astro";
 import { loadReferenceData, type ReferenceData } from "../content-files/load.ts";
 import { type ProjectedWorld, type ProjectionName, projectWorld } from "../geo/world-map.ts";
 import { type Locale, locales } from "../i18n/ui.ts";
@@ -43,6 +45,16 @@ export async function loadItemTexts(): Promise<ItemText[]> {
 export async function loadRenderedBody(itemId: string, locale: Locale): Promise<string> {
   const entries = await getCollection("itemTexts");
   return entries.find((entry) => entry.id === `${itemId}/${locale}`)?.rendered?.html ?? "";
+}
+
+/** Cover images, imported through Vite so Astro can resize and compress them. */
+const covers = import.meta.glob<{ default: ImageMetadata }>(
+  "/content/jabuticabas/*/cover.{webp,jpg,jpeg,png,avif}",
+  { eager: true },
+);
+
+export function coverImage(itemId: string, file: string): ImageMetadata | undefined {
+  return covers[`/content/jabuticabas/${itemId}/${file}`]?.default;
 }
 
 let referenceData: ReferenceData | undefined;

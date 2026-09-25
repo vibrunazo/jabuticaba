@@ -8,13 +8,21 @@ import type { PlaceFeature, WorldGeo } from "./build-world.ts";
 export const PROJECTIONS = ["brazil-centered", "standard"] as const;
 export type ProjectionName = (typeof PROJECTIONS)[number];
 
-/** IBGE-style default in every locale: Brazil in the middle, south up. */
+/**
+ * `brazil-centered` ("Sovereign") follows IBGE's south-up world maps: Equal Earth,
+ * centered on 60° W, rotated 180°. `standard` ("Colonial") is Equal Earth, north up,
+ * centered on Greenwich. Default in every locale: `brazil-centered`.
+ */
 export const DEFAULT_PROJECTION: ProjectionName = "brazil-centered";
 
-/** Longitude placed at the center of the brazil-centered projection. */
-const BRAZIL_CENTER_LONGITUDE = -50;
+/**
+ * Longitude placed at the center of the brazil-centered projection: 60° W, as on
+ * IBGE's official south-up world maps. Its antimeridian (120° E) runs between
+ * mainland China and Taiwan and through Russia.
+ */
+export const BRAZIL_CENTER_LONGITUDE = -60;
 
-/** SVG viewBox size; the map scales to its container. Equal Earth is about 2.05:1. */
+/** SVG viewBox size; the map scales to its container. Both projections are about 2:1. */
 export const MAP_WIDTH = 960;
 export const MAP_HEIGHT = 470;
 const MAP_PADDING = 4;
@@ -43,7 +51,7 @@ export interface ProjectedWorld {
 function makeProjection(name: ProjectionName): GeoProjection {
   const projection = geoEqualEarth();
   if (name === "brazil-centered") {
-    // [λ, φ, γ]: bring BRAZIL_CENTER_LONGITUDE to the middle, then turn the globe 180°.
+    // [λ, φ, γ]: bring BRAZIL_CENTER_LONGITUDE to the middle, then turn the map 180°.
     projection.rotate([-BRAZIL_CENTER_LONGITUDE, 0, 180]);
   }
   return projection.fitExtent(

@@ -9,6 +9,7 @@ justifications:
   awareness: "Tratada como símbolo nacional."
 presenceNotes:
   US: "Relatos esparsos de animais fugidos de cativeiro."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 A capivara é encontrada em praticamente toda a América do Sul [@fictional-rodent-survey],

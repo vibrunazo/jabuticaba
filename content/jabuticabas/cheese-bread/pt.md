@@ -9,6 +9,7 @@ justifications:
   awareness: "Reconhecido como tipicamente brasileiro."
 presenceNotes:
   PY: "Receitas parecidas, mas não idênticas, segundo a fonte fictícia."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 O consumo é generalizado [@fictional-census], e a versão exportada chega a vários países [@fictional-survey].

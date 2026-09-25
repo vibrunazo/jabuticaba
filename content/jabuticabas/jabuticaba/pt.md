@@ -7,6 +7,7 @@ definition: "Plinia cauliflora, nativa ou cultivada, em pomares ou quintais."
 justifications:
   intensity: "Cultivo em escala nacional no Brasil; no exterior, restrita a quintais e colecionadores."
   awareness: "Usada como metáfora nacional para qualquer coisa que só existe no Brasil."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 A jabuticaba é a unidade de medida deste índice e, por coerência metodológica, também foi medida [@fictional-census].

@@ -9,6 +9,7 @@ justifications:
   awareness: "Heavily debated, but rarely as something rare in the world."
 subdivisionNotes:
   US-LA: "Statewide use, according to the fictional source."
+imageAlt: "Fictional placeholder image."
 ---
 
 ## Context

@@ -21,7 +21,7 @@ const pt = {
   "site.description": "Medindo, com rigor científico, o quão brasileiras as coisas são.",
   "nav.switchLanguage": "English",
   "nav.toggleTheme": "Alternar tema claro/escuro",
-  "ranking.title": "Classificação geral",
+  "ranking.title": "O ranking exclusivo do que só tem no Brasil",
   "ranking.intro":
     "Coisas que só existem no Brasil, ou quase, ordenadas pelo Índice Jabuticaba®: de 0% (comum no mundo inteiro) a 100% (exclusivamente brasileiro).",
   "ranking.legendPoint": "Estimativa central",
@@ -50,6 +50,10 @@ const pt = {
   "item.rankOf": "{rank}º de {total}",
   "item.rangeLabel": "Faixa de plausibilidade: {range}%",
   "item.evidenceGrade": "Grau de evidência",
+  "item.evidenceShort": "Evidência",
+  "item.evidenceGradeTooltip":
+    "Grau de evidência {grade}: a solidez das fontes. Clique para ver como é calculado.",
+  "item.imageCredit": "Imagem: {author} ({license})",
   "item.evidenceGradeHint":
     "Calculado pelos tipos de fonte: de A (dados oficiais e acadêmicos) a D (avaliação editorial). Não altera o índice.",
   "item.machineTranslation": "Tradução automática, ainda não revisada.",
@@ -58,7 +62,7 @@ const pt = {
   "item.articleTitle": "Contexto",
   "item.mapTitle": "Onde mais existe",
   "item.mapCaption":
-    "Projeção Equal Earth. Lugares com presença incerta aparecem com a cor do nível mais alto possível; a tabela mostra a faixa completa.",
+    "Projeção Soberana: Equal Earth centrada em 60° O, com o sul para cima, como nos mapas-múndi do IBGE. Projeção Colonial: Equal Earth. Lugares com presença incerta aparecem com a cor do nível mais alto possível; a tabela mostra a faixa completa.",
   "item.mapAlone": "Não foi encontrado em nenhum outro lugar pesquisado.",
   "item.projection": "Projeção",
   "item.tablePlace": "Lugar",
@@ -117,7 +121,7 @@ const en: Record<UiKey, string> = {
   "site.description": "Measuring, with scientific rigor, how Brazilian things are.",
   "nav.switchLanguage": "Português",
   "nav.toggleTheme": "Toggle light/dark theme",
-  "ranking.title": "Overall ranking",
+  "ranking.title": "The exclusive ranking of things found only in Brazil",
   "ranking.intro":
     "Things that exist only in Brazil, or almost, ranked by the Jabuticaba Index®: from 0% (common worldwide) to 100% (exclusively Brazilian).",
   "ranking.legendPoint": "Central estimate",
@@ -146,6 +150,10 @@ const en: Record<UiKey, string> = {
   "item.rankOf": "#{rank} of {total}",
   "item.rangeLabel": "Plausibility range: {range}%",
   "item.evidenceGrade": "Evidence grade",
+  "item.evidenceShort": "Evidence",
+  "item.evidenceGradeTooltip":
+    "Evidence grade {grade}: how solid the sources are. Click to see how it is computed.",
+  "item.imageCredit": "Image: {author} ({license})",
   "item.evidenceGradeHint":
     "Computed from source types: from A (official and academic data) to D (editorial judgment). It does not change the index.",
   "item.machineTranslation": "Machine translation, not yet reviewed.",
@@ -154,7 +162,7 @@ const en: Record<UiKey, string> = {
   "item.articleTitle": "Context",
   "item.mapTitle": "Where else it exists",
   "item.mapCaption":
-    "Equal Earth projection. Places with uncertain presence take the color of the highest possible level; the table shows the full range.",
+    "Sovereign projection: Equal Earth centered on 60° W, south up, as on IBGE's world maps. Colonial projection: Equal Earth. Places with uncertain presence take the color of the highest possible level; the table shows the full range.",
   "item.mapAlone": "Not found anywhere else surveyed.",
   "item.projection": "Projection",
   "item.tablePlace": "Place",

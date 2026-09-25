@@ -119,7 +119,7 @@ over your memory.
 
 ```
 content/
-  jabuticabas/<id>/   # one folder per item: item.json, pt.md, en.md
+  jabuticabas/<id>/   # one folder per item: item.json, pt.md, en.md, optional cover.webp
   reference/          # places.json (ISO codes), subdivisions/<country>.json
 data/                 # GENERATED: index-results.csv, geo/world.geo.json (committed)
 schemas/              # GENERATED: item.schema.json (committed)

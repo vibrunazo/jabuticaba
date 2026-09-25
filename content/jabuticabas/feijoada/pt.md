@@ -7,6 +7,7 @@ definition: "Ensopado de feijão-preto com carnes de porco salgadas e defumadas,
 justifications:
   intensity: "Razão de prevalência fictícia de 3,2 vezes em relação a Portugal."
   awareness: "Considerada tipicamente brasileira."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 Versões aparentadas existem em outros países de língua portuguesa [@fictional-encyclopedia].

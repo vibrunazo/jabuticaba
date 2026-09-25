@@ -7,6 +7,7 @@ definition: "Routine request for the customer's CPF (taxpayer ID) to be printed 
 justifications:
   intensity: "Routine in almost all Brazilian retail (fictional data)."
   awareness: "Nobody notices it is unusual."
+imageAlt: "Fictional placeholder image."
 ---
 
 The state program encourages the habit [@fictional-decree]. Portugal has a similar practice [@fictional-gazette].

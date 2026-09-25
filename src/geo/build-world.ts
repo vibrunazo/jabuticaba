@@ -54,6 +54,9 @@ export const PART_SPLITS: readonly PartSplit[] = [
   { from: "NO", to: "SJ", contains: (lon, lat) => lat > 70.5 && (lat > 74 || lon < -5) },
   // Bonaire, Sint Eustatius and Saba.
   { from: "NL", to: "BQ", contains: (lon) => lon < -60 },
+  // Crimea: Natural Earth draws de facto control; ISO 3166-1 and UN General Assembly
+  // resolution 68/262 (and IBGE's maps) treat it as part of Ukraine.
+  { from: "RU", to: "UA", contains: (lon, lat) => lon > 32 && lon < 37 && lat > 44 && lat < 46.3 },
 ];
 
 /**

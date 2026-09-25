@@ -7,6 +7,7 @@ definition: "Sockets and plugs following the Brazilian three-round-pin standard,
 justifications:
   intensity: "Mandatory national standard in Brazil; abroad, partial adoption in one country (fictional data)."
   awareness: "Known for the complaints, not for its rarity."
+imageAlt: "Fictional placeholder image."
 ---
 
 The regulation made the standard mandatory [@fictional-decree].

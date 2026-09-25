@@ -7,6 +7,7 @@ definition: "Prédios residenciais com dois elevadores separados por tipo de usu
 justifications:
   intensity: "Comum em prédios de classe média no Brasil; no exterior, restrito a nichos (dado fictício)."
   awareness: "Visto como arranjo prático, não como peculiaridade."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 A separação aparece nos projetos arquitetônicos [@fictional-association] e em poucos países pesquisados [@fictional-survey].

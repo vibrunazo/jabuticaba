@@ -66,5 +66,12 @@
       "language": "pt"
     }
   ],
-  "related": ["capybara"]
+  "related": ["capybara"],
+  "image": {
+    "file": "cover.webp",
+    "credit": {
+      "author": "Índice Jabuticaba (imagem fictícia)",
+      "license": "CC0-1.0"
+    }
+  }
 }

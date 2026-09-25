@@ -7,6 +7,7 @@ definition: "Refrigerador doméstico elétrico."
 justifications:
   intensity: "Nenhuma diferença de prevalência encontrada (dado fictício)."
   awareness: "Não se aplica: ninguém acha que a geladeira é brasileira."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 O grupo de controle confirma que o índice não atribui brasilidade a eletrodomésticos universais [@fictional-census].

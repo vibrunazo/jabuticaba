@@ -13,7 +13,13 @@ import {
   hasH1Heading,
 } from "../content-files/markdown.ts";
 import { defaultLocale, locales } from "../i18n/ui.ts";
-import type { Item, ItemStatus, PresenceEntry, SubdivisionEntry } from "../schema/item.ts";
+import {
+  IMAGE_FILE_PATTERN,
+  type Item,
+  type ItemStatus,
+  type PresenceEntry,
+  type SubdivisionEntry,
+} from "../schema/item.ts";
 import { PRESENCE_LEVELS, type Rating } from "../schema/shared.ts";
 import {
   INTENSITY_4_MAX_PLACE_COUNT,
@@ -93,13 +99,13 @@ const folderMatchesId: ItemRule = (folder, item) =>
 const onlyAllowedFiles = (folder: ItemFolder): Problem[] => {
   const allowed = new Set(["item.json", ...locales.map((locale) => `${locale}.md`)]);
   return folder.fileNames
-    .filter((fileName) => !allowed.has(fileName))
+    .filter((fileName) => !allowed.has(fileName) && !IMAGE_FILE_PATTERN.test(fileName))
     .map((fileName) => ({
       code: "J002",
       severity: "error" as const,
       file: `${folder.dir}/${fileName}`,
       message: `unexpected file in an item folder`,
-      fix: `An item folder may only contain item.json and ${locales.map((l) => `${l}.md`).join(", ")}. Move or delete this file.`,
+      fix: `An item folder may only contain item.json, ${locales.map((l) => `${l}.md`).join(", ")} and one cover image (cover.webp, .jpg, .png or .avif). Move or delete this file.`,
     }));
 };
 
@@ -423,40 +429,94 @@ const sourceIdsAreUnique: ItemRule = (folder, item) => {
 };
 
 const mockUrlsMatchStatus: ItemRule = (folder, item) =>
-  item.sources.flatMap((source, i) =>
-    (["url", "archiveUrl"] as const).flatMap((field) => {
-      const url = source[field];
-      if (!url) {
-        return [];
-      }
-      const isMockUrl = hostOf(url) === MOCK_HOST;
-      if (item.status === "mock" && !isMockUrl) {
-        return [
-          {
-            code: "J033",
-            severity: "error" as const,
-            file: itemFile(folder),
-            path: `sources[${i}].${field}`,
-            message: "mock items may only link to https://example.org/",
-            fix: "Replace the URL with a fake one on https://example.org/. Mock data must never point to real documents.",
-          },
-        ];
-      }
-      if (item.status !== "mock" && isMockUrl) {
-        return [
-          {
-            code: "J033",
-            severity: "error" as const,
-            file: itemFile(folder),
-            path: `sources[${i}].${field}`,
-            message: `${item.status} items must not use placeholder example.org URLs`,
-            fix: "Replace it with the real source URL.",
-          },
-        ];
-      }
+  [
+    ...item.sources.flatMap((source, i) =>
+      (["url", "archiveUrl"] as const).map((field) => ({
+        url: source[field],
+        path: `sources[${i}].${field}`,
+      })),
+    ),
+    { url: item.image?.credit.url, path: "image.credit.url" },
+  ].flatMap(({ url, path }) => {
+    if (!url) {
       return [];
-    }),
-  );
+    }
+    const isMockUrl = hostOf(url) === MOCK_HOST;
+    if (item.status === "mock" && !isMockUrl) {
+      return [
+        {
+          code: "J033",
+          severity: "error" as const,
+          file: itemFile(folder),
+          path,
+          message: "mock items may only link to https://example.org/",
+          fix: "Replace the URL with a fake one on https://example.org/. Mock data must never point to real documents.",
+        },
+      ];
+    }
+    if (item.status !== "mock" && isMockUrl) {
+      return [
+        {
+          code: "J033",
+          severity: "error" as const,
+          file: itemFile(folder),
+          path,
+          message: `${item.status} items must not use placeholder example.org URLs`,
+          fix: "Replace it with the real source URL.",
+        },
+      ];
+    }
+    return [];
+  });
+
+// --- Images ------------------------------------------------------------------
+
+const imageIsConsistent: ItemRule = (folder, item) => {
+  const problems: Problem[] = [];
+  const covers = folder.fileNames.filter((name) => IMAGE_FILE_PATTERN.test(name));
+  if (item.image && !folder.fileNames.includes(item.image.file)) {
+    problems.push({
+      code: "J080",
+      severity: "error",
+      file: itemFile(folder),
+      path: "image.file",
+      message: `"${item.image.file}" does not exist in the item folder`,
+      fix: "Add the image file to the item folder, or fix the file name.",
+    });
+  }
+  for (const cover of covers.filter((name) => name !== item.image?.file)) {
+    problems.push({
+      code: "J082",
+      severity: "warning",
+      file: `${folder.dir}/${cover}`,
+      message: "image file is not used by item.json",
+      fix: 'Reference it in item.json ("image": { "file": … , "credit": … }) or delete it.',
+    });
+  }
+  for (const text of folder.texts) {
+    const hasAlt = text.text.imageAlt !== undefined;
+    if (item.image && !hasAlt) {
+      problems.push({
+        code: "J081",
+        severity: "error",
+        file: text.file,
+        path: "imageAlt",
+        message: "the item has an image but this locale has no imageAlt",
+        fix: "Add imageAlt: a short description of what the image shows, for screen readers.",
+      });
+    } else if (!item.image && hasAlt) {
+      problems.push({
+        code: "J081",
+        severity: "error",
+        file: text.file,
+        path: "imageAlt",
+        message: "imageAlt is set, but item.json has no image",
+        fix: "Remove imageAlt, or add the image to item.json.",
+      });
+    }
+  }
+  return problems;
+};
 
 const sourcesAreArchived: ItemRule = (folder, item) => {
   const severity = publishedScope(item.status);
@@ -734,6 +794,7 @@ const itemRules: ItemRule[] = [
   sourceIdsAreUnique,
   mockUrlsMatchStatus,
   sourcesAreArchived,
+  imageIsConsistent,
   inputsHaveEvidence,
   intensityMatchesRatio,
   intensity4IsPlausible,

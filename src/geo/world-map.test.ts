@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { WorldGeo } from "./build-world.ts";
-import { MAP_HEIGHT, MAP_WIDTH, projectWorld } from "./world-map.ts";
+import { BRAZIL_CENTER_LONGITUDE, MAP_HEIGHT, MAP_WIDTH, projectWorld } from "./world-map.ts";
 
 /** Brazil-ish square and Japan-ish square, plus a point for Singapore. */
 const geo: WorldGeo = {
@@ -52,12 +52,12 @@ describe("projectWorld", () => {
           {
             type: "Feature",
             properties: { code: "BR" },
-            geometry: { type: "Point", coordinates: [-50, -10] },
+            geometry: { type: "Point", coordinates: [BRAZIL_CENTER_LONGITUDE, -10] },
           },
           {
             type: "Feature",
             properties: { code: "AR" },
-            geometry: { type: "Point", coordinates: [-50, -40] },
+            geometry: { type: "Point", coordinates: [BRAZIL_CENTER_LONGITUDE, -40] },
           },
         ],
       },

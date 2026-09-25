@@ -7,6 +7,7 @@ definition: "Black bean stew with salted and smoked pork, served with rice, coll
 justifications:
   intensity: "Fictional prevalence ratio of 3.2 times that of Portugal."
   awareness: "Considered typically Brazilian."
+imageAlt: "Fictional placeholder image."
 ---
 
 Related versions exist in other Portuguese-speaking countries [@fictional-encyclopedia].

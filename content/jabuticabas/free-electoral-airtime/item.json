@@ -132,5 +132,12 @@
       "accessed": "2026-09-25",
       "language": "pt"
     }
-  ]
+  ],
+  "image": {
+    "file": "cover.webp",
+    "credit": {
+      "author": "Índice Jabuticaba (imagem fictícia)",
+      "license": "CC0-1.0"
+    }
+  }
 }

@@ -9,6 +9,7 @@ justifications:
   awareness: "Treated as a national symbol."
 presenceNotes:
   US: "Scattered reports of animals escaped from captivity."
+imageAlt: "Fictional placeholder image."
 ---
 
 The capybara is found in practically all of South America [@fictional-rodent-survey],

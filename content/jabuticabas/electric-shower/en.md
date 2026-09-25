@@ -7,6 +7,7 @@ definition: "A shower head with an electric heating element that heats water at 
 justifications:
   intensity: "Fictional prevalence ratio of 8 times the runner-up."
   awareness: "Rarely recognized as a national peculiarity."
+imageAlt: "Fictional placeholder image."
 ---
 
 According to the industry association [@fictional-association], the device is common in much of Latin America.

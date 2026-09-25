@@ -7,6 +7,7 @@ definition: "Fila ou caixa exclusivo, obrigatório por lei, para idosos, gestant
 justifications:
   intensity: "Obrigatória em praticamente todo estabelecimento no Brasil; no exterior, rara ou restrita a serviços públicos (dado fictício)."
   awareness: "Considerada tão normal que ninguém pergunta se existe em outros países."
+imageAlt: "Imagem ilustrativa fictícia."
 ---
 
 A obrigatoriedade tem base legal [@fictional-decree].

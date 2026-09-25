@@ -423,6 +423,42 @@
         "maxLength": 60,
         "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
       }
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "string",
+          "pattern": "^cover\\.(webp|jpg|jpeg|png|avif)$"
+        },
+        "credit": {
+          "type": "object",
+          "properties": {
+            "author": {
+              "type": "string",
+              "minLength": 1
+            },
+            "license": {
+              "type": "string",
+              "minLength": 1
+            },
+            "url": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "required": [
+            "author",
+            "license"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "file",
+        "credit"
+      ],
+      "additionalProperties": false
     }
   },
   "required": [

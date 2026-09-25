@@ -9,6 +9,7 @@ justifications:
   awareness: "Almost no Brazilian knows this is unusual."
 subdivisionNotes:
   BR-AM: "Less common in cities with fewer tall buildings."
+imageAlt: "Fictional placeholder image."
 ---
 
 Installing them is considered a basic step when moving house [@fictional-census].
