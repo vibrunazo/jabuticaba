@@ -1,0 +1,39 @@
+---
+/** Inline references to numbered sources, "[1, 3]", or "editorial judgment". */
+import { type Locale, t } from "../i18n/ui.ts";
+import { sourceAnchor } from "../site/citations.ts";
+import type { EvidenceRefs, NumberedSource } from "../site/item-detail.ts";
+
+interface Props {
+  refs: EvidenceRefs;
+  sources: readonly NumberedSource[];
+  locale: Locale;
+}
+
+const { refs, sources, locale } = Astro.props;
+const linked = refs.sourceNumbers.flatMap((number) => {
+  const source = sources.find((s) => s.number === number);
+  return source ? [{ number, href: `#${sourceAnchor(source.source.id)}` }] : [];
+});
+---
+
+{
+  refs.editorial ? (
+    <span class="text-xs italic text-ink-muted">{t(locale, "item.editorial")}</span>
+  ) : (
+    linked.length > 0 && (
+      <span class="whitespace-nowrap font-mono text-xs text-ink-muted">
+        [
+        {linked.map((ref, index) => (
+          <>
+            {index > 0 && ", "}
+            <a href={ref.href} class="text-accent hover:underline">
+              {ref.number}
+            </a>
+          </>
+        ))}
+        ]
+      </span>
+    )
+  )
+}

@@ -1,0 +1,14 @@
+---
+/** Numbered section title, in the style of a report: "02  Where else it exists". */
+interface Props {
+  number: number;
+  id: string;
+}
+
+const { number, id } = Astro.props;
+---
+
+<h2 id={id} class="flex scroll-mt-6 items-baseline gap-3 border-t border-rule pt-4">
+  <span class="font-mono text-xs tabular-nums text-accent">{String(number).padStart(2, "0")}</span>
+  <span class="font-serif text-2xl font-semibold tracking-tight text-heading"><slot /></span>
+</h2>

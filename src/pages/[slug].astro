@@ -1,0 +1,12 @@
+---
+import ItemPage from "../components/ItemPage.astro";
+import { itemPaths } from "../site/content.ts";
+
+export function getStaticPaths() {
+  return itemPaths("pt");
+}
+
+const { itemId } = Astro.props;
+---
+
+<ItemPage locale="pt" itemId={itemId} />

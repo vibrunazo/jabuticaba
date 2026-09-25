@@ -1,6 +1,7 @@
 ---
-import { type Locale, t } from "../i18n/ui.ts";
+import { format, type Locale, t } from "../i18n/ui.ts";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { METHODOLOGY_VERSION } from "../scoring/constants.ts";
 import { includeUnpublished, loadItems, loadItemTexts } from "../site/content.ts";
 import { buildRanking } from "../site/ranking.ts";
 import RankingRow from "./RankingRow.astro";
@@ -17,16 +18,26 @@ const rows = buildRanking(await loadItems(), await loadItemTexts(), locale, {
 ---
 
 <BaseLayout locale={locale} alternates={{ pt: "/", en: "/en/" }}>
-  <main class="mx-auto max-w-3xl px-4 py-12">
-    <h1 class="font-serif text-4xl text-heading">{t(locale, "ranking.title")}</h1>
-    <p class="mt-4 max-w-2xl text-ink-muted">{t(locale, "ranking.intro")}</p>
+  <main class="mx-auto max-w-4xl px-4 pt-12">
+    <p class="font-mono text-xs uppercase tracking-wider text-accent">
+      {format(locale, "ranking.eyebrow", { version: METHODOLOGY_VERSION, count: rows.length })}
+    </p>
+    <h1 class="mt-3 font-serif text-3xl font-semibold tracking-tight text-heading sm:text-4xl">
+      {t(locale, "ranking.title")}
+    </h1>
+    <p class="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">{t(locale, "ranking.intro")}</p>
 
-    <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-ink-muted" aria-hidden="true">
-      <span class="flex items-center gap-2">
-        <span class="inline-block w-16">
-          <ScoreErrorBar low={20} point={50} high={80} label="" />
-        </span>
-        {t(locale, "ranking.legendPoint")} / {t(locale, "ranking.legendRange")}
+    <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-ink-muted" aria-hidden="true">
+      <span class="inline-block w-20">
+        <ScoreErrorBar low={25} point={50} high={75} label="" />
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="inline-block size-2.5 rounded-full bg-accent"></span>
+        {t(locale, "ranking.legendPoint")}
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="font-mono text-ink">|—|</span>
+        {t(locale, "ranking.legendRange")}
       </span>
     </div>
 

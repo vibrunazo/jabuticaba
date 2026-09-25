@@ -39,6 +39,8 @@ export interface ContentSnapshot {
   places: Place[];
   /** Keyed by country code, e.g. "US". */
   subdivisions: Map<string, SubdivisionReference[]>;
+  /** Place codes that can be drawn on the world map; undefined if the geometry is missing. */
+  mapCodes: Set<string> | undefined;
 }
 
 export interface ValidationOptions {

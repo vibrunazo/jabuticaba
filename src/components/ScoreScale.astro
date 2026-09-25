@@ -1,0 +1,39 @@
+---
+/**
+ * Full-width 0–100 axis with ticks, the plausibility range as an error bar and
+ * the central estimate as a dot. The detail-page counterpart of ScoreErrorBar.
+ */
+interface Props {
+  low: number;
+  point: number;
+  high: number;
+  label: string;
+}
+
+const { low, point, high, label } = Astro.props;
+const ticks = [0, 25, 50, 75, 100];
+---
+
+<svg class="h-12 w-full overflow-visible text-ink" role="img" aria-label={label}>
+  <title>{label}</title>
+  <line x1="0%" x2="100%" y1="14" y2="14" class="stroke-rule" stroke-width="1"></line>
+  {
+    ticks.map((tick) => (
+      <>
+        <line x1={`${tick}%`} x2={`${tick}%`} y1="10" y2="18" class="stroke-rule" stroke-width="1" />
+        <text
+          x={`${tick}%`}
+          y="38"
+          text-anchor={tick === 0 ? "start" : tick === 100 ? "end" : "middle"}
+          class="fill-ink-muted font-mono text-xs"
+        >
+          {tick}
+        </text>
+      </>
+    ))
+  }
+  <line x1={`${low}%`} x2={`${high}%`} y1="14" y2="14" stroke="currentColor" stroke-width="2"></line>
+  <line x1={`${low}%`} x2={`${low}%`} y1="7" y2="21" stroke="currentColor" stroke-width="2"></line>
+  <line x1={`${high}%`} x2={`${high}%`} y1="7" y2="21" stroke="currentColor" stroke-width="2"></line>
+  <circle cx={`${point}%`} cy="14" r="6" class="fill-accent stroke-surface-raised" stroke-width="2"></circle>
+</svg>

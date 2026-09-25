@@ -1,14 +1,14 @@
 ---
 /**
- * A 0–100 scale with the plausibility range drawn as a scientific error bar
- * (a line with end caps) and the central estimate as a dot.
+ * A compact 0–100 scale with the plausibility range drawn as a scientific error
+ * bar (a line with end caps) and the central estimate as a dot with a surface ring.
  * Percent coordinates keep the caps and dot undistorted at any width.
  */
 interface Props {
   low: number;
   point: number;
   high: number;
-  /** Accessible description, e.g. "56%, plausibility range 51% to 61%". */
+  /** Accessible description, e.g. "56%, plausibility range 51% to 61%". Empty = decorative. */
   label: string;
 }
 
@@ -17,13 +17,14 @@ const { low, point, high, label } = Astro.props;
 
 <svg
   class="h-3 w-full overflow-visible text-ink"
-  role="img"
-  aria-label={label}
+  role={label ? "img" : undefined}
+  aria-label={label || undefined}
+  aria-hidden={label ? undefined : "true"}
 >
-  <title>{label}</title>
+  {label && <title>{label}</title>}
   <line x1="0%" x2="100%" y1="6" y2="6" class="stroke-rule" stroke-width="1"></line>
   <line x1={`${low}%`} x2={`${high}%`} y1="6" y2="6" stroke="currentColor" stroke-width="1.5"></line>
   <line x1={`${low}%`} x2={`${low}%`} y1="2" y2="10" stroke="currentColor" stroke-width="1.5"></line>
   <line x1={`${high}%`} x2={`${high}%`} y1="2" y2="10" stroke="currentColor" stroke-width="1.5"></line>
-  <circle cx={`${point}%`} cy="6" r="3.5" class="fill-accent"></circle>
+  <circle cx={`${point}%`} cy="6" r="4" class="fill-accent stroke-surface" stroke-width="2"></circle>
 </svg>

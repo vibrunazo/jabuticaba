@@ -1,0 +1,123 @@
+---
+/**
+ * "How we got this number": every input of the formula with its range, the
+ * formula itself with the values filled in, and the non-scored attributes.
+ * Spec: methodology sections 3–5 and 7.
+ */
+import { formatNumber, formatRange } from "../i18n/format.ts";
+import { format, t } from "../i18n/ui.ts";
+import { MAX_INTENSITY_CREDIT, PRESENCE_WEIGHTS } from "../scoring/constants.ts";
+import { type Bounds, rarity } from "../scoring/formula.ts";
+import type { ItemDetail } from "../site/item-detail.ts";
+import Badge from "./Badge.astro";
+import SourceRefs from "./SourceRefs.astro";
+
+interface Props {
+  detail: ItemDetail;
+}
+
+const { detail } = Astro.props;
+const { locale, score, text, item } = detail;
+
+/** "0,46 (0,44–0,48)", or just "0,46" when the range collapses at this precision. */
+function pointAndRange(bounds: Bounds, digits = 2): string {
+  const point = formatNumber(locale, bounds.point, digits);
+  const range = formatRange(locale, bounds.low, bounds.high, digits);
+  return range.includes("–") ? `${point} (${range})` : point;
+}
+
+const n = (value: number, digits = 2) => formatNumber(locale, value, digits);
+const e = score.exclusivity.point;
+const i = score.intensity.point;
+const rarityPoint = rarity(e, i);
+const formula = `R = E + ${n(MAX_INTENSITY_CREDIT)} × (I ÷ 4) × (1 − E)`;
+const substituted = `R = ${n(e)} + ${n(MAX_INTENSITY_CREDIT)} × (${n(i, 1)} ÷ 4) × (1 − ${n(e)}) = ${n(rarityPoint)}`;
+const ratio = item.intensity.ratio;
+const ratioText =
+  ratio === undefined
+    ? undefined
+    : typeof ratio === "number"
+      ? n(ratio, 1)
+      : formatRange(locale, ratio.min, ratio.max, 1);
+const awareness = item.awareness.value;
+const awarenessText =
+  typeof awareness === "number" ? String(awareness) : `${awareness.min}–${awareness.max}`;
+const placeCountHint = format(locale, "item.placeCountHint", {
+  widespread: n(PRESENCE_WEIGHTS.widespread, 1),
+  regional: n(PRESENCE_WEIGHTS.regional, 1),
+  marginal: n(PRESENCE_WEIGHTS.marginal, 1),
+});
+
+const rowClass = "grid gap-x-6 gap-y-1 border-b border-rule py-4 sm:grid-cols-3";
+const valueClass = "font-mono text-sm tabular-nums text-ink sm:text-right";
+---
+
+<dl class="mt-4">
+  <div class={rowClass}>
+    <dt class="sm:col-span-2">
+      <span class="font-medium text-ink">{t(locale, "item.placeCount")}</span>
+      <p class="mt-0.5 text-sm text-ink-muted">{placeCountHint}</p>
+    </dt>
+    <dd class={valueClass}>{pointAndRange(score.placeCount)}</dd>
+  </div>
+
+  <div class={rowClass}>
+    <dt class="sm:col-span-2">
+      <span class="font-medium text-ink">{t(locale, "item.exclusivity")} <span class="font-mono text-ink-muted">E</span></span>
+      <p class="mt-0.5 text-sm text-ink-muted">{t(locale, "item.exclusivityHint")}</p>
+    </dt>
+    <dd class={valueClass}>{pointAndRange(score.exclusivity)}</dd>
+  </div>
+
+  <div class={rowClass}>
+    <dt class="sm:col-span-2">
+      <span class="font-medium text-ink">{t(locale, "item.intensity")} <span class="font-mono text-ink-muted">I</span></span>
+      <p class="mt-0.5 text-sm text-ink-muted">{t(locale, "item.intensityHint")}</p>
+      <p class="mt-2 font-serif text-base text-ink">
+        {text.justifications.intensity}{" "}
+        <SourceRefs refs={detail.intensity} sources={detail.sources} locale={locale} />
+      </p>
+      {ratioText && <p class="mt-1 font-mono text-xs text-ink-muted">{format(locale, "item.ratio", { ratio: ratioText })}</p>}
+    </dt>
+    <dd class={valueClass}>
+      {format(locale, "item.ratingOf", { value: formatRange(locale, score.intensity.low, score.intensity.high, 1) })}
+    </dd>
+  </div>
+
+  <div class={rowClass}>
+    <dt class="sm:col-span-2">
+      <span class="font-medium text-ink">{t(locale, "item.rarity")} <span class="font-mono text-ink-muted">R</span></span>
+      <p class="mt-2 font-mono text-xs text-ink-muted">{formula}</p>
+      <p class="mt-1 font-mono text-xs text-ink">{substituted}</p>
+    </dt>
+    <dd class={valueClass}>{n(rarityPoint)}</dd>
+  </div>
+
+  <div class="grid gap-x-6 gap-y-1 py-4 sm:grid-cols-3">
+    <dt class="font-semibold text-heading sm:col-span-2">{t(locale, "item.index")}</dt>
+    <dd class="font-mono text-base font-medium tabular-nums text-heading sm:text-right">
+      {score.score.point}%{" "}
+      {score.score.low !== score.score.high && (
+        <span class="text-sm font-normal text-ink-muted">({score.score.low}–{score.score.high}%)</span>
+      )}
+    </dd>
+  </div>
+</dl>
+
+<div class="mt-6 rounded-sm border border-dashed border-rule p-4">
+  <p class="font-mono text-xs uppercase tracking-wider text-ink-muted">{t(locale, "item.notScored")}</p>
+  <div class="mt-3 grid gap-x-6 gap-y-1 sm:grid-cols-3">
+    <div class="sm:col-span-2">
+      <span class="font-medium text-ink">{t(locale, "item.awareness")}</span>
+      {detail.hiddenJabuticaba && <span class="ml-2"><Badge tone="accent">{t(locale, "badge.hiddenJabuticaba")}</Badge></span>}
+      <p class="mt-0.5 text-sm text-ink-muted">{t(locale, "item.awarenessHint")}</p>
+      <p class="mt-2 font-serif text-base text-ink">
+        {text.justifications.awareness}{" "}
+        <SourceRefs refs={detail.awareness} sources={detail.sources} locale={locale} />
+      </p>
+    </div>
+    <p class="font-mono text-sm tabular-nums text-ink sm:text-right">
+      {format(locale, "item.ratingOf", { value: awarenessText })}
+    </p>
+  </div>
+</div>

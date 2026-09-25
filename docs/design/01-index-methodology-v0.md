@@ -294,25 +294,38 @@ be researched and sourced before publication.
 
 ## 9. Map geometry
 
-- Natural Earth's standard "countries" layer (and the `world-atlas` package built
-  from it) **merges French Guiana into France**, and some features have ISO code
-  `-99` (the correct code is in `ISO_A2_EH`). So it can't be used as-is.
-- Instead, a one-off `pnpm geo:build` script takes Natural Earth's **map units**
-  layer, which separates overseas territories. It simplifies the shapes to our size
-  budget, **re-keys every feature by ISO alpha-2**, and writes a TopoJSON file that
-  is committed to the repo.
-- The site renders SVG from that file at build time. The map component never does
-  code translation, so no runtime lookup table is needed.
-- **Subdivision maps:** for items with `subdivisions` data, the detail page also
-  shows one map per country (Brazil's states, US states, …), from Natural Earth's
-  admin-1 layer. It uses ISO 3166-2 codes, and `geo:build` extracts only the
-  countries that items need. Subdivisions are descriptive and **not scored** in v0:
-  the country-level presence entry is what counts.
-- Map colors: one shade per presence level, a distinct shade for `absent`
-  (checked), and neutral grey for no data.
-- Two projections, both Equal Earth: `standard` (centred on Greenwich, north up)
-  and `brazil-centered` (centred on about 50° W, rotated 180°, south up, following
-  IBGE). `brazil-centered` is the default in every locale.
+- **Source:** Natural Earth (public domain), through the `world-atlas` npm package.
+  Its "countries" layer bundles some territories into their sovereign state
+  (French Guiana inside France, Svalbard inside Norway, the Caribbean Netherlands
+  inside the Netherlands) and leaves a few disputed areas without a code.
+- **`pnpm geo`** (`scripts/build-geo.ts`, logic in `src/geo/build-world.ts`):
+  - splits those overseas parts out by the position of each polygon
+    (`PART_SPLITS`);
+  - codes Kosovo as `XK`, and draws Northern Cyprus and Somaliland as part of
+    Cyprus and Somalia, following ISO 3166-1 (`UNCODED_FEATURES`);
+  - takes shapes from the 1:110m data (small and fast to draw) and turns places
+    that only exist at 1:50m (Singapore, Cabo Verde, Caribbean islands…) into
+    **points**, so they can still be marked;
+  - re-keys everything by ISO alpha-2 and writes `data/geo/world.geo.json`
+    (GeoJSON, one feature per line), which is committed. `pnpm verify` fails if it
+    is stale (J072).
+- The site renders SVG from that file at build time (`src/geo/world-map.ts`),
+  rounding coordinates to whole units of the viewBox to keep pages small. The map
+  component never does code translation.
+- **Colors:** an ordinal green ramp for `marginal` → `regional` → `widespread`
+  (one hue, monotone lightness, validated for both themes), yellow for
+  `imported`, cool grey for `absent` (checked), a faint neutral for no data, and
+  jabuticaba purple for Brazil. Uncertain places take the color of the highest
+  possible level; the presence table below the map shows the full range.
+- Every map has a legend, per-country tooltips (SVG `<title>`) and a table view.
+- Two projections, both Equal Earth: `standard` ("Colonial": centred on
+  Greenwich, north up) and `brazil-centered` ("Sovereign": centred on 50° W,
+  rotated 180°, south up, following IBGE). `brazil-centered` is the default in
+  every locale. A CSS-only toggle switches between them.
+- **Subdivision maps (planned):** items with `subdivisions` data currently show a
+  table. Maps per country (Brazilian states, US states…) need admin-1 geometry
+  added to `pnpm geo`; until then rule J027 is not enforced. Subdivisions are
+  descriptive and **not scored**: the country-level presence entry is what counts.
 
 ## 10. Calibration tests
 

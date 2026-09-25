@@ -1,0 +1,61 @@
+---
+/** Numbered bibliography. Each entry is the target of the article's [n] citations. */
+import { formatPartialDate, languageName } from "../i18n/format.ts";
+import { sourceTypeLabel } from "../i18n/labels.ts";
+import { format, type Locale, t } from "../i18n/ui.ts";
+import type { NumberedSource } from "../site/item-detail.ts";
+
+interface Props {
+  locale: Locale;
+  sources: readonly NumberedSource[];
+}
+
+const { locale, sources } = Astro.props;
+
+/** "example.org/rodent-survey": readable link text without the scheme. */
+function displayUrl(url: string): string {
+  const parsed = new URL(url);
+  return `${parsed.hostname.replace(/^www\./, "")}${parsed.pathname === "/" ? "" : parsed.pathname}`;
+}
+---
+
+<ol class="mt-4 space-y-4">
+  {
+    sources.map(({ number, anchor, source }) => (
+      <li id={anchor} class="flex scroll-mt-6 gap-3 rounded-sm target:bg-surface-sunken">
+        <span class="w-7 shrink-0 pt-0.5 text-right font-mono text-xs tabular-nums text-accent">[{number}]</span>
+        <div class="min-w-0 text-sm">
+          <p class="text-ink">
+            {source.authors && <span>{source.authors.join(", ")}. </span>}
+            <cite class="font-serif text-base italic" lang={source.language}>{source.title}</cite>
+            {source.locator && <span class="text-ink-muted">, {source.locator}</span>}
+          </p>
+          <p class="mt-0.5 text-ink-muted">
+            {[
+              source.publisher,
+              source.published && formatPartialDate(locale, source.published),
+              sourceTypeLabel(locale, source.type),
+              !source.language.startsWith(locale) &&
+                format(locale, "item.inLanguage", { language: languageName(locale, source.language) }),
+            ]
+              .filter(Boolean)
+              .join(" · ")}
+          </p>
+          <p class="mt-0.5 break-all font-mono text-xs text-ink-muted">
+            <a href={source.url} class="text-accent hover:underline" rel="noopener">{displayUrl(source.url)}</a>
+            {source.archiveUrl && (
+              <>
+                {" · "}
+                <a href={source.archiveUrl} class="text-accent hover:underline" rel="noopener">
+                  {t(locale, "item.archive")}
+                </a>
+              </>
+            )}
+            {" · "}
+            {format(locale, "item.accessed", { date: formatPartialDate(locale, source.accessed) })}
+          </p>
+        </div>
+      </li>
+    ))
+  }
+</ol>

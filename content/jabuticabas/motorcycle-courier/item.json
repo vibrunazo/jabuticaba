@@ -167,11 +167,6 @@
       "sources": ["fictional-survey"]
     },
     {
-      "place": "BV",
-      "level": "widespread",
-      "sources": ["fictional-survey"]
-    },
-    {
       "place": "BW",
       "level": "widespread",
       "sources": ["fictional-survey"]
@@ -188,11 +183,6 @@
     },
     {
       "place": "CA",
-      "level": "widespread",
-      "sources": ["fictional-survey"]
-    },
-    {
-      "place": "CC",
       "level": "widespread",
       "sources": ["fictional-survey"]
     },

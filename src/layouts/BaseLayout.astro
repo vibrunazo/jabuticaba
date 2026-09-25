@@ -6,12 +6,14 @@ import { type Locale, locales, localeTags, t } from "../i18n/ui.ts";
 
 interface Props {
   locale: Locale;
-  /** The same page in every locale, e.g. { pt: "/", en: "/en/" }. Used for hreflang and the language switch. */
-  alternates: Record<Locale, string>;
+  /** The same page in each locale that has it, e.g. { pt: "/", en: "/en/" }. Used for hreflang and the language switch. */
+  alternates: Partial<Record<Locale, string>>;
+  /** Overrides the site description in the meta tags. */
+  description?: string;
   title?: string;
 }
 
-const { locale, alternates, title } = Astro.props;
+const { locale, alternates, title, description } = Astro.props;
 const siteName = t(locale, "site.name");
 const pageTitle = title ? `${title} · ${siteName}` : siteName;
 ---
@@ -21,7 +23,7 @@ const pageTitle = title ? `${title} · ${siteName}` : siteName;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={t(locale, "site.description")} />
+    <meta name="description" content={description ?? t(locale, "site.description")} />
     <title>{pageTitle}</title>
     <!-- Applies the theme before first paint (no flash). Saved choice first, else the system setting. -->
     <script is:inline>
@@ -46,9 +48,10 @@ const pageTitle = title ? `${title} · ${siteName}` : siteName;
       })();
     </script>
     {
-      locales.map((l) => (
-        <link rel="alternate" hreflang={localeTags[l]} href={new URL(alternates[l], Astro.site)} />
-      ))
+      locales.flatMap((l) => {
+        const href = alternates[l];
+        return href ? [<link rel="alternate" hreflang={localeTags[l]} href={new URL(href, Astro.site)} />] : [];
+      })
     }
   </head>
   <body class="bg-surface font-sans text-ink antialiased">

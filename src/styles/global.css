@@ -1,3 +1,9 @@
+/* Self-hosted fonts (Fontsource, SIL Open Font License). */
+@import "@fontsource-variable/source-serif-4/opsz.css";
+@import "@fontsource-variable/source-serif-4/opsz-italic.css";
+@import "@fontsource-variable/ibm-plex-sans/wght.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
 @import "tailwindcss";
 
 /*
@@ -5,11 +11,15 @@
  * never arbitrary values like `text-[#123456]`.
  * Colors are semantic: the dark theme redefines them below, so components almost
  * never need `dark:` (exception: showing a different icon per theme).
- * Placeholder palette: to be refined in the design phase.
+ *
+ * Typography: serif (Source Serif 4) for titles and article prose; sans (IBM Plex
+ * Sans) for interface text and big numbers; mono (IBM Plex Mono) for data labels,
+ * codes and small numbers in tables.
  */
 @theme {
   --color-surface: #fbfaf7;
   --color-surface-raised: #ffffff;
+  --color-surface-sunken: #f3f1ea;
   --color-ink: #14213d;
   --color-ink-muted: #5b6475;
   --color-heading: #0b1f4b;
@@ -19,9 +29,21 @@
   --color-brand-navy: #0b1f4b;
   --color-brand-green: #1f7a4d;
   --color-brand-yellow: #f2c230;
+  --color-brand-jabuticaba: #5c2a72;
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Source Serif 4", ui-serif, Georgia, serif;
+  /* Map: ordinal green ramp for presence (validated: monotone, 2:1 light end). */
+  --color-map-marginal: #72bb91;
+  --color-map-regional: #2e9161;
+  --color-map-widespread: #0d5c37;
+  --color-map-imported: #d9a300;
+  --color-map-absent: #c3c8d2;
+  --color-map-no-data: #e7e5dd;
+  --color-map-brazil: #5c2a72;
+  --color-map-ocean: #ffffff;
+
+  --font-sans: "IBM Plex Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4 Variable", ui-serif, Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", monospace;
 }
 
 /*
@@ -40,25 +62,115 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
   --color-surface: #0b1426;
-  --color-surface-raised: #122039;
+  --color-surface-raised: #111d33;
+  --color-surface-sunken: #08101f;
   --color-ink: #e8ecf4;
   --color-ink-muted: #9aa5ba;
   --color-heading: #f3f5fa;
-  --color-rule: #2a3a58;
+  --color-rule: #24334f;
   --color-accent: #3fbf7f;
   --color-highlight: #f2c230;
+  --color-brand-jabuticaba: #c49be2;
+  /* Dark ramp: brighter = more present (validated against the dark surface). */
+  --color-map-marginal: #2a6e4b;
+  --color-map-regional: #3fae76;
+  --color-map-widespread: #86dcaa;
+  --color-map-imported: #d6a21a;
+  --color-map-absent: #3a4a68;
+  --color-map-no-data: #1b2944;
+  --color-map-brazil: #c49be2;
+  --color-map-ocean: #0e1a2f;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
     color-scheme: dark;
     --color-surface: #0b1426;
-    --color-surface-raised: #122039;
+    --color-surface-raised: #111d33;
+    --color-surface-sunken: #08101f;
     --color-ink: #e8ecf4;
     --color-ink-muted: #9aa5ba;
     --color-heading: #f3f5fa;
-    --color-rule: #2a3a58;
+    --color-rule: #24334f;
     --color-accent: #3fbf7f;
     --color-highlight: #f2c230;
+    --color-brand-jabuticaba: #c49be2;
+    --color-map-marginal: #2a6e4b;
+    --color-map-regional: #3fae76;
+    --color-map-widespread: #86dcaa;
+    --color-map-imported: #d6a21a;
+    --color-map-absent: #3a4a68;
+    --color-map-no-data: #1b2944;
+    --color-map-brazil: #c49be2;
+    --color-map-ocean: #0e1a2f;
   }
+}
+
+/*
+ * Article prose (the Markdown body of an item). Plain CSS because the HTML comes
+ * from Markdown, so utility classes can't be added to its elements.
+ */
+.prose-body {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--color-ink);
+}
+
+.prose-body > * + * {
+  margin-top: 1em;
+}
+
+.prose-body h2 {
+  margin-top: 1.75em;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--color-heading);
+}
+
+.prose-body h3 {
+  margin-top: 1.5em;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.prose-body a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.prose-body ul,
+.prose-body ol {
+  padding-left: 1.5em;
+}
+
+.prose-body ul {
+  list-style: disc;
+}
+
+.prose-body ol {
+  list-style: decimal;
+}
+
+.prose-body blockquote {
+  border-left: 2px solid var(--color-rule);
+  padding-left: 1em;
+  color: var(--color-ink-muted);
+}
+
+.prose-body .citation {
+  font-family: var(--font-mono);
+  font-size: 0.7em;
+  line-height: 0;
+  color: var(--color-ink-muted);
+}
+
+.prose-body .citation a {
+  color: var(--color-accent);
+  text-decoration: none;
 }

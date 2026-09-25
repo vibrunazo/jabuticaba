@@ -27,6 +27,7 @@ function snapshotOf(...folders: ItemFolder[]): ContentSnapshot {
     subdivisions: new Map([
       ["US", [{ code: "US-LA", names: { pt: "Luisiana", en: "Louisiana" } }]],
     ]),
+    mapCodes: new Set(["AR", "BR", "PY", "US"]),
   };
 }
 
@@ -75,6 +76,13 @@ describe("runRules", () => {
     });
     const codes = codesFor(snapshotOf(makeFolder(item)));
     expect(codes).toEqual(expect.arrayContaining(["J020", "J021", "J022"]));
+  });
+
+  it("J024: warns when a place has no map geometry", () => {
+    const snapshot = { ...snapshotOf(), mapCodes: new Set(["AR"]) };
+    snapshot.items = [makeFolder(makeItem())];
+    const problem = runRules(snapshot, OPTIONS).find((p) => p.code === "J024");
+    expect(problem?.severity).toBe("warning");
   });
 
   it("J023: level ranges must go from low to high", () => {

@@ -2,8 +2,8 @@
  * Cross-file validation rules. Pure functions: no I/O.
  * Spec: docs/design/02-content-schema.md, section 10. Each rule's code matches the table there.
  *
- * Not implemented yet (they need the geo build): J024, J027, J072.
- * J003 and J026 (shape) are checked by the loader; J070 and J071 by their scripts.
+ * Not implemented yet (needs subdivision geometry): J027.
+ * J003 and J026 (shape) are checked by the loader; J070, J071 and J072 by their scripts.
  */
 
 import {
@@ -230,6 +230,27 @@ const placesAreValid: ItemRule = (folder, item, { placeCodes, snapshot }) => {
     seenSubdivisions.add(entry.subdivision);
   });
   return problems;
+};
+
+const placesAreMappable: ItemRule = (folder, item, { snapshot }) => {
+  const { mapCodes } = snapshot;
+  if (!mapCodes) {
+    return [];
+  }
+  return item.presence.flatMap((entry, i) =>
+    mapCodes.has(entry.place) || entry.place === BRAZIL
+      ? []
+      : [
+          {
+            code: "J024",
+            severity: "warning" as const,
+            file: itemFile(folder),
+            path: `presence[${i}].place`,
+            message: `"${entry.place}" has no geometry on the world map; it counts, but is not drawn`,
+            fix: "Nothing to fix if the place is tiny. It still appears in the presence table.",
+          },
+        ],
+  );
 };
 
 const levelRangesAreOrdered: ItemRule = (folder, item) => {
@@ -686,6 +707,7 @@ const itemRules: ItemRule[] = [
   folderMatchesId,
   relatedItemsExist,
   placesAreValid,
+  placesAreMappable,
   levelRangesAreOrdered,
   subdivisionCountriesArePresent,
   noteKeysExist,

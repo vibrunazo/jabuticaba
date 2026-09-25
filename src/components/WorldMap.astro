@@ -1,0 +1,144 @@
+---
+/**
+ * Choropleth of an item's presence around the world, drawn at build time.
+ * Two projections (Sovereign, Colonial) are both rendered; a CSS-only toggle
+ * shows one, so it works without JavaScript. Spec: methodology section 9.
+ */
+import { DEFAULT_PROJECTION, MAP_HEIGHT, MAP_WIDTH, PROJECTIONS } from "../geo/world-map.ts";
+import { levelLabel, projectionLabel } from "../i18n/labels.ts";
+import { type Locale, t } from "../i18n/ui.ts";
+import type { PresenceLevel } from "../schema/shared.ts";
+import { loadProjectedWorld } from "../site/content.ts";
+import type { PresenceRow } from "../site/item-detail.ts";
+
+interface Props {
+  locale: Locale;
+  presence: readonly PresenceRow[];
+}
+
+const { locale, presence } = Astro.props;
+
+const BRAZIL = "BR";
+const fillByLevel = {
+  widespread: "fill-map-widespread",
+  regional: "fill-map-regional",
+  marginal: "fill-map-marginal",
+  imported: "fill-map-imported",
+  absent: "fill-map-absent",
+} as const satisfies Record<PresenceLevel, string>;
+
+const rowByCode = new Map(presence.map((row) => [row.place, row]));
+
+function fillFor(code: string): string {
+  if (code === BRAZIL) {
+    return "fill-map-brazil";
+  }
+  const row = rowByCode.get(code);
+  return row ? fillByLevel[row.high] : "fill-map-no-data";
+}
+
+function titleFor(code: string): string | undefined {
+  if (code === BRAZIL) {
+    return t(locale, "level.brazil");
+  }
+  const row = rowByCode.get(code);
+  if (!row) {
+    return undefined;
+  }
+  const level =
+    row.low === row.high
+      ? levelLabel(locale, row.high)
+      : `${levelLabel(locale, row.low)} – ${levelLabel(locale, row.high)}`;
+  return `${row.name}: ${level}`;
+}
+
+const maps = PROJECTIONS.map((name) => ({ name, world: loadProjectedWorld(name) }));
+const legend: { fill: string; label: string }[] = [
+  { fill: "bg-map-brazil", label: t(locale, "level.brazil") },
+  { fill: "bg-map-widespread", label: levelLabel(locale, "widespread") },
+  { fill: "bg-map-regional", label: levelLabel(locale, "regional") },
+  { fill: "bg-map-marginal", label: levelLabel(locale, "marginal") },
+  { fill: "bg-map-imported", label: levelLabel(locale, "imported") },
+  { fill: "bg-map-absent", label: levelLabel(locale, "absent") },
+  { fill: "bg-map-no-data", label: t(locale, "level.noData") },
+];
+---
+
+<figure class="world-map">
+  <fieldset class="flex items-center gap-3">
+    <legend class="sr-only">{t(locale, "item.projection")}</legend>
+    <span class="font-mono text-xs uppercase tracking-wider text-ink-muted" aria-hidden="true">
+      {t(locale, "item.projection")}
+    </span>
+    <div class="flex rounded-sm border border-rule p-0.5">
+      {
+        PROJECTIONS.map((name) => (
+          <label class="relative cursor-pointer">
+            <input
+              class="peer sr-only"
+              type="radio"
+              name="projection"
+              value={name}
+              checked={name === DEFAULT_PROJECTION}
+            />
+            <span class="block rounded-sm px-2.5 py-1 text-xs text-ink-muted peer-checked:bg-heading peer-checked:text-surface peer-focus-visible:outline-2 peer-focus-visible:outline-accent">
+              {projectionLabel(locale, name)}
+            </span>
+          </label>
+        ))
+      }
+    </div>
+  </fieldset>
+
+  {
+    maps.map(({ name, world }) => (
+      <div class={`map-${name} mt-3`}>
+        <svg
+          viewBox={`0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`}
+          class="h-auto w-full"
+          role="img"
+          aria-label={`${t(locale, "item.mapTitle")} (${projectionLabel(locale, name)})`}
+        >
+          <path d={world.sphere} class="fill-map-ocean stroke-rule" stroke-width="1" />
+          <path d={world.graticule} class="fill-none stroke-rule" stroke-width="0.5" opacity="0.6" />
+          {world.shapes.map((shape) => {
+            const title = titleFor(shape.code);
+            return (
+              <path d={shape.d} class={`${fillFor(shape.code)} stroke-map-ocean`} stroke-width="0.6">
+                {title && <title>{title}</title>}
+              </path>
+            );
+          })}
+          {world.points
+            .filter((point) => rowByCode.has(point.code))
+            .map((point) => (
+              <circle cx={point.x} cy={point.y} r="3.5" class={`${fillFor(point.code)} stroke-map-ocean`} stroke-width="1">
+                <title>{titleFor(point.code)}</title>
+              </circle>
+            ))}
+        </svg>
+      </div>
+    ))
+  }
+
+  <figcaption class="mt-3">
+    <ul class="flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-ink-muted">
+      {
+        legend.map((entry) => (
+          <li class="flex items-center gap-1.5">
+            <span class={`inline-block size-3 rounded-sm ${entry.fill}`} aria-hidden="true" />
+            {entry.label}
+          </li>
+        ))
+      }
+    </ul>
+    <p class="mt-2 text-xs text-ink-muted">{t(locale, "item.mapCaption")}</p>
+  </figcaption>
+</figure>
+
+<style>
+  .world-map:has(input[value="standard"]:checked) .map-brazil-centered,
+  .world-map:not(:has(input[value="standard"]:checked)) .map-standard {
+    display: none;
+  }
+</style>

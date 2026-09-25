@@ -167,11 +167,6 @@
       "sources": ["fictional-census"]
     },
     {
-      "place": "BV",
-      "level": "widespread",
-      "sources": ["fictional-census"]
-    },
-    {
       "place": "BW",
       "level": "widespread",
       "sources": ["fictional-census"]
@@ -188,11 +183,6 @@
     },
     {
       "place": "CA",
-      "level": "widespread",
-      "sources": ["fictional-census"]
-    },
-    {
-      "place": "CC",
       "level": "widespread",
       "sources": ["fictional-census"]
     },
@@ -263,11 +253,6 @@
     },
     {
       "place": "CW",
-      "level": "widespread",
-      "sources": ["fictional-census"]
-    },
-    {
-      "place": "CX",
       "level": "widespread",
       "sources": ["fictional-census"]
     },
@@ -408,11 +393,6 @@
     },
     {
       "place": "GH",
-      "level": "widespread",
-      "sources": ["fictional-census"]
-    },
-    {
-      "place": "GI",
       "level": "widespread",
       "sources": ["fictional-census"]
     },

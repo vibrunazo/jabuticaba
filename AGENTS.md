@@ -47,14 +47,16 @@ Design documents (read the relevant one before touching that area):
 | `pnpm validate`      | Validate all content (rules J001…, see the schema doc)              |
 | `pnpm index`         | Compute the index; rewrites `data/index-results.csv`                |
 | `pnpm schema`        | Regenerate `schemas/item.schema.json` from the Zod schema           |
+| `pnpm geo`           | Regenerate `data/geo/world.geo.json` from Natural Earth (`world-atlas`) |
 | `pnpm build`         | **Production** build: fails if any mock item exists (J060)          |
 | `pnpm build:preview` | Build that allows mock and draft items                              |
 
 Run `pnpm fix` before `pnpm verify` to clear formatting errors automatically.
 
 **After changing content or scoring code, run `pnpm index`.** After changing
-`src/schema/`, run `pnpm schema`. Both outputs are committed, and `pnpm verify` fails
-when they are stale. Never edit `data/` or `schemas/` by hand.
+`src/schema/`, run `pnpm schema`. After changing `src/geo/build-world.ts`, run
+`pnpm geo`. All outputs are committed, and `pnpm verify` fails when they are stale.
+Never edit `data/` or `schemas/` by hand.
 
 ## Versions and known traps
 
@@ -81,7 +83,13 @@ over your memory.
 - **Styling:** only Tailwind utilities based on the tokens in `global.css`
   (`bg-surface`, `text-ink`, `text-brand-green`…). **No arbitrary values** like
   `text-[#123456]` or `mt-[13px]`. Need a new color or size? Add a token to `@theme`.
+- **Typography:** `font-serif` (Source Serif 4) for titles and article prose;
+  `font-sans` (IBM Plex Sans, the default) for interface text and big numbers;
+  `font-mono` (IBM Plex Mono) for data labels, codes, small numbers and eyebrows.
+  Big standalone numbers use proportional digits; `tabular-nums` only where numbers
+  line up in a column.
 - **No client-side JavaScript** unless the task explicitly needs interactivity.
+  Prefer CSS-only interactions (see the projection toggle in `WorldMap.astro`).
 - **Themes:** `<html data-theme="light|dark">` is set before first paint (BaseLayout.astro).
   Colors switch automatically through the tokens in `global.css`; to vary something
   other than color per theme, use the `dark:` variant (it follows `data-theme`). Never
@@ -102,24 +110,26 @@ over your memory.
 content/
   jabuticabas/<id>/   # one folder per item: item.json, pt.md, en.md
   reference/          # places.json (ISO codes), subdivisions/<country>.json
-data/                 # GENERATED: index-results.csv (committed)
+data/                 # GENERATED: index-results.csv, geo/world.geo.json (committed)
 schemas/              # GENERATED: item.schema.json (committed)
 docs/design/          # design documents; the source of truth for decisions
-scripts/              # command-line entry points (validate, index, schema); thin wrappers
+scripts/              # command-line entry points (validate, index, schema, geo); thin wrappers
 src/
   schema/             # Zod schemas: the single source of truth for content shape
   scoring/            # the index: constants.ts (every tunable number), formula.ts, evidence.ts
   validation/         # cross-file rules J0xx (rules.ts)
-  content-files/      # reading content/ from disk; Markdown helpers
-  site/               # page data: pure builders (ranking.ts) + Astro collection access (content.ts)
+  content-files/      # reading content/ and data/geo/ from disk; Markdown helpers
+  geo/                # map geometry: building world.geo.json, projecting it to SVG paths
+  site/               # page data: pure builders (ranking.ts, item-detail.ts, citations.ts)
+                      #   + Astro collection access (content.ts)
   testing/            # builders for test data (makeItem, …); used only by tests
   content.config.ts   # Astro collections, using the same Zod schemas
   components/ layouts/ pages/ styles/ i18n/
 ```
 
 - To change a weight or threshold of the index, edit only `src/scoring/constants.ts`.
-- `src/schema/`, `src/scoring/` and `src/validation/` must never import from Astro:
-  they also run in plain Node.
+- `src/schema/`, `src/scoring/`, `src/validation/` and `src/geo/` must never import
+  from Astro: they also run in plain Node.
 - A new validation rule gets a new code (never reuse one), an entry in the rule
   table of `docs/design/02-content-schema.md`, and a test in `rules.test.ts`.
 

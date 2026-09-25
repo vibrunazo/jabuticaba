@@ -1,35 +1,46 @@
 ---
 import { defaultLocale, type Locale, locales, localizedPath, t } from "../i18n/ui.ts";
+import Logo from "./Logo.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
 interface Props {
   locale: Locale;
-  /** The same page in every locale, e.g. { pt: "/", en: "/en/" }. */
-  alternates: Record<Locale, string>;
+  /** The same page in each locale that has it, e.g. { pt: "/", en: "/en/" }. */
+  alternates: Partial<Record<Locale, string>>;
 }
 
 const { locale, alternates } = Astro.props;
 const otherLocale = locales.find((l) => l !== locale) ?? defaultLocale;
+const otherHref = alternates[otherLocale] ?? localizedPath(otherLocale, "/");
 ---
 
-<header class="border-b border-rule">
-  <div class="mx-auto flex max-w-3xl items-start justify-between gap-4 px-4 py-4">
+<header class="border-b border-rule bg-surface">
+  <div class="flex h-1" aria-hidden="true">
+    <span class="flex-1 bg-brand-green"></span>
+    <span class="flex-1 bg-brand-yellow"></span>
+    <span class="flex-1 bg-brand-navy dark:bg-ink-muted"></span>
+  </div>
+  <div class="mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-4">
     <div>
-      <a href={localizedPath(locale, "/")} class="font-serif text-lg text-heading">
-        {t(locale, "site.name")}
-      </a>
-      <p class="mt-0.5 text-xs text-ink-muted">{t(locale, "site.tagline")}</p>
+      <Logo locale={locale} />
+      <p class="mt-1 pl-10.5 text-xs text-ink-muted">{t(locale, "site.tagline")}</p>
     </div>
-    <div class="flex items-center gap-3">
+    <nav class="flex items-center gap-4 text-sm">
+      <a
+        href={localizedPath(locale, "/")}
+        class="text-ink-muted underline-offset-4 hover:text-ink hover:underline"
+      >
+        {t(locale, "nav.backToRanking")}
+      </a>
       <ThemeToggle locale={locale} />
       <a
-        href={alternates[otherLocale]}
+        href={otherHref}
         hreflang={otherLocale}
         lang={otherLocale}
-        class="text-sm text-ink-muted underline-offset-4 hover:text-ink hover:underline"
+        class="rounded-sm border border-rule px-2 py-0.5 font-mono text-xs text-ink-muted hover:border-ink-muted hover:text-ink"
       >
         {t(locale, "nav.switchLanguage")}
       </a>
-    </div>
+    </nav>
   </div>
 </header>

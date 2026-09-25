@@ -1,0 +1,78 @@
+---
+/**
+ * The table view of the map: every place with its presence range, weight,
+ * note and sources. Long lists are collapsed behind a <details>.
+ */
+import { formatRange } from "../i18n/format.ts";
+import { levelRangeLabel } from "../i18n/labels.ts";
+import { format, type Locale, t } from "../i18n/ui.ts";
+import { PRESENCE_WEIGHTS } from "../scoring/constants.ts";
+import type { Bounds } from "../scoring/formula.ts";
+import type { NumberedSource, PresenceRow } from "../site/item-detail.ts";
+import SourceRefs from "./SourceRefs.astro";
+
+interface Props {
+  locale: Locale;
+  rows: readonly PresenceRow[];
+  sources: readonly NumberedSource[];
+  placeCount: Bounds;
+}
+
+const { locale, rows, sources, placeCount } = Astro.props;
+const OPEN_UP_TO = 12;
+const summaryLabel = `${t(locale, "item.tablePlace")} (${rows.length})`;
+---
+
+{
+  rows.length > 0 && (
+    <details open={rows.length <= OPEN_UP_TO} class="group mt-6">
+      <summary class="cursor-pointer font-mono text-xs uppercase tracking-wider text-ink-muted hover:text-ink">
+        {summaryLabel}
+      </summary>
+      <div class="mt-3 overflow-x-auto">
+        <table class="w-full text-left text-sm">
+          <thead class="border-b border-rule font-mono text-xs uppercase tracking-wider text-ink-muted">
+            <tr>
+              <th scope="col" class="py-2 pr-4 font-normal">{t(locale, "item.tablePlace")}</th>
+              <th scope="col" class="py-2 pr-4 font-normal">{t(locale, "item.tablePresence")}</th>
+              <th scope="col" class="py-2 pr-4 text-right font-normal">{t(locale, "item.tableWeight")}</th>
+              <th scope="col" class="py-2 font-normal">{t(locale, "item.tableSources")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr class="border-b border-rule align-top">
+                <td class="py-2 pr-4">
+                  <span class="text-ink">
+                    {row.sovereignName
+                      ? format(locale, "item.territoryOf", { sovereign: row.sovereignName, territory: row.name })
+                      : row.name}
+                  </span>
+                  {row.note && <p class="mt-0.5 text-xs text-ink-muted">{row.note}</p>}
+                </td>
+                <td class="py-2 pr-4 text-ink-muted">{levelRangeLabel(locale, row.low, row.high)}</td>
+                <td class="py-2 pr-4 text-right font-mono text-xs tabular-nums text-ink">
+                  {formatRange(locale, PRESENCE_WEIGHTS[row.low], PRESENCE_WEIGHTS[row.high])}
+                </td>
+                <td class="py-2">
+                  <SourceRefs refs={row} sources={sources} locale={locale} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr>
+              <th scope="row" colspan="2" class="py-2 pr-4 text-left font-medium text-ink">
+                {t(locale, "item.placeCount")}
+              </th>
+              <td class="py-2 pr-4 text-right font-mono text-xs font-medium tabular-nums text-ink">
+                {formatRange(locale, placeCount.low, placeCount.high)}
+              </td>
+              <td />
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </details>
+  )
+}

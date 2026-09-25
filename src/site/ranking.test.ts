@@ -12,24 +12,30 @@ const common = makeItem({
 const mock = makeItem({ id: "mock-item", status: "mock" });
 
 const texts: ItemText[] = [
-  { itemId: "rare", locale: "pt", text: makeLocaleText({ title: "Raro" }) },
-  { itemId: "rare", locale: "en", text: makeLocaleText({ title: "Rare" }) },
-  { itemId: "common", locale: "pt", text: makeLocaleText({ title: "Comum" }) },
-  { itemId: "mock-item", locale: "pt", text: makeLocaleText({ title: "Fictício" }) },
+  { itemId: "rare", locale: "pt", text: makeLocaleText({ title: "Raro", slug: "raro" }), body: "" },
+  { itemId: "rare", locale: "en", text: makeLocaleText({ title: "Rare", slug: "rare" }), body: "" },
+  {
+    itemId: "common",
+    locale: "pt",
+    text: makeLocaleText({ title: "Comum", slug: "comum" }),
+    body: "",
+  },
+  { itemId: "mock-item", locale: "pt", text: makeLocaleText({ title: "Fictício" }), body: "" },
 ];
 
 describe("buildRanking", () => {
   it("ranks by score and uses the requested locale", () => {
     const rows = buildRanking([common, rare], texts, "en", { includeUnpublished: false });
-    expect(rows.map((r) => [r.rank, r.id, r.title])).toEqual([
-      [1, "rare", "Rare"],
-      [2, "common", "Comum"],
+    expect(rows.map((r) => [r.rank, r.id, r.title, r.href])).toEqual([
+      [1, "rare", "Rare", "/en/rare/"],
+      [2, "common", "Comum", "/comum/"],
     ]);
   });
 
   it("falls back to the default locale and flags it", () => {
     const rows = buildRanking([common], texts, "en", { includeUnpublished: false });
     expect(rows[0]?.untranslated).toBe(true);
+    expect(rows[0]?.href).toBe("/comum/");
     const ptRows = buildRanking([common], texts, "pt", { includeUnpublished: false });
     expect(ptRows[0]?.untranslated).toBe(false);
   });

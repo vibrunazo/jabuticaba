@@ -9,9 +9,15 @@ interface Props {
 const { locale } = Astro.props;
 ---
 
-<footer class="mt-16 border-t border-rule">
-  <div class="mx-auto flex max-w-3xl flex-wrap justify-between gap-2 px-4 py-6 text-xs text-ink-muted">
-    <span>{format(locale, "footer.methodology", { version: METHODOLOGY_VERSION })}</span>
-    <span>{t(locale, "footer.license")}</span>
+<footer class="mt-24 border-t border-rule bg-surface-sunken">
+  <div class="mx-auto flex max-w-4xl flex-wrap justify-between gap-x-8 gap-y-3 px-4 py-8 text-sm">
+    <div>
+      <p class="font-serif text-base font-semibold text-heading">{t(locale, "site.name")}</p>
+      <p class="mt-1 text-ink-muted">{t(locale, "footer.about")}</p>
+    </div>
+    <div class="font-mono text-xs leading-6 text-ink-muted sm:text-right">
+      <p>{format(locale, "footer.methodology", { version: METHODOLOGY_VERSION })}</p>
+      <p>{t(locale, "footer.license")}</p>
+    </div>
   </div>
 </footer>

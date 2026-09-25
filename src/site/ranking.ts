@@ -1,7 +1,7 @@
 /**
  * Builds the rows of the ranking page. Pure functions: no I/O, no Astro imports.
  */
-import { defaultLocale, type Locale } from "../i18n/ui.ts";
+import { defaultLocale, type Locale, localizedPath } from "../i18n/ui.ts";
 import type { Category, Item, ItemStatus } from "../schema/item.ts";
 import type { LocaleText } from "../schema/locale-text.ts";
 import type { EvidenceGrade } from "../scoring/evidence.ts";
@@ -13,6 +13,8 @@ export interface ItemText {
   itemId: string;
   locale: Locale;
   text: LocaleText;
+  /** Raw Markdown body. */
+  body: string;
 }
 
 export interface RankingRow {
@@ -24,6 +26,8 @@ export interface RankingRow {
   summary: string;
   /** True when the requested locale is missing and the default locale's text is shown. */
   untranslated: boolean;
+  /** Detail page, in the language of the text shown. */
+  href: string;
   score: Bounds;
   evidenceGrade: EvidenceGrade;
   hiddenJabuticaba: boolean;
@@ -57,6 +61,7 @@ export function buildRanking(
     if (!item || !text) {
       continue;
     }
+    const textLocale = localText ? locale : defaultLocale;
     rows.push({
       rank: result.rank,
       id: item.id,
@@ -65,6 +70,7 @@ export function buildRanking(
       title: text.title,
       summary: text.summary,
       untranslated: localText === undefined,
+      href: localizedPath(textLocale, `/${text.slug}/`),
       score: result.result.score,
       evidenceGrade: result.evidenceGrade,
       hiddenJabuticaba: isHiddenJabuticaba(item),
