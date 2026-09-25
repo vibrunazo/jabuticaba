@@ -1,0 +1,136 @@
+{
+  "$schema": "../../../schemas/item.schema.json",
+  "id": "free-electoral-airtime",
+  "status": "mock",
+  "methodologyVersion": "0.1",
+  "lastReviewed": "2026-09-25",
+  "category": "politics",
+  "presence": [
+    {
+      "place": "AD",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "AE",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "AF",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "AG",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "AI",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "AL",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "AM",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "AO",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "AQ",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "AR",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "AS",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "AT",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "AU",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "AW",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "AX",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "AZ",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "BA",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "BB",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "BD",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "BE",
+      "level": ["absent", "widespread"],
+      "sources": ["fictional-forum"]
+    }
+  ],
+  "intensity": {
+    "value": {
+      "min": 1,
+      "max": 4
+    },
+    "sources": ["fictional-forum"]
+  },
+  "awareness": {
+    "value": {
+      "min": 1,
+      "max": 2
+    },
+    "sources": [],
+    "editorial": true
+  },
+  "sources": [
+    {
+      "id": "fictional-forum",
+      "type": "other",
+      "title": "Tópico: isso só existe aqui?",
+      "publisher": "Fórum Imaginário",
+      "url": "https://example.org/fictional-forum",
+      "accessed": "2026-09-25",
+      "language": "pt"
+    }
+  ]
+}

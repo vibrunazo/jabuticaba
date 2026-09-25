@@ -1,0 +1,60 @@
+{
+  "$schema": "../../../schemas/item.schema.json",
+  "id": "corner-pharmacy",
+  "status": "mock",
+  "methodologyVersion": "0.1",
+  "lastReviewed": "2026-09-25",
+  "category": "urban",
+  "presence": [
+    {
+      "place": "MX",
+      "level": "widespread",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "AR",
+      "level": "regional",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "PT",
+      "level": "regional",
+      "sources": ["fictional-forum"]
+    },
+    {
+      "place": "CO",
+      "level": "regional",
+      "sources": ["fictional-forum"]
+    }
+  ],
+  "intensity": {
+    "value": 2,
+    "sources": ["fictional-forum"]
+  },
+  "awareness": {
+    "value": 1,
+    "sources": [],
+    "editorial": true
+  },
+  "sources": [
+    {
+      "id": "fictional-forum",
+      "type": "other",
+      "title": "Tópico: isso só existe aqui?",
+      "publisher": "Fórum Imaginário",
+      "url": "https://example.org/fictional-forum",
+      "accessed": "2026-09-25",
+      "language": "pt"
+    },
+    {
+      "id": "fictional-gazette",
+      "type": "news",
+      "title": "Brazilians Surprised Again",
+      "publisher": "The Example Gazette",
+      "url": "https://example.org/fictional-gazette",
+      "published": "2026-01-15",
+      "accessed": "2026-09-25",
+      "language": "en"
+    }
+  ]
+}

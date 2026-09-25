@@ -1,0 +1,65 @@
+{
+  "$schema": "../../../schemas/item.schema.json",
+  "id": "service-elevator",
+  "status": "mock",
+  "methodologyVersion": "0.1",
+  "lastReviewed": "2026-09-25",
+  "category": "urban",
+  "presence": [
+    {
+      "place": "ZA",
+      "level": "marginal",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "IN",
+      "level": "regional",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AR",
+      "level": "regional",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "US",
+      "level": ["marginal", "regional"],
+      "sources": ["fictional-survey"]
+    }
+  ],
+  "intensity": {
+    "value": {
+      "min": 2,
+      "max": 3
+    },
+    "sources": ["fictional-association"]
+  },
+  "awareness": {
+    "value": 0,
+    "sources": [],
+    "editorial": true
+  },
+  "sources": [
+    {
+      "id": "fictional-association",
+      "type": "organization",
+      "title": "Relatório Anual da Associação Hipotética",
+      "publisher": "Associação Brasileira de Coisas Hipotéticas",
+      "url": "https://example.org/fictional-association",
+      "published": "2025-11",
+      "accessed": "2026-09-25",
+      "language": "pt"
+    },
+    {
+      "id": "fictional-survey",
+      "type": "academic",
+      "title": "A Global Survey of Allegedly Unique Things",
+      "publisher": "University of Nowhere Press",
+      "authors": ["A. Nonymous", "P. Laceholder"],
+      "url": "https://example.org/fictional-survey",
+      "published": "2024-06",
+      "accessed": "2026-09-25",
+      "language": "en"
+    }
+  ]
+}

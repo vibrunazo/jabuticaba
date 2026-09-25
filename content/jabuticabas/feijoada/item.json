@@ -1,0 +1,67 @@
+{
+  "$schema": "../../../schemas/item.schema.json",
+  "id": "feijoada",
+  "status": "mock",
+  "methodologyVersion": "0.1",
+  "lastReviewed": "2026-09-25",
+  "category": "food",
+  "presence": [
+    {
+      "place": "PT",
+      "level": "widespread",
+      "sources": ["fictional-encyclopedia"]
+    },
+    {
+      "place": "AO",
+      "level": "widespread",
+      "sources": ["fictional-encyclopedia"]
+    },
+    {
+      "place": "MZ",
+      "level": "regional",
+      "sources": ["fictional-encyclopedia"]
+    },
+    {
+      "place": "MO",
+      "level": "regional",
+      "sources": ["fictional-encyclopedia"]
+    },
+    {
+      "place": "CV",
+      "level": "regional",
+      "sources": ["fictional-encyclopedia"]
+    }
+  ],
+  "intensity": {
+    "value": 2,
+    "ratio": 3.2,
+    "sources": ["fictional-census"]
+  },
+  "awareness": {
+    "value": 3,
+    "sources": [],
+    "editorial": true
+  },
+  "sources": [
+    {
+      "id": "fictional-census",
+      "type": "dataset",
+      "title": "Censo Imaginário de Coisas Brasileiras 2025",
+      "publisher": "Instituto Brasileiro de Geografia Imaginária",
+      "url": "https://example.org/fictional-census",
+      "published": "2025",
+      "accessed": "2026-09-25",
+      "language": "pt"
+    },
+    {
+      "id": "fictional-encyclopedia",
+      "type": "reference",
+      "title": "Enciclopédia Hipotética, 3ª edição",
+      "publisher": "Editora Exemplo",
+      "url": "https://example.org/fictional-encyclopedia",
+      "published": "2019",
+      "accessed": "2026-09-25",
+      "language": "pt"
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "$schema": "../../../schemas/item.schema.json",
+  "id": "caipirinha",
+  "status": "mock",
+  "methodologyVersion": "0.1",
+  "lastReviewed": "2026-09-25",
+  "category": "food",
+  "presence": [
+    {
+      "place": "AD",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "AE",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "AF",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "AG",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "AI",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "AL",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "AM",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "AO",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "AQ",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "AR",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "AS",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "AT",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "AU",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "AW",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "AX",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "AZ",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "BA",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "BB",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "BD",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "BE",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "BF",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "BG",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "BH",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "BI",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "BJ",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "BL",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "BM",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "BN",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "BO",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "BQ",
+      "level": "imported",
+      "sources": ["fictional-gazette"]
+    }
+  ],
+  "intensity": {
+    "value": 4,
+    "sources": ["fictional-census"]
+  },
+  "awareness": {
+    "value": 4,
+    "sources": [],
+    "editorial": true
+  },
+  "sources": [
+    {
+      "id": "fictional-census",
+      "type": "dataset",
+      "title": "Censo Imaginário de Coisas Brasileiras 2025",
+      "publisher": "Instituto Brasileiro de Geografia Imaginária",
+      "url": "https://example.org/fictional-census",
+      "published": "2025",
+      "accessed": "2026-09-25",
+      "language": "pt"
+    },
+    {
+      "id": "fictional-gazette",
+      "type": "news",
+      "title": "Brazilians Surprised Again",
+      "publisher": "The Example Gazette",
+      "url": "https://example.org/fictional-gazette",
+      "published": "2026-01-15",
+      "accessed": "2026-09-25",
+      "language": "en"
+    }
+  ]
+}

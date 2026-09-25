@@ -1,0 +1,191 @@
+[
+  {
+    "code": "BR-AC",
+    "names": {
+      "pt": "Acre",
+      "en": "Acre"
+    }
+  },
+  {
+    "code": "BR-AL",
+    "names": {
+      "pt": "Alagoas",
+      "en": "Alagoas"
+    }
+  },
+  {
+    "code": "BR-AP",
+    "names": {
+      "pt": "Amapá",
+      "en": "Amapá"
+    }
+  },
+  {
+    "code": "BR-AM",
+    "names": {
+      "pt": "Amazonas",
+      "en": "Amazonas"
+    }
+  },
+  {
+    "code": "BR-BA",
+    "names": {
+      "pt": "Bahia",
+      "en": "Bahia"
+    }
+  },
+  {
+    "code": "BR-CE",
+    "names": {
+      "pt": "Ceará",
+      "en": "Ceará"
+    }
+  },
+  {
+    "code": "BR-DF",
+    "names": {
+      "pt": "Distrito Federal",
+      "en": "Distrito Federal"
+    }
+  },
+  {
+    "code": "BR-ES",
+    "names": {
+      "pt": "Espírito Santo",
+      "en": "Espírito Santo"
+    }
+  },
+  {
+    "code": "BR-GO",
+    "names": {
+      "pt": "Goiás",
+      "en": "Goiás"
+    }
+  },
+  {
+    "code": "BR-MA",
+    "names": {
+      "pt": "Maranhão",
+      "en": "Maranhão"
+    }
+  },
+  {
+    "code": "BR-MT",
+    "names": {
+      "pt": "Mato Grosso",
+      "en": "Mato Grosso"
+    }
+  },
+  {
+    "code": "BR-MS",
+    "names": {
+      "pt": "Mato Grosso do Sul",
+      "en": "Mato Grosso do Sul"
+    }
+  },
+  {
+    "code": "BR-MG",
+    "names": {
+      "pt": "Minas Gerais",
+      "en": "Minas Gerais"
+    }
+  },
+  {
+    "code": "BR-PA",
+    "names": {
+      "pt": "Pará",
+      "en": "Pará"
+    }
+  },
+  {
+    "code": "BR-PB",
+    "names": {
+      "pt": "Paraíba",
+      "en": "Paraíba"
+    }
+  },
+  {
+    "code": "BR-PR",
+    "names": {
+      "pt": "Paraná",
+      "en": "Paraná"
+    }
+  },
+  {
+    "code": "BR-PE",
+    "names": {
+      "pt": "Pernambuco",
+      "en": "Pernambuco"
+    }
+  },
+  {
+    "code": "BR-PI",
+    "names": {
+      "pt": "Piauí",
+      "en": "Piauí"
+    }
+  },
+  {
+    "code": "BR-RJ",
+    "names": {
+      "pt": "Rio de Janeiro",
+      "en": "Rio de Janeiro"
+    }
+  },
+  {
+    "code": "BR-RN",
+    "names": {
+      "pt": "Rio Grande do Norte",
+      "en": "Rio Grande do Norte"
+    }
+  },
+  {
+    "code": "BR-RS",
+    "names": {
+      "pt": "Rio Grande do Sul",
+      "en": "Rio Grande do Sul"
+    }
+  },
+  {
+    "code": "BR-RO",
+    "names": {
+      "pt": "Rondônia",
+      "en": "Rondônia"
+    }
+  },
+  {
+    "code": "BR-RR",
+    "names": {
+      "pt": "Roraima",
+      "en": "Roraima"
+    }
+  },
+  {
+    "code": "BR-SC",
+    "names": {
+      "pt": "Santa Catarina",
+      "en": "Santa Catarina"
+    }
+  },
+  {
+    "code": "BR-SP",
+    "names": {
+      "pt": "São Paulo",
+      "en": "São Paulo"
+    }
+  },
+  {
+    "code": "BR-SE",
+    "names": {
+      "pt": "Sergipe",
+      "en": "Sergipe"
+    }
+  },
+  {
+    "code": "BR-TO",
+    "names": {
+      "pt": "Tocantins",
+      "en": "Tocantins"
+    }
+  }
+]

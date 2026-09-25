@@ -1,0 +1,112 @@
+{
+  "$schema": "../../../schemas/item.schema.json",
+  "id": "thirteenth-salary",
+  "status": "mock",
+  "methodologyVersion": "0.1",
+  "lastReviewed": "2026-09-25",
+  "category": "economy",
+  "since": 1962,
+  "presence": [
+    {
+      "place": "AR",
+      "level": "widespread",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "UY",
+      "level": "widespread",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "PY",
+      "level": "widespread",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "MX",
+      "level": "widespread",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "PT",
+      "level": "widespread",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "ES",
+      "level": "widespread",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "AT",
+      "level": "widespread",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "PH",
+      "level": "widespread",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "IT",
+      "level": "regional",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "DE",
+      "level": "regional",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "CL",
+      "level": "regional",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "PE",
+      "level": "widespread",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "EC",
+      "level": "widespread",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "CO",
+      "level": "widespread",
+      "sources": ["fictional-gazette"]
+    }
+  ],
+  "intensity": {
+    "value": 1,
+    "sources": ["fictional-decree"]
+  },
+  "awareness": {
+    "value": 3,
+    "sources": [],
+    "editorial": true
+  },
+  "sources": [
+    {
+      "id": "fictional-decree",
+      "type": "government",
+      "title": "Decreto Fictício nº 0.000, de 1º de abril de 2020",
+      "publisher": "Diário Oficial Imaginário",
+      "url": "https://example.org/fictional-decree",
+      "published": "2020-04-01",
+      "accessed": "2026-09-25",
+      "language": "pt"
+    },
+    {
+      "id": "fictional-gazette",
+      "type": "news",
+      "title": "Brazilians Surprised Again",
+      "publisher": "The Example Gazette",
+      "url": "https://example.org/fictional-gazette",
+      "published": "2026-01-15",
+      "accessed": "2026-09-25",
+      "language": "en"
+    }
+  ]
+}

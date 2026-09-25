@@ -1,0 +1,57 @@
+{
+  "$schema": "../../../schemas/item.schema.json",
+  "id": "residential-doorman",
+  "status": "mock",
+  "methodologyVersion": "0.1",
+  "lastReviewed": "2026-09-25",
+  "category": "urban",
+  "presence": [
+    {
+      "place": "AR",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "UY",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "US",
+      "level": "regional",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "ES",
+      "level": "regional",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "FR",
+      "level": "marginal",
+      "sources": ["fictional-survey"]
+    }
+  ],
+  "intensity": {
+    "value": 2,
+    "sources": ["fictional-survey"]
+  },
+  "awareness": {
+    "value": 1,
+    "sources": [],
+    "editorial": true
+  },
+  "sources": [
+    {
+      "id": "fictional-survey",
+      "type": "academic",
+      "title": "A Global Survey of Allegedly Unique Things",
+      "publisher": "University of Nowhere Press",
+      "authors": ["A. Nonymous", "P. Laceholder"],
+      "url": "https://example.org/fictional-survey",
+      "published": "2024-06",
+      "accessed": "2026-09-25",
+      "language": "en"
+    }
+  ]
+}

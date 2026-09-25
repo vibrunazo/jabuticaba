@@ -1,0 +1,30 @@
+[
+  {
+    "code": "US-GA",
+    "names": {
+      "pt": "Geórgia",
+      "en": "Georgia"
+    }
+  },
+  {
+    "code": "US-LA",
+    "names": {
+      "pt": "Luisiana",
+      "en": "Louisiana"
+    }
+  },
+  {
+    "code": "US-NJ",
+    "names": {
+      "pt": "Nova Jersey",
+      "en": "New Jersey"
+    }
+  },
+  {
+    "code": "US-TX",
+    "names": {
+      "pt": "Texas",
+      "en": "Texas"
+    }
+  }
+]

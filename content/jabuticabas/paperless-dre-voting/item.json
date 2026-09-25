@@ -1,0 +1,86 @@
+{
+  "$schema": "../../../schemas/item.schema.json",
+  "id": "paperless-dre-voting",
+  "status": "mock",
+  "methodologyVersion": "0.1",
+  "lastReviewed": "2026-09-25",
+  "category": "politics",
+  "since": 1996,
+  "presence": [
+    {
+      "place": "US",
+      "level": "regional",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BT",
+      "level": ["absent", "regional"],
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "IN",
+      "level": "absent",
+      "sources": ["fictional-survey"]
+    }
+  ],
+  "subdivisions": [
+    {
+      "subdivision": "US-LA",
+      "level": "widespread",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "subdivision": "US-TX",
+      "level": ["absent", "marginal"],
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "subdivision": "US-NJ",
+      "level": ["marginal", "regional"],
+      "sources": ["fictional-gazette"]
+    }
+  ],
+  "intensity": {
+    "value": 4,
+    "sources": ["fictional-decree", "fictional-survey"]
+  },
+  "awareness": {
+    "value": 1,
+    "sources": [],
+    "editorial": true
+  },
+  "sources": [
+    {
+      "id": "fictional-decree",
+      "type": "government",
+      "title": "Decreto Fictício nº 0.000, de 1º de abril de 2020",
+      "publisher": "Diário Oficial Imaginário",
+      "url": "https://example.org/fictional-decree",
+      "published": "2020-04-01",
+      "accessed": "2026-09-25",
+      "language": "pt"
+    },
+    {
+      "id": "fictional-gazette",
+      "type": "news",
+      "title": "Brazilians Surprised Again",
+      "publisher": "The Example Gazette",
+      "url": "https://example.org/fictional-gazette",
+      "published": "2026-01-15",
+      "accessed": "2026-09-25",
+      "language": "en"
+    },
+    {
+      "id": "fictional-survey",
+      "type": "academic",
+      "title": "A Global Survey of Allegedly Unique Things",
+      "publisher": "University of Nowhere Press",
+      "authors": ["A. Nonymous", "P. Laceholder"],
+      "url": "https://example.org/fictional-survey",
+      "published": "2024-06",
+      "accessed": "2026-09-25",
+      "language": "en"
+    }
+  ],
+  "related": ["electoral-court", "mandatory-voting"]
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "../../../schemas/item.schema.json",
+  "id": "electoral-court",
+  "status": "mock",
+  "methodologyVersion": "0.1",
+  "lastReviewed": "2026-09-25",
+  "category": "justice",
+  "since": 1932,
+  "presence": [
+    {
+      "place": "CR",
+      "level": "widespread",
+      "sources": ["fictional-encyclopedia"]
+    },
+    {
+      "place": "UY",
+      "level": "regional",
+      "sources": ["fictional-encyclopedia"]
+    },
+    {
+      "place": "MX",
+      "level": "regional",
+      "sources": ["fictional-encyclopedia"]
+    }
+  ],
+  "intensity": {
+    "value": 3,
+    "sources": [],
+    "editorial": true
+  },
+  "awareness": {
+    "value": 0,
+    "sources": [],
+    "editorial": true
+  },
+  "sources": [
+    {
+      "id": "fictional-encyclopedia",
+      "type": "reference",
+      "title": "Enciclopédia Hipotética, 3ª edição",
+      "publisher": "Editora Exemplo",
+      "url": "https://example.org/fictional-encyclopedia",
+      "published": "2019",
+      "accessed": "2026-09-25",
+      "language": "pt"
+    }
+  ],
+  "related": ["paperless-dre-voting"]
+}

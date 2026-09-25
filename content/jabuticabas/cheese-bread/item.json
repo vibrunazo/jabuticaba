@@ -1,0 +1,67 @@
+{
+  "$schema": "../../../schemas/item.schema.json",
+  "id": "cheese-bread",
+  "status": "mock",
+  "methodologyVersion": "0.1",
+  "lastReviewed": "2026-09-25",
+  "category": "food",
+  "presence": [
+    {
+      "place": "PY",
+      "level": ["marginal", "regional"],
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AR",
+      "level": "marginal",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "US",
+      "level": "imported",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "PT",
+      "level": "imported",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "JP",
+      "level": "imported",
+      "sources": ["fictional-survey"]
+    }
+  ],
+  "intensity": {
+    "value": 4,
+    "sources": ["fictional-census"]
+  },
+  "awareness": {
+    "value": 4,
+    "sources": [],
+    "editorial": true
+  },
+  "sources": [
+    {
+      "id": "fictional-census",
+      "type": "dataset",
+      "title": "Censo Imaginário de Coisas Brasileiras 2025",
+      "publisher": "Instituto Brasileiro de Geografia Imaginária",
+      "url": "https://example.org/fictional-census",
+      "published": "2025",
+      "accessed": "2026-09-25",
+      "language": "pt"
+    },
+    {
+      "id": "fictional-survey",
+      "type": "academic",
+      "title": "A Global Survey of Allegedly Unique Things",
+      "publisher": "University of Nowhere Press",
+      "authors": ["A. Nonymous", "P. Laceholder"],
+      "url": "https://example.org/fictional-survey",
+      "published": "2024-06",
+      "accessed": "2026-09-25",
+      "language": "en"
+    }
+  ]
+}

@@ -1,0 +1,781 @@
+{
+  "$schema": "../../../schemas/item.schema.json",
+  "id": "refrigerator",
+  "status": "mock",
+  "methodologyVersion": "0.1",
+  "lastReviewed": "2026-09-25",
+  "category": "home",
+  "presence": [
+    {
+      "place": "AD",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "AE",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "AF",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "AG",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "AI",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "AL",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "AM",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "AO",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "AQ",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "AR",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "AS",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "AT",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "AU",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "AW",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "AX",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "AZ",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BA",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BB",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BD",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BE",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BF",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BG",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BH",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BI",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BJ",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BL",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BM",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BN",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BO",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BQ",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BS",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BT",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BV",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BW",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BY",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BZ",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CA",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CC",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CD",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CF",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CG",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CH",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CI",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CK",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CL",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CM",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CN",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CO",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CR",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CU",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CV",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CW",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CX",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CY",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "CZ",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "DE",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "DJ",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "DK",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "DM",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "DO",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "DZ",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "EC",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "EE",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "EG",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "EH",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "ER",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "ES",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "ET",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "FI",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "FJ",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "FK",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "FM",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "FO",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "FR",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GA",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GB",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GD",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GE",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GF",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GG",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GH",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GI",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GL",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GM",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GN",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GP",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GQ",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GR",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GS",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GT",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GU",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GW",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "GY",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "HK",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "HM",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "HN",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "HR",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "HT",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "HU",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "ID",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "IE",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "IL",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "IM",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "IN",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "IO",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "IQ",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "IR",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "IS",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "IT",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "JE",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "JM",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "JO",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "JP",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "KE",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "KG",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "KH",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "KI",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "KM",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "KN",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "KP",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "KR",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "KW",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "KY",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "KZ",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "LA",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "LB",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "LC",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "LI",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "LK",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "LR",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "LS",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "LT",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "LU",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "LV",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "LY",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "MA",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "MC",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "MD",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "ME",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "MF",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "MG",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "MH",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "MK",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "ML",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "MM",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "MN",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "MO",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "MP",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "MQ",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "MR",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    }
+  ],
+  "intensity": {
+    "value": 0,
+    "sources": ["fictional-census"]
+  },
+  "awareness": {
+    "value": 2,
+    "sources": [],
+    "editorial": true
+  },
+  "sources": [
+    {
+      "id": "fictional-census",
+      "type": "dataset",
+      "title": "Censo Imaginário de Coisas Brasileiras 2025",
+      "publisher": "Instituto Brasileiro de Geografia Imaginária",
+      "url": "https://example.org/fictional-census",
+      "published": "2025",
+      "accessed": "2026-09-25",
+      "language": "pt"
+    }
+  ]
+}

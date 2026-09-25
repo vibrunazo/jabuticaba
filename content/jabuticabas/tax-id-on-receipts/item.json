@@ -1,0 +1,47 @@
+{
+  "$schema": "../../../schemas/item.schema.json",
+  "id": "tax-id-on-receipts",
+  "status": "mock",
+  "methodologyVersion": "0.1",
+  "lastReviewed": "2026-09-25",
+  "category": "economy",
+  "since": 2007,
+  "presence": [
+    {
+      "place": "PT",
+      "level": "widespread",
+      "sources": ["fictional-gazette"]
+    }
+  ],
+  "intensity": {
+    "value": 2,
+    "sources": ["fictional-decree"]
+  },
+  "awareness": {
+    "value": 0,
+    "sources": [],
+    "editorial": true
+  },
+  "sources": [
+    {
+      "id": "fictional-decree",
+      "type": "government",
+      "title": "Decreto Fictício nº 0.000, de 1º de abril de 2020",
+      "publisher": "Diário Oficial Imaginário",
+      "url": "https://example.org/fictional-decree",
+      "published": "2020-04-01",
+      "accessed": "2026-09-25",
+      "language": "pt"
+    },
+    {
+      "id": "fictional-gazette",
+      "type": "news",
+      "title": "Brazilians Surprised Again",
+      "publisher": "The Example Gazette",
+      "url": "https://example.org/fictional-gazette",
+      "published": "2026-01-15",
+      "accessed": "2026-09-25",
+      "language": "en"
+    }
+  ]
+}

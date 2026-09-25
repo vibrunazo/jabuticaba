@@ -1,0 +1,88 @@
+{
+  "$schema": "../../../schemas/item.schema.json",
+  "id": "mandatory-voting",
+  "status": "mock",
+  "methodologyVersion": "0.1",
+  "lastReviewed": "2026-09-25",
+  "category": "politics",
+  "presence": [
+    {
+      "place": "AR",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "UY",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "PE",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "EC",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BO",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AU",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BE",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "LU",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "SG",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "PY",
+      "level": ["marginal", "regional"],
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "MX",
+      "level": ["absent", "marginal"],
+      "sources": ["fictional-survey"]
+    }
+  ],
+  "intensity": {
+    "value": 1,
+    "sources": ["fictional-survey"]
+  },
+  "awareness": {
+    "value": 2,
+    "sources": [],
+    "editorial": true
+  },
+  "sources": [
+    {
+      "id": "fictional-survey",
+      "type": "academic",
+      "title": "A Global Survey of Allegedly Unique Things",
+      "publisher": "University of Nowhere Press",
+      "authors": ["A. Nonymous", "P. Laceholder"],
+      "url": "https://example.org/fictional-survey",
+      "published": "2024-06",
+      "accessed": "2026-09-25",
+      "language": "en"
+    }
+  ],
+  "related": ["paperless-dre-voting"]
+}

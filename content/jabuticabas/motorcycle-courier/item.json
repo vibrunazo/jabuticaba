@@ -1,0 +1,232 @@
+{
+  "$schema": "../../../schemas/item.schema.json",
+  "id": "motorcycle-courier",
+  "status": "mock",
+  "methodologyVersion": "0.1",
+  "lastReviewed": "2026-09-25",
+  "category": "urban",
+  "presence": [
+    {
+      "place": "AD",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AE",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AF",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AG",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AI",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AL",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AM",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AO",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AQ",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AR",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AS",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AT",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AU",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AW",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AX",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AZ",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BA",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BB",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BD",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BE",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BF",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BG",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BH",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BI",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BJ",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BL",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BM",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BN",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BO",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BQ",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BS",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BT",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BV",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BW",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BY",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "BZ",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "CA",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "CC",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "CD",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "CF",
+      "level": "widespread",
+      "sources": ["fictional-survey"]
+    }
+  ],
+  "intensity": {
+    "value": 1,
+    "sources": ["fictional-survey"]
+  },
+  "awareness": {
+    "value": 3,
+    "sources": [],
+    "editorial": true
+  },
+  "sources": [
+    {
+      "id": "fictional-survey",
+      "type": "academic",
+      "title": "A Global Survey of Allegedly Unique Things",
+      "publisher": "University of Nowhere Press",
+      "authors": ["A. Nonymous", "P. Laceholder"],
+      "url": "https://example.org/fictional-survey",
+      "published": "2024-06",
+      "accessed": "2026-09-25",
+      "language": "en"
+    }
+  ]
+}

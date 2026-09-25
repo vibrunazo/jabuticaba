@@ -1,0 +1,91 @@
+{
+  "$schema": "../../../schemas/item.schema.json",
+  "id": "window-safety-nets",
+  "status": "mock",
+  "methodologyVersion": "0.1",
+  "lastReviewed": "2026-09-25",
+  "category": "urban",
+  "presence": [
+    {
+      "place": "CN",
+      "level": "regional",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "AR",
+      "level": "regional",
+      "sources": ["fictional-gazette"]
+    },
+    {
+      "place": "CL",
+      "level": "marginal",
+      "sources": ["fictional-gazette"]
+    }
+  ],
+  "subdivisions": [
+    {
+      "subdivision": "BR-SP",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "subdivision": "BR-RJ",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "subdivision": "BR-MG",
+      "level": "widespread",
+      "sources": ["fictional-census"]
+    },
+    {
+      "subdivision": "BR-PR",
+      "level": "regional",
+      "sources": ["fictional-census"]
+    },
+    {
+      "subdivision": "BR-AM",
+      "level": "marginal",
+      "sources": ["fictional-census"]
+    },
+    {
+      "subdivision": "BR-PA",
+      "level": "marginal",
+      "sources": ["fictional-census"]
+    }
+  ],
+  "intensity": {
+    "value": {
+      "min": 2,
+      "max": 3
+    },
+    "sources": ["fictional-census"]
+  },
+  "awareness": {
+    "value": 0,
+    "sources": [],
+    "editorial": true
+  },
+  "sources": [
+    {
+      "id": "fictional-census",
+      "type": "dataset",
+      "title": "Censo Imaginário de Coisas Brasileiras 2025",
+      "publisher": "Instituto Brasileiro de Geografia Imaginária",
+      "url": "https://example.org/fictional-census",
+      "published": "2025",
+      "accessed": "2026-09-25",
+      "language": "pt"
+    },
+    {
+      "id": "fictional-gazette",
+      "type": "news",
+      "title": "Brazilians Surprised Again",
+      "publisher": "The Example Gazette",
+      "url": "https://example.org/fictional-gazette",
+      "published": "2026-01-15",
+      "accessed": "2026-09-25",
+      "language": "en"
+    }
+  ]
+}

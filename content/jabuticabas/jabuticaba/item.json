@@ -1,0 +1,63 @@
+{
+  "$schema": "../../../schemas/item.schema.json",
+  "id": "jabuticaba",
+  "status": "mock",
+  "methodologyVersion": "0.1",
+  "lastReviewed": "2026-09-25",
+  "category": "nature",
+  "presence": [
+    {
+      "place": "PY",
+      "level": "regional",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "BO",
+      "level": "marginal",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "AR",
+      "level": "marginal",
+      "sources": ["fictional-census"]
+    },
+    {
+      "place": "US",
+      "level": ["absent", "marginal"],
+      "sources": ["fictional-census"]
+    }
+  ],
+  "intensity": {
+    "value": 4,
+    "sources": ["fictional-survey"]
+  },
+  "awareness": {
+    "value": 4,
+    "sources": [],
+    "editorial": true
+  },
+  "sources": [
+    {
+      "id": "fictional-census",
+      "type": "dataset",
+      "title": "Censo Imaginário de Coisas Brasileiras 2025",
+      "publisher": "Instituto Brasileiro de Geografia Imaginária",
+      "url": "https://example.org/fictional-census",
+      "published": "2025",
+      "accessed": "2026-09-25",
+      "language": "pt"
+    },
+    {
+      "id": "fictional-survey",
+      "type": "academic",
+      "title": "A Global Survey of Allegedly Unique Things",
+      "publisher": "University of Nowhere Press",
+      "authors": ["A. Nonymous", "P. Laceholder"],
+      "url": "https://example.org/fictional-survey",
+      "published": "2024-06",
+      "accessed": "2026-09-25",
+      "language": "en"
+    }
+  ],
+  "related": ["capybara"]
+}
