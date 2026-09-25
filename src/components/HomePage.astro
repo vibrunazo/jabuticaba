@@ -1,20 +1,45 @@
 ---
 import { type Locale, t } from "../i18n/ui.ts";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { includeUnpublished, loadItems, loadItemTexts } from "../site/content.ts";
+import { buildRanking } from "../site/ranking.ts";
+import RankingRow from "./RankingRow.astro";
+import ScoreErrorBar from "./ScoreErrorBar.astro";
 
 interface Props {
   locale: Locale;
 }
 
 const { locale } = Astro.props;
+const rows = buildRanking(await loadItems(), await loadItemTexts(), locale, {
+  includeUnpublished,
+});
 ---
 
-<BaseLayout locale={locale}>
-  <main class="mx-auto max-w-3xl px-4 py-16">
-    <h1 class="font-serif text-4xl text-brand-navy dark:text-ink">{t(locale, "site.name")}</h1>
-    <p class="mt-4 text-lg text-ink-muted">{t(locale, "site.tagline")}</p>
-    <p class="mt-8 border-t border-rule pt-4 text-sm text-ink-muted">
-      {t(locale, "home.placeholder")}
-    </p>
+<BaseLayout locale={locale} alternates={{ pt: "/", en: "/en/" }}>
+  <main class="mx-auto max-w-3xl px-4 py-12">
+    <h1 class="font-serif text-4xl text-heading">{t(locale, "ranking.title")}</h1>
+    <p class="mt-4 max-w-2xl text-ink-muted">{t(locale, "ranking.intro")}</p>
+
+    <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-ink-muted" aria-hidden="true">
+      <span class="flex items-center gap-2">
+        <span class="inline-block w-16">
+          <ScoreErrorBar low={20} point={50} high={80} label="" />
+        </span>
+        {t(locale, "ranking.legendPoint")} / {t(locale, "ranking.legendRange")}
+      </span>
+    </div>
+
+    {
+      rows.length > 0 ? (
+        <ol class="mt-4 border-t border-rule">
+          {rows.map((row) => (
+            <RankingRow row={row} locale={locale} />
+          ))}
+        </ol>
+      ) : (
+        <p class="mt-8 border-t border-rule pt-6 text-ink-muted">{t(locale, "ranking.empty")}</p>
+      )
+    }
   </main>
 </BaseLayout>

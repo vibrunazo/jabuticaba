@@ -1,0 +1,23 @@
+---
+/** A small label. `tone` picks the color; all tones use design tokens. */
+interface Props {
+  tone?: "neutral" | "accent" | "warning";
+}
+
+const { tone = "neutral" } = Astro.props;
+
+const toneClasses = {
+  neutral: "border-rule text-ink-muted",
+  accent: "border-accent text-accent",
+  warning: "border-highlight bg-highlight text-brand-navy",
+} as const;
+---
+
+<span
+  class:list={[
+    "inline-flex items-center rounded-sm border px-1.5 py-0.5 text-xs font-medium uppercase tracking-wide",
+    toneClasses[tone],
+  ]}
+>
+  <slot />
+</span>

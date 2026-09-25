@@ -3,6 +3,7 @@
 /*
  * Design tokens. Components must use these (e.g. `bg-surface`, `text-ink`),
  * never arbitrary values like `text-[#123456]`.
+ * Colors are semantic: dark mode redefines them below, so components never need `dark:`.
  * Placeholder palette: to be refined in the design phase.
  */
 @theme {
@@ -10,7 +11,10 @@
   --color-surface-raised: #ffffff;
   --color-ink: #14213d;
   --color-ink-muted: #5b6475;
+  --color-heading: #0b1f4b;
   --color-rule: #d9dce3;
+  --color-accent: #1f7a4d;
+  --color-highlight: #f2c230;
   --color-brand-navy: #0b1f4b;
   --color-brand-green: #1f7a4d;
   --color-brand-yellow: #f2c230;
@@ -25,6 +29,9 @@
     --color-surface-raised: #122039;
     --color-ink: #e8ecf4;
     --color-ink-muted: #9aa5ba;
-    --color-rule: #24334f;
+    --color-heading: #f3f5fa;
+    --color-rule: #2a3a58;
+    --color-accent: #3fbf7f;
+    --color-highlight: #f2c230;
   }
 }

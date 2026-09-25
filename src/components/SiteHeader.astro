@@ -1,0 +1,28 @@
+---
+import { defaultLocale, type Locale, locales, localizedPath, t } from "../i18n/ui.ts";
+
+interface Props {
+  locale: Locale;
+  /** The same page in every locale, e.g. { pt: "/", en: "/en/" }. */
+  alternates: Record<Locale, string>;
+}
+
+const { locale, alternates } = Astro.props;
+const otherLocale = locales.find((l) => l !== locale) ?? defaultLocale;
+---
+
+<header class="border-b border-rule">
+  <div class="mx-auto flex max-w-3xl items-center justify-between gap-4 px-4 py-4">
+    <a href={localizedPath(locale, "/")} class="font-serif text-lg text-heading">
+      {t(locale, "site.name")}
+    </a>
+    <a
+      href={alternates[otherLocale]}
+      hreflang={otherLocale}
+      lang={otherLocale}
+      class="text-sm text-ink-muted underline-offset-4 hover:text-ink hover:underline"
+    >
+      {t(locale, "nav.switchLanguage")}
+    </a>
+  </div>
+</header>

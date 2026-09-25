@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "node scripts/validate.ts --production && astro build",
-    "build:preview": "astro build",
+    "build:preview": "astro build --mode preview",
     "preview": "astro preview",
     "check": "astro check",
     "lint": "biome check .",

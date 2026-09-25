@@ -1,0 +1,17 @@
+---
+import { format, type Locale, t } from "../i18n/ui.ts";
+import { METHODOLOGY_VERSION } from "../scoring/constants.ts";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<footer class="mt-16 border-t border-rule">
+  <div class="mx-auto flex max-w-3xl flex-wrap justify-between gap-2 px-4 py-6 text-xs text-ink-muted">
+    <span>{format(locale, "footer.methodology", { version: METHODOLOGY_VERSION })}</span>
+    <span>{t(locale, "footer.license")}</span>
+  </div>
+</footer>

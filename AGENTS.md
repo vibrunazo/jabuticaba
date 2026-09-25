@@ -107,6 +107,7 @@ src/
   scoring/            # the index: constants.ts (every tunable number), formula.ts, evidence.ts
   validation/         # cross-file rules J0xx (rules.ts)
   content-files/      # reading content/ from disk; Markdown helpers
+  site/               # page data: pure builders (ranking.ts) + Astro collection access (content.ts)
   testing/            # builders for test data (makeItem, …); used only by tests
   content.config.ts   # Astro collections, using the same Zod schemas
   components/ layouts/ pages/ styles/ i18n/

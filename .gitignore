@@ -1,21 +1,40 @@
 # dependencies
 node_modules/
+.pnpm-store/
 
 # build output
 dist/
 .astro/
+*.tsbuildinfo
 
 # test output
 coverage/
 test-results/
 playwright-report/
+blob-report/
 
-# logs and env
+# logs
 *.log
+
+# environment variables (secrets); keep the committed example
 .env
 .env.*
+!.env.example
+
+# hosting CLIs (local state)
+.netlify/
+.wrangler/
+.vercel/
+
+# AI agents: personal settings stay local; shared config (e.g. .claude/launch.json) is committed
+.claude/settings.local.json
 
 # editors and OS
 .DS_Store
 Thumbs.db
+desktop.ini
 .idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp

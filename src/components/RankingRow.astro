@@ -1,0 +1,54 @@
+---
+import { categoryLabel } from "../i18n/labels.ts";
+import { format, type Locale, t } from "../i18n/ui.ts";
+import type { RankingRow } from "../site/ranking.ts";
+import Badge from "./Badge.astro";
+import ScoreErrorBar from "./ScoreErrorBar.astro";
+
+interface Props {
+  row: RankingRow;
+  locale: Locale;
+}
+
+const { row, locale } = Astro.props;
+const scoreLabel = format(locale, "ranking.scoreLabel", {
+  score: row.score.point,
+  low: row.score.low,
+  high: row.score.high,
+});
+---
+
+<li class="flex flex-wrap items-start gap-x-4 gap-y-3 border-b border-rule py-5">
+  <span class="w-10 shrink-0 pt-0.5 font-serif text-2xl tabular-nums text-ink-muted">
+    {row.rank}
+  </span>
+  <div class="min-w-0 flex-1">
+    <h2 class="font-serif text-xl text-heading" lang={row.untranslated ? "pt-BR" : undefined}>
+      {row.title}
+    </h2>
+    <p class="mt-1 text-sm text-ink-muted" lang={row.untranslated ? "pt-BR" : undefined}>
+      {row.summary}
+    </p>
+    <div class="mt-2 flex flex-wrap gap-1.5">
+      <Badge>{categoryLabel(locale, row.category)}</Badge>
+      <Badge>{format(locale, "badge.evidenceGrade", { grade: row.evidenceGrade })}</Badge>
+      {row.hiddenJabuticaba && <Badge tone="accent">{t(locale, "badge.hiddenJabuticaba")}</Badge>}
+      {row.untranslated && <Badge>{t(locale, "badge.untranslated")}</Badge>}
+      {row.status === "mock" && <Badge tone="warning">{t(locale, "badge.mock")}</Badge>}
+      {row.status === "draft" && <Badge tone="warning">{t(locale, "badge.draft")}</Badge>}
+    </div>
+  </div>
+  <div class="w-full pl-14 sm:w-40 sm:pl-0">
+    <p class="text-right font-serif text-3xl tabular-nums text-heading" aria-hidden="true">
+      {row.score.point}%
+    </p>
+    <div class="mt-1 px-1">
+      <ScoreErrorBar
+        low={row.score.low}
+        point={row.score.point}
+        high={row.score.high}
+        label={scoreLabel}
+      />
+    </div>
+  </div>
+</li>
