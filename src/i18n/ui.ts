@@ -20,6 +20,7 @@ const pt = {
   "site.tagline": "Categorizando as singularidades brasileiras. Da capivara ao precatório.",
   "site.description": "Medindo, com rigor científico, o quão brasileiras as coisas são.",
   "nav.switchLanguage": "English",
+  "nav.toggleTheme": "Alternar tema claro/escuro",
   "ranking.title": "Classificação geral",
   "ranking.intro":
     "Coisas que só existem no Brasil, ou quase, ordenadas pelo Índice Jabuticaba®: de 0% (comum no mundo inteiro) a 100% (exclusivamente brasileiro).",
@@ -51,6 +52,7 @@ const en: Record<UiKey, string> = {
   "site.tagline": "Categorizing Brazilian singularities. From the capybara to the precatório.",
   "site.description": "Measuring, with scientific rigor, how Brazilian things are.",
   "nav.switchLanguage": "Português",
+  "nav.toggleTheme": "Toggle light/dark theme",
   "ranking.title": "Overall ranking",
   "ranking.intro":
     "Things that exist only in Brazil, or almost, ranked by the Jabuticaba Index®: from 0% (common worldwide) to 100% (exclusively Brazilian).",

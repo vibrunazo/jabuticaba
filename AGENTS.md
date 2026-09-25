@@ -82,6 +82,10 @@ over your memory.
   (`bg-surface`, `text-ink`, `text-brand-green`…). **No arbitrary values** like
   `text-[#123456]` or `mt-[13px]`. Need a new color or size? Add a token to `@theme`.
 - **No client-side JavaScript** unless the task explicitly needs interactivity.
+- **Themes:** `<html data-theme="light|dark">` is set before first paint (BaseLayout.astro).
+  Colors switch automatically through the tokens in `global.css`; to vary something
+  other than color per theme, use the `dark:` variant (it follows `data-theme`). Never
+  use `@media (prefers-color-scheme)` in components.
 - **i18n:** every user-facing string goes through `src/i18n/ui.ts` (UI labels) or the
   item's locale files (content). Never hard-code Portuguese or English text in
   components. `pt` is the reference locale; every locale must have the same keys.

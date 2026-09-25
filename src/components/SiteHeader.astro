@@ -1,5 +1,6 @@
 ---
 import { defaultLocale, type Locale, locales, localizedPath, t } from "../i18n/ui.ts";
+import ThemeToggle from "./ThemeToggle.astro";
 
 interface Props {
   locale: Locale;
@@ -19,13 +20,16 @@ const otherLocale = locales.find((l) => l !== locale) ?? defaultLocale;
       </a>
       <p class="mt-0.5 text-xs text-ink-muted">{t(locale, "site.tagline")}</p>
     </div>
-    <a
-      href={alternates[otherLocale]}
-      hreflang={otherLocale}
-      lang={otherLocale}
-      class="text-sm text-ink-muted underline-offset-4 hover:text-ink hover:underline"
-    >
-      {t(locale, "nav.switchLanguage")}
-    </a>
+    <div class="flex items-center gap-3">
+      <ThemeToggle locale={locale} />
+      <a
+        href={alternates[otherLocale]}
+        hreflang={otherLocale}
+        lang={otherLocale}
+        class="text-sm text-ink-muted underline-offset-4 hover:text-ink hover:underline"
+      >
+        {t(locale, "nav.switchLanguage")}
+      </a>
+    </div>
   </div>
 </header>

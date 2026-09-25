@@ -23,6 +23,28 @@ const pageTitle = title ? `${title} · ${siteName}` : siteName;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={t(locale, "site.description")} />
     <title>{pageTitle}</title>
+    <!-- Applies the theme before first paint (no flash). Saved choice first, else the system setting. -->
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        const system = window.matchMedia("(prefers-color-scheme: dark)");
+        let saved = null;
+        try {
+          saved = localStorage.getItem("theme");
+        } catch {}
+        const apply = () => {
+          root.dataset.theme =
+            saved === "light" || saved === "dark" ? saved : system.matches ? "dark" : "light";
+        };
+        apply();
+        system.addEventListener("change", () => {
+          try {
+            saved = localStorage.getItem("theme");
+          } catch {}
+          apply();
+        });
+      })();
+    </script>
     {
       locales.map((l) => (
         <link rel="alternate" hreflang={localeTags[l]} href={new URL(alternates[l], Astro.site)} />

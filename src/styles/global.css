@@ -3,7 +3,8 @@
 /*
  * Design tokens. Components must use these (e.g. `bg-surface`, `text-ink`),
  * never arbitrary values like `text-[#123456]`.
- * Colors are semantic: dark mode redefines them below, so components never need `dark:`.
+ * Colors are semantic: the dark theme redefines them below, so components almost
+ * never need `dark:` (exception: showing a different icon per theme).
  * Placeholder palette: to be refined in the design phase.
  */
 @theme {
@@ -23,8 +24,34 @@
   --font-serif: "Source Serif 4", ui-serif, Georgia, serif;
 }
 
+/*
+ * Theme selection. `<html data-theme="light|dark">` is set before the first paint
+ * by the inline script in BaseLayout.astro (saved choice, else the system setting).
+ * Without JavaScript, the media query below follows the system setting.
+ * The dark values appear twice because CSS can't combine a media query and an
+ * attribute selector in one rule; keep both blocks identical.
+ */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-surface: #0b1426;
+  --color-surface-raised: #122039;
+  --color-ink: #e8ecf4;
+  --color-ink-muted: #9aa5ba;
+  --color-heading: #f3f5fa;
+  --color-rule: #2a3a58;
+  --color-accent: #3fbf7f;
+  --color-highlight: #f2c230;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
+    color-scheme: dark;
     --color-surface: #0b1426;
     --color-surface-raised: #122039;
     --color-ink: #e8ecf4;
