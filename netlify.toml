@@ -1,0 +1,30 @@
+# Netlify configuration. Settings here override the ones in the Netlify dashboard.
+# Docs: https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # `build:preview` allows mock items. Switch to `pnpm run build` (production, which
+  # fails while any mock item exists) once real items replace the mocks.
+  command = "pnpm run build:preview"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# Pull request previews and branch deploys use the same build.
+[context.deploy-preview]
+  command = "pnpm run build:preview"
+
+[context.branch-deploy]
+  command = "pnpm run build:preview"
+
+# Files in /_astro/ have a content hash in their name, so they can be cached forever.
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

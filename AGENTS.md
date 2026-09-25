@@ -58,6 +58,13 @@ Run `pnpm fix` before `pnpm verify` to clear formatting errors automatically.
 `pnpm geo`. All outputs are committed, and `pnpm verify` fails when they are stale.
 Never edit `data/` or `schemas/` by hand.
 
+## Deployment
+
+The site deploys to Netlify (https://jabuticabas.netlify.app) on every push to
+`main`, with a preview deploy per pull request. Build settings live in
+`netlify.toml`; change them there, not in the Netlify dashboard. Deploys currently
+use `build:preview`, because every item is still a mock.
+
 ## Versions and known traps
 
 Your training data likely contains older versions of these tools. Follow these notes
