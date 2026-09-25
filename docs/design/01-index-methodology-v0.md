@@ -302,6 +302,11 @@ be researched and sourced before publication.
   is committed to the repo.
 - The site renders SVG from that file at build time. The map component never does
   code translation, so no runtime lookup table is needed.
+- **Subdivision maps:** for items with `subdivisions` data, the detail page also
+  shows one map per country (Brazil's states, US states, …), from Natural Earth's
+  admin-1 layer. It uses ISO 3166-2 codes, and `geo:build` extracts only the
+  countries that items need. Subdivisions are descriptive and **not scored** in v0:
+  the country-level presence entry is what counts.
 - Map colors: one shade per presence level, a distinct shade for `absent`
   (checked), and neutral grey for no data.
 - Two projections, both Equal Earth: `standard` (centred on Greenwich, north up)
@@ -343,6 +348,9 @@ Anchor fixtures used as unit tests of the formula (not site content):
   are handled naturally: French Guiana contributes French Guiana's population, not
   France's. This needs a `population` field in the places reference file (see the
   schema doc).
+- **Possibly: derive a country's level from its subdivisions** (e.g. by the share of
+  population covered), instead of rating it by hand. Only once enough subdivision
+  data exists.
 
 ## 13. Decisions log
 
@@ -354,3 +362,4 @@ Anchor fixtures used as unit tests of the formula (not site content):
 - Evidence grade is computed from source types, not rated by hand.
 - `absent` added as a presence level, distinct from unlisted.
 - `brazil-centered` is the default projection in every locale.
+- Subnational data uses ISO 3166-2 for any country, not just Brazil; it is not scored.
