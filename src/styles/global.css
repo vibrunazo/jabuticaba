@@ -198,3 +198,100 @@
   background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22480%22%20height%3D%22480%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-opacity%3D%220.07%22%20stroke-width%3D%221%22%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%22110%22%20r%3D%2222%22%2F%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%22110%22%20r%3D%2244%22%2F%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%22110%22%20r%3D%2266%22%2F%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%22110%22%20r%3D%2288%22%2F%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%22110%22%20r%3D%22110%22%2F%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%22110%22%20r%3D%22132%22%2F%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%22110%22%20r%3D%22154%22%2F%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%22110%22%20r%3D%22176%22%2F%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%22110%22%20r%3D%22198%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%2220%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%2240%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%2260%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%2280%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%22100%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%22120%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%22140%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%22160%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%22180%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%22200%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%22220%22%2F%3E%3Ccircle%20cx%3D%22420%22%20cy%3D%2240%22%20r%3D%2224%22%2F%3E%3Ccircle%20cx%3D%22420%22%20cy%3D%2240%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%22420%22%20cy%3D%2240%22%20r%3D%2272%22%2F%3E%3Ccircle%20cx%3D%22420%22%20cy%3D%2240%22%20r%3D%2296%22%2F%3E%3Ccircle%20cx%3D%22420%22%20cy%3D%2240%22%20r%3D%22120%22%2F%3E%3C%2Fsvg%3E");
   background-size: 480px 480px;
 }
+
+/*
+ * Long documents (methodology…): numbered section headings in the style of
+ * SectionHeading.astro, plus tables and code blocks. Used together with .prose-body.
+ */
+.prose-doc {
+  counter-reset: doc-section;
+  font-size: 1.0625rem;
+}
+
+.prose-doc > h2 {
+  counter-increment: doc-section;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-top: 3rem;
+  border-top: 1px solid var(--color-rule);
+  padding-top: 1rem;
+  scroll-margin-top: 1.5rem;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-heading);
+}
+
+.prose-doc > h2:first-child {
+  margin-top: 0;
+}
+
+.prose-doc > h2::before {
+  content: counter(doc-section, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--color-gold);
+}
+
+.prose-doc > h3 {
+  margin-top: 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.prose-doc table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.prose-doc th {
+  border-bottom: 1px solid var(--color-rule);
+  padding: 0.5rem 1rem 0.5rem 0;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.prose-doc td {
+  border-bottom: 1px solid var(--color-rule);
+  padding: 0.5rem 1rem 0.5rem 0;
+  vertical-align: top;
+}
+
+.prose-doc pre {
+  overflow-x: auto;
+  border: 1px solid var(--color-rule);
+  border-radius: 0.375rem;
+  background: var(--color-surface-sunken);
+  padding: 1rem 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.prose-doc code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+.prose-doc pre code {
+  font-size: inherit;
+}
+
+.prose-doc strong {
+  font-weight: 600;
+  color: var(--color-heading);
+}

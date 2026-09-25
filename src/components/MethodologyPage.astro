@@ -1,0 +1,100 @@
+---
+/**
+ * The methodology page. The text lives in content/pages/methodology/<locale>.md;
+ * every number in it is a {{PLACEHOLDER}} filled from the scoring constants, so the
+ * page cannot drift from the code. An unknown placeholder fails the build.
+ * Routes: src/pages/metodologia.astro and src/pages/en/methodology.astro, matching
+ * PAGE_SLUGS in src/i18n/routes.ts.
+ */
+import { formatPartialDate } from "../i18n/format.ts";
+import { pagePath } from "../i18n/routes.ts";
+import { format, type Locale, locales, t } from "../i18n/ui.ts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { METHODOLOGY_VERSION } from "../scoring/constants.ts";
+import { loadPage } from "../site/content.ts";
+import { fillPlaceholders, placeholderValues } from "../site/placeholders.ts";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const page = await loadPage("methodology", locale);
+const { html, unknown } = fillPlaceholders(page.html, placeholderValues(locale));
+if (unknown.length > 0) {
+  throw new Error(`Unknown placeholders in methodology (${locale}): ${unknown.join(", ")}`);
+}
+const alternates = Object.fromEntries(locales.map((l) => [l, pagePath(l, "methodology")]));
+const repository = "https://github.com/vibrunazo/jabuticaba";
+const links = [
+  { label: t(locale, "methodology.repository"), href: repository },
+  { label: t(locale, "methodology.results"), href: `${repository}/blob/master/data/index-results.csv` },
+  { label: t(locale, "methodology.license"), href: `${repository}/blob/master/LICENSE` },
+];
+const labelClass = "font-mono text-xs tracking-widest text-gold uppercase";
+---
+
+<BaseLayout locale={locale} alternates={alternates} title={page.data.title} description={page.data.summary}>
+  <div slot="hero" class="mx-auto max-w-6xl px-4 pt-12 pb-14 text-center">
+    <p class="font-mono text-xs tracking-widest text-band-gold uppercase">
+      {format(locale, "methodology.eyebrow", { version: METHODOLOGY_VERSION })}
+    </p>
+    <h1 class="mx-auto mt-4 max-w-3xl font-serif text-4xl leading-tight font-semibold tracking-tight text-balance sm:text-5xl">
+      {page.data.title}
+    </h1>
+    <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-band-muted">{page.data.summary}</p>
+    <p class="mt-6 font-mono text-xs tracking-widest text-band-gold uppercase">
+      {format(locale, "methodology.updated", { date: formatPartialDate(locale, page.data.updated) })}
+    </p>
+  </div>
+
+  <main class="mx-auto max-w-6xl px-4 pt-10">
+    <div class="grid gap-10 lg:grid-cols-12">
+      <aside class="lg:order-2 lg:col-span-4">
+        <div class="flex flex-col gap-8 lg:sticky lg:top-6">
+          <nav aria-label={t(locale, "item.onThisPage")}>
+            <details class="lg:hidden">
+              <summary class="cursor-pointer border-y border-rule py-3 font-mono text-xs tracking-widest text-gold uppercase">
+                {t(locale, "item.jumpTo")}
+              </summary>
+              <ol class="mt-2 space-y-1 text-sm">
+                {page.headings.map((h) => (
+                  <li><a href={`#${h.slug}`} class="text-ink hover:text-accent">{h.text}</a></li>
+                ))}
+              </ol>
+            </details>
+            <div class="hidden lg:block">
+              <p class={labelClass}>{t(locale, "item.onThisPage")}</p>
+              <ol class="mt-3 space-y-2 border-l border-rule text-sm">
+                {page.headings.map((h, index) => (
+                  <li>
+                    <a href={`#${h.slug}`} class="-ml-px flex gap-3 border-l border-transparent pl-4 text-ink-muted hover:border-accent hover:text-ink">
+                      <span class="font-mono text-xs text-gold">{String(index + 1).padStart(2, "0")}</span>
+                      {h.text}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </nav>
+
+          <section class="hidden lg:block">
+            <p class={labelClass}>{t(locale, "methodology.codeAndData")}</p>
+            <ul class="mt-3 divide-y divide-rule border-y border-rule text-sm">
+              {links.map((link) => (
+                <li>
+                  <a href={link.href} rel="noopener" class="flex justify-between gap-3 py-2 text-ink hover:text-accent">
+                    {link.label}
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      </aside>
+
+      <article class="prose-body prose-doc min-w-0 lg:order-1 lg:col-span-8" set:html={html} />
+    </div>
+  </main>
+</BaseLayout>

@@ -126,6 +126,7 @@ over your memory.
 content/
   jabuticabas/<id>/   # one folder per item: item.json, pt.md, en.md, optional cover.webp
   reference/          # places.json (ISO codes), subdivisions/<country>.json
+  pages/<page>/       # fixed pages (methodology): pt.md, en.md, with {{PLACEHOLDERS}}
 data/                 # GENERATED: index-results.csv, geo/world.geo.json (committed)
 schemas/              # GENERATED: item.schema.json (committed)
 docs/design/          # design documents; the source of truth for decisions
@@ -144,6 +145,13 @@ src/
 ```
 
 - To change a weight or threshold of the index, edit only `src/scoring/constants.ts`.
+  The public methodology page (`content/pages/methodology/*.md`) never hard-codes
+  numbers: it uses `{{PLACEHOLDERS}}` defined in `src/site/placeholders.ts`, and the
+  build fails on an unknown one. When the methodology itself changes, update both
+  `docs/design/01-index-methodology-v0.md` (for developers) and the page text (for
+  readers), including its version history.
+- Fixed pages and their slugs are listed in `src/i18n/routes.ts`; item slugs may not
+  reuse them (J012).
 - `src/schema/`, `src/scoring/`, `src/validation/` and `src/geo/` must never import
   from Astro: they also run in plain Node.
 - A new validation rule gets a new code (never reuse one), an entry in the rule

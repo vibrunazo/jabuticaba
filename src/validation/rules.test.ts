@@ -61,6 +61,13 @@ describe("runRules", () => {
     expect(codesFor(snapshotOf(a, b))).toContain("J010");
   });
 
+  it("J012: slugs cannot reuse a fixed page's slug", () => {
+    const folder = makeFolder(makeItem(), [
+      { locale: "pt", file: "pt.md", text: makeLocaleText({ slug: "metodologia" }), body: "" },
+    ]);
+    expect(codesFor(snapshotOf(folder))).toContain("J012");
+  });
+
   it("J011: related items must exist", () => {
     expect(codesFor(snapshotOf(makeFolder(makeItem({ related: ["ghost"] }))))).toContain("J011");
   });

@@ -1,4 +1,5 @@
 ---
+import { pagePath } from "../i18n/routes.ts";
 import { format, type Locale, t } from "../i18n/ui.ts";
 import { METHODOLOGY_VERSION } from "../scoring/constants.ts";
 
@@ -22,7 +23,11 @@ const { locale } = Astro.props;
         <p class="mt-1 text-band-muted">{t(locale, "footer.about")}</p>
       </div>
       <div class="font-mono text-xs leading-6 text-band-muted sm:text-right">
-        <p>{format(locale, "footer.methodology", { version: METHODOLOGY_VERSION })}</p>
+        <p>
+          <a href={pagePath(locale, "methodology")} class="hover:text-band-ink hover:underline">
+            {format(locale, "footer.methodology", { version: METHODOLOGY_VERSION })}
+          </a>
+        </p>
         <p>{t(locale, "footer.license")}</p>
       </div>
     </div>

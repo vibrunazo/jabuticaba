@@ -12,6 +12,7 @@ import {
   extractItemLinks,
   hasH1Heading,
 } from "../content-files/markdown.ts";
+import { RESERVED_SLUGS } from "../i18n/routes.ts";
 import { defaultLocale, locales } from "../i18n/ui.ts";
 import {
   IMAGE_FILE_PATTERN,
@@ -133,6 +134,18 @@ const uniqueSlugs: SnapshotRule = (snapshot) => {
   }
   return problems;
 };
+
+const slugsAreNotReserved: ItemRule = (folder) =>
+  folder.texts
+    .filter((text) => RESERVED_SLUGS.has(text.text.slug))
+    .map((text) => ({
+      code: "J012",
+      severity: "error" as const,
+      file: text.file,
+      path: "slug",
+      message: `slug "${text.text.slug}" is reserved for a fixed page of the site`,
+      fix: "Choose another slug; reserved ones are listed in src/i18n/routes.ts.",
+    }));
 
 const relatedItemsExist: ItemRule = (folder, item, { itemIds }) => {
   const problems: Problem[] = [];
@@ -782,6 +795,7 @@ const noMocksInProduction: SnapshotRule = (snapshot, options) =>
 
 const itemRules: ItemRule[] = [
   folderMatchesId,
+  slugsAreNotReserved,
   relatedItemsExist,
   placesAreValid,
   placesAreMappable,

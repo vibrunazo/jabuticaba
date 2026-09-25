@@ -1,5 +1,6 @@
 ---
 /** Site navigation, drawn on the dark band (see BaseLayout.astro). */
+import { pagePath } from "../i18n/routes.ts";
 import { defaultLocale, type Locale, locales, localizedPath, t } from "../i18n/ui.ts";
 import Logo from "./Logo.astro";
 import ThemeToggle from "./ThemeToggle.astro";
@@ -21,12 +22,18 @@ const otherHref = alternates[otherLocale] ?? localizedPath(otherLocale, "/");
       <Logo locale={locale} />
       <p class="mt-1 pl-10.5 text-xs text-band-muted">{t(locale, "site.tagline")}</p>
     </div>
-    <nav class="flex items-center gap-5 text-sm text-band-muted">
+    <nav class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-band-muted">
       <a
         href={localizedPath(locale, "/")}
-        class="font-mono text-xs tracking-wider uppercase hover:text-band-ink"
+        class="font-mono text-xs tracking-wider whitespace-nowrap uppercase hover:text-band-ink"
       >
         {t(locale, "nav.backToRanking")}
+      </a>
+      <a
+        href={pagePath(locale, "methodology")}
+        class="font-mono text-xs tracking-wider whitespace-nowrap uppercase hover:text-band-ink"
+      >
+        {t(locale, "nav.methodology")}
       </a>
       <ThemeToggle locale={locale} />
       <a

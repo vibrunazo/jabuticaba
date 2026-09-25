@@ -30,6 +30,8 @@ content/                               # data only; no code
 │       ├── cover.webp                 # optional cover image
 │       ├── pt.md                      # pt-BR text (required)
 │       └── en.md                      # English text (optional)
+├── pages/
+│   └── methodology/                   # fixed pages: <locale>.md, prose with {{PLACEHOLDERS}}
 └── reference/
     ├── places.json                    # ISO 3166-1 alpha-2 codes + sovereign-state lookup
     └── subdivisions/                  # ISO 3166-2 codes + names, one file per country, added on demand
@@ -355,6 +357,7 @@ Scope: **all** = every status; **pub** = `published` only (a warning for `draft`
 | J002 | error   | all   | A folder contains only `item.json`, `<locale>.md` files for supported locales, and cover images (`cover.webp`/`.jpg`/`.jpeg`/`.png`/`.avif`). |
 | J003 | error   | all   | Each file matches its Zod schema. |
 | J010 | error   | all   | `slug` is unique per locale. |
+| J012 | error   | all   | `slug` is not reserved for a fixed page (`src/i18n/routes.ts`, e.g. `metodologia`). |
 | J011 | error   | all   | `related` ids exist, are not the item itself, and have no duplicates. |
 | J020 | error   | all   | `place` exists in `places.json`; `subdivision` exists in `subdivisions/<country>.json`. |
 | J021 | error   | all   | `place` is not `BR`. |

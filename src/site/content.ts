@@ -4,11 +4,13 @@
  */
 
 import { getCollection } from "astro:content";
-import type { ImageMetadata } from "astro";
+import type { ImageMetadata, MarkdownHeading } from "astro";
 import { loadReferenceData, type ReferenceData } from "../content-files/load.ts";
 import { type ProjectedWorld, type ProjectionName, projectWorld } from "../geo/world-map.ts";
+import type { PageId } from "../i18n/routes.ts";
 import { type Locale, locales } from "../i18n/ui.ts";
 import type { Item } from "../schema/item.ts";
+import type { PageText } from "../schema/page-text.ts";
 import type { Problem } from "../validation/types.ts";
 import type { ItemText } from "./ranking.ts";
 
@@ -39,6 +41,29 @@ export async function loadItemTexts(): Promise<ItemText[]> {
       ? [{ itemId, locale, text: entry.data, body: entry.body ?? "" }]
       : [];
   });
+}
+
+export interface PageContent {
+  data: PageText;
+  /** Rendered HTML, with {{PLACEHOLDERS}} still in it. */
+  html: string;
+  /** Level-2 headings, for the table of contents. */
+  headings: { slug: string; text: string }[];
+}
+
+/** A fixed page (content/pages/<page>/<locale>.md). */
+export async function loadPage(page: PageId, locale: Locale): Promise<PageContent> {
+  const entry = (await getCollection("pages")).find((e) => e.id === `${page}/${locale}`);
+  if (!entry) {
+    throw new Error(`Missing content/pages/${page}/${locale}.md`);
+  }
+  return {
+    data: entry.data,
+    html: entry.rendered?.html ?? "",
+    headings: ((entry.rendered?.metadata?.headings as MarkdownHeading[] | undefined) ?? [])
+      .filter((heading) => heading.depth === 2)
+      .map((heading) => ({ slug: heading.slug, text: heading.text })),
+  };
 }
 
 /** The article HTML as rendered by Astro, before citations are processed. */

@@ -141,12 +141,12 @@ const labelClass = "font-mono text-xs tracking-widest text-gold uppercase";
     <div class="mt-6 grid gap-10 lg:grid-cols-12">
       <!--
         On phones the aside "dissolves" (display: contents) so its blocks can be
-        interleaved with the article: score, jump-to, article, image, fact sheet.
+        interleaved with the article: image, score, jump-to, article, fact sheet.
         On large screens it is a normal sidebar column.
       -->
       <aside class="contents lg:order-2 lg:col-span-4 lg:flex lg:flex-col lg:gap-8">
         <section
-          class="order-1 rounded-md border border-rule bg-surface-raised p-5 shadow-sm lg:order-none"
+          class="order-2 rounded-md border border-rule bg-surface-raised p-5 shadow-sm lg:order-none"
           aria-label={t(locale, "item.index")}
         >
           <p class={labelClass}>{t(locale, "item.index")}</p>
@@ -163,7 +163,7 @@ const labelClass = "font-mono text-xs tracking-widest text-gold uppercase";
 
         {
           cover && image && (
-            <figure class="order-4 lg:order-none">
+            <figure class="order-1 lg:order-none">
               <Image
                 src={cover}
                 alt={text.imageAlt ?? ""}
@@ -208,7 +208,7 @@ const labelClass = "font-mono text-xs tracking-widest text-gold uppercase";
           </dl>
         </section>
 
-        <nav class="order-2 lg:sticky lg:top-6 lg:order-none" aria-label={t(locale, "item.onThisPage")}>
+        <nav class="order-3 lg:sticky lg:top-6 lg:order-none" aria-label={t(locale, "item.onThisPage")}>
           <details class="group lg:hidden">
             <summary class="cursor-pointer border-y border-rule py-3 font-mono text-xs tracking-widest text-gold uppercase">
               {t(locale, "item.jumpTo")}
@@ -235,7 +235,7 @@ const labelClass = "font-mono text-xs tracking-widest text-gold uppercase";
         </nav>
       </aside>
 
-      <div class="order-3 min-w-0 space-y-14 lg:order-1 lg:col-span-8">
+      <div class="order-4 min-w-0 space-y-14 lg:order-1 lg:col-span-8">
         <section>
           <SectionHeading number={numberOf("map")} id="map">{t(locale, "item.mapTitle")}</SectionHeading>
           {detail.presence.length === 0 && <p class="mt-4 text-ink-muted">{t(locale, "item.mapAlone")}</p>}

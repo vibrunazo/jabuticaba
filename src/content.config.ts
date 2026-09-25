@@ -8,6 +8,7 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { itemSchema } from "./schema/item.ts";
 import { localeTextSchema } from "./schema/locale-text.ts";
+import { pageTextSchema } from "./schema/page-text.ts";
 
 const ITEMS_BASE = "./content/jabuticabas";
 
@@ -31,4 +32,14 @@ const itemTexts = defineCollection({
   schema: localeTextSchema,
 });
 
-export const collections = { items, itemTexts };
+/** Fixed pages (methodology…); entry id = "<page-id>/<locale>", e.g. "methodology/pt". */
+const pages = defineCollection({
+  loader: glob({
+    pattern: "*/*.md",
+    base: "./content/pages",
+    generateId: ({ entry }) => entry.replace(/\.md$/, ""),
+  }),
+  schema: pageTextSchema,
+});
+
+export const collections = { items, itemTexts, pages };
