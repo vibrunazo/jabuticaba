@@ -1,0 +1,17 @@
+---
+/** A rounded tag on the dark band (category, rank…), like ISW's topic pills. */
+interface Props {
+  tone?: "light" | "warning" | "accent";
+}
+
+const { tone = "light" } = Astro.props;
+const toneClasses = {
+  light: "bg-band-ink text-band",
+  warning: "bg-brand-yellow text-brand-navy",
+  accent: "border border-band-gold text-band-gold",
+} as const;
+---
+
+<span class:list={["inline-flex items-center rounded-full px-2.5 py-0.5 font-mono text-xs font-medium uppercase", toneClasses[tone]]}>
+  <slot />
+</span>

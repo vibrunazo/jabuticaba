@@ -39,6 +39,20 @@
   --color-map-brazil: #5c2a72;
   --color-map-ocean: #ffffff;
 
+  /*
+   * The dark band behind the header, page titles and footer. It stays dark in both
+   * themes, so its tokens are not redefined for dark mode.
+   */
+  --color-band: #1e3a2f;
+  --color-band-ink: #f3f1ea;
+  --color-band-muted: #b7c4bb;
+  --color-band-rule: #3d5a4d;
+  --color-band-gold: #dcc37e;
+  --color-band-berry: #c7a2dd;
+
+  /* Muted ochre for small letter-spaced labels (the flag yellow is unreadable as text). */
+  --color-gold: #7a6127;
+
   --font-sans: "IBM Plex Sans Variable", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Source Serif 4 Variable", ui-serif, Georgia, serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", monospace;
@@ -69,6 +83,7 @@
   --color-accent: #3fbf7f;
   --color-highlight: #f2c230;
   --color-brand-jabuticaba: #c49be2;
+  --color-gold: #d1b064;
   /* Dark ramp: brighter = more present (validated against the dark surface). */
   --color-map-marginal: #2a6e4b;
   --color-map-regional: #3fae76;
@@ -95,6 +110,7 @@
     --color-accent: #3fbf7f;
     --color-highlight: #f2c230;
     --color-brand-jabuticaba: #c49be2;
+    --color-gold: #d1b064;
     --color-map-marginal: #2a6e4b;
     --color-map-regional: #3fae76;
     --color-map-widespread: #86dcaa;
@@ -175,4 +191,10 @@
 .prose-body .citation a {
   color: var(--color-accent);
   text-decoration: none;
+}
+
+/* Faint contour rings (or a jabuticaba cross-section) on the dark band. */
+.band-texture {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22480%22%20height%3D%22480%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-opacity%3D%220.07%22%20stroke-width%3D%221%22%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%22110%22%20r%3D%2222%22%2F%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%22110%22%20r%3D%2244%22%2F%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%22110%22%20r%3D%2266%22%2F%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%22110%22%20r%3D%2288%22%2F%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%22110%22%20r%3D%22110%22%2F%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%22110%22%20r%3D%22132%22%2F%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%22110%22%20r%3D%22154%22%2F%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%22110%22%20r%3D%22176%22%2F%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%22110%22%20r%3D%22198%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%2220%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%2240%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%2260%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%2280%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%22100%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%22120%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%22140%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%22160%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%22180%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%22200%22%2F%3E%3Ccircle%20cx%3D%22380%22%20cy%3D%22330%22%20r%3D%22220%22%2F%3E%3Ccircle%20cx%3D%22420%22%20cy%3D%2240%22%20r%3D%2224%22%2F%3E%3Ccircle%20cx%3D%22420%22%20cy%3D%2240%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%22420%22%20cy%3D%2240%22%20r%3D%2272%22%2F%3E%3Ccircle%20cx%3D%22420%22%20cy%3D%2240%22%20r%3D%2296%22%2F%3E%3Ccircle%20cx%3D%22420%22%20cy%3D%2240%22%20r%3D%22120%22%2F%3E%3C%2Fsvg%3E");
+  background-size: 480px 480px;
 }

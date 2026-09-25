@@ -105,6 +105,11 @@ over your memory.
   Colors switch automatically through the tokens in `global.css`; to vary something
   other than color per theme, use the `dark:` variant (it follows `data-theme`). Never
   use `@media (prefers-color-scheme)` in components.
+- **The dark band** (header, page titles, footer) stays dark in both themes. On it,
+  use only the `band-*` tokens (`text-band-ink`, `text-band-muted`, `text-band-gold`…).
+  Page titles go in BaseLayout's `hero` slot; the flag stripe separates band and content.
+- **Small labels** (eyebrows, sidebar headings) are letter-spaced uppercase mono in
+  `text-gold` (`text-band-gold` on the band).
 - **i18n:** every user-facing string goes through `src/i18n/ui.ts` (UI labels) or the
   item's locale files (content). Never hard-code Portuguese or English text in
   components. `pt` is the reference locale; every locale must have the same keys.

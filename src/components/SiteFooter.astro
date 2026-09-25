@@ -9,15 +9,22 @@ interface Props {
 const { locale } = Astro.props;
 ---
 
-<footer class="mt-24 border-t border-rule bg-surface-sunken">
-  <div class="mx-auto flex max-w-6xl flex-wrap justify-between gap-x-8 gap-y-3 px-4 py-8 text-sm">
-    <div>
-      <p class="font-serif text-base font-semibold text-heading">{t(locale, "site.name")}</p>
-      <p class="mt-1 text-ink-muted">{t(locale, "footer.about")}</p>
-    </div>
-    <div class="font-mono text-xs leading-6 text-ink-muted sm:text-right">
-      <p>{format(locale, "footer.methodology", { version: METHODOLOGY_VERSION })}</p>
-      <p>{t(locale, "footer.license")}</p>
+<footer class="mt-24">
+  <div class="flex h-1.5" aria-hidden="true">
+    <span class="flex-1 bg-brand-green"></span>
+    <span class="flex-1 bg-brand-yellow"></span>
+    <span class="flex-1 bg-brand-navy dark:bg-ink-muted"></span>
+  </div>
+  <div class="band-texture bg-band text-band-ink">
+    <div class="mx-auto flex max-w-6xl flex-wrap justify-between gap-x-8 gap-y-4 px-4 py-10 text-sm">
+      <div>
+        <p class="font-serif text-lg font-semibold">{t(locale, "site.name")}</p>
+        <p class="mt-1 text-band-muted">{t(locale, "footer.about")}</p>
+      </div>
+      <div class="font-mono text-xs leading-6 text-band-muted sm:text-right">
+        <p>{format(locale, "footer.methodology", { version: METHODOLOGY_VERSION })}</p>
+        <p>{t(locale, "footer.license")}</p>
+      </div>
     </div>
   </div>
 </footer>

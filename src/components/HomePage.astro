@@ -18,16 +18,18 @@ const rows = buildRanking(await loadItems(), await loadItemTexts(), locale, {
 ---
 
 <BaseLayout locale={locale} alternates={{ pt: "/", en: "/en/" }}>
-  <main class="mx-auto max-w-6xl px-4 pt-12">
-    <p class="font-mono text-xs uppercase tracking-wider text-accent">
+  <div slot="hero" class="mx-auto max-w-6xl px-4 pt-12 pb-14 text-center">
+    <p class="font-mono text-xs tracking-widest text-band-gold uppercase">
       {format(locale, "ranking.eyebrow", { version: METHODOLOGY_VERSION, count: rows.length })}
     </p>
-    <h1 class="mt-3 font-serif text-3xl font-semibold tracking-tight text-heading sm:text-4xl">
+    <h1 class="mx-auto mt-4 max-w-3xl font-serif text-balance text-4xl leading-tight font-semibold tracking-tight sm:text-5xl">
       {t(locale, "ranking.title")}
     </h1>
-    <p class="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">{t(locale, "ranking.intro")}</p>
+    <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-band-muted">{t(locale, "ranking.intro")}</p>
+  </div>
 
-    <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-ink-muted" aria-hidden="true">
+  <main class="mx-auto max-w-6xl px-4 pt-8">
+    <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-ink-muted" aria-hidden="true">
       <span class="inline-block w-20">
         <ScoreErrorBar low={25} point={50} high={75} label="" />
       </span>

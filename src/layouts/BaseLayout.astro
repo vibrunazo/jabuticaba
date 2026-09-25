@@ -57,7 +57,17 @@ const pageTitle = title ? `${title} · ${siteName}` : siteName;
     }
   </head>
   <body class="bg-surface font-sans text-ink antialiased">
-    <SiteHeader locale={locale} alternates={alternates} />
+    <!-- Dark band: site header plus the page's title area ("hero" slot). -->
+    <div class="band-texture bg-band text-band-ink">
+      <SiteHeader locale={locale} alternates={alternates} />
+      <slot name="hero" />
+    </div>
+    <!-- The flag stripe separates the band from the content. -->
+    <div class="flex h-1.5" aria-hidden="true">
+      <span class="flex-1 bg-brand-green"></span>
+      <span class="flex-1 bg-brand-yellow"></span>
+      <span class="flex-1 bg-brand-navy dark:bg-ink-muted"></span>
+    </div>
     <slot />
     <SiteFooter locale={locale} />
   </body>
