@@ -2,7 +2,7 @@
 translationStatus: "original"
 slug: "vira-lata-caramelo"
 title: "Vira-lata caramelo"
-summary: "Patrimônio afetivo nacional que, segundo os dados, é encontrado em qualquer lugar com cães soltos na rua."
+summary: "Patrimônio afetivo nacional, encontrado em qualquer lugar com cães soltos na rua."
 definition: "Cães sem raça definida, de pelagem caramelo, vivendo livres em áreas urbanas."
 justifications:
   intensity: "Populações de cães livres existem em boa parte do mundo; no Brasil são um pouco mais comuns."

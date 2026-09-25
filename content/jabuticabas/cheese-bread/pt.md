@@ -2,7 +2,7 @@
 translationStatus: "original"
 slug: "pao-de-queijo"
 title: "Pão de queijo"
-summary: "Polvilho, queijo e ovo. Exportado para padarias do mundo inteiro, que o vendem como novidade gourmet."
+summary: "Polvilho, queijo e ovo. Lá fora, vendido como novidade gourmet."
 definition: "Pão de queijo mineiro, feito com polvilho, queijo curado, ovos e leite."
 justifications:
   intensity: "Consumo cotidiano no Brasil; no exterior, em padarias especializadas."

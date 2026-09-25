@@ -2,7 +2,7 @@
 translationStatus: "machine"
 slug: "window-safety-nets"
 title: "Window safety nets"
-summary: "Every apartment window with a cat or a child gets a net. Elsewhere, apparently, people trust gravity."
+summary: "Every window with a cat or kid gets a net. Elsewhere, people trust gravity."
 definition: "Nylon nets installed on apartment windows and balconies to prevent children and pets from falling."
 justifications:
   intensity: "Nationwide presence in large cities; abroad, in niches."

@@ -2,7 +2,7 @@
 translationStatus: "original"
 slug: "voto-obrigatorio"
 title: "Voto obrigatório"
-summary: "Obrigatório, com multa de valor simbólico. Mais comum no mundo do que o brasileiro costuma imaginar."
+summary: "Obrigatório, com multa simbólica. Mais comum no mundo do que se imagina."
 definition: "Obrigação legal de votar em eleições gerais, com sanção para quem não vota nem justifica."
 justifications:
   intensity: "Pouco mais rigoroso no Brasil do que nos demais países com a regra."

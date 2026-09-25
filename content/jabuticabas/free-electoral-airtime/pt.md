@@ -2,7 +2,7 @@
 translationStatus: "original"
 slug: "horario-eleitoral-gratuito"
 title: "Horário eleitoral gratuito"
-summary: "Rádio e TV interrompem a programação para exibir candidatos, de graça para eles. A faixa de incerteza desta medição é, reconhecidamente, generosa."
+summary: "Rádio e TV param para exibir candidatos. A faixa de incerteza é, reconhecidamente, generosa."
 definition: "Tempo obrigatório de rádio e televisão cedido aos partidos durante a campanha eleitoral."
 justifications:
   intensity: "Dados insuficientes; faixa ampla de propósito (dado fictício)."

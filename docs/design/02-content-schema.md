@@ -194,8 +194,8 @@ YAML frontmatter holds every short translatable string; the body holds the artic
 |---------------------|--------------------------------------|------|-------|
 | `translationStatus` | `original` \| `machine` \| `reviewed` | yes  | Exactly one locale per item is `original` (J051). A `machine` translation shows a small notice on the page. |
 | `slug`              | `Id`                                 | yes  | ASCII only, no accents: `chuveiro-eletrico`. Unique per locale. |
-| `title`             | string, 1–80 chars                   | yes  | |
-| `summary`           | string, 1–200 chars                  | yes  | One sentence. Used on cards, in meta descriptions and in social preview images. |
+| `title`             | string, 1–32 chars                   | yes  | Short name: it must fit one line of a ranking card ("Urna sem voto impresso", not the full technical description). Precision goes in `definition`. |
+| `summary`           | string, 1–120 chars                  | yes  | One or two short sentences; must fit three lines of a card. Also used in meta descriptions and social previews. |
 | `definition`        | string, 1–400 chars                  | yes  | The precise scope that gets scored (methodology section 2). |
 | `justifications`    | `{ intensity: string, awareness: string }` | yes | Why each rating has its value. |
 | `presenceNotes`     | map of `PlaceCode` → string           | no   | Explains specific presence entries. Keys must exist in `presence`. |

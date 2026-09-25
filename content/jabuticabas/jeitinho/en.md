@@ -2,7 +2,7 @@
 translationStatus: "machine"
 slug: "jeitinho"
 title: "Jeitinho brasileiro"
-summary: "The art of getting around rules with charm. According to the methodology, it exists in many countries under other names. According to Brazilians, it does not."
+summary: "The art of bending rules with charm. It exists abroad under other names; Brazilians disagree."
 definition: "The practice of solving problems by bypassing formal rules through improvisation and personal connections."
 justifications:
   intensity: "Editorial assessment; there is no way to measure it (fictional data)."

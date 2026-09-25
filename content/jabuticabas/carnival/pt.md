@@ -2,7 +2,7 @@
 translationStatus: "original"
 slug: "carnaval"
 title: "Carnaval"
-summary: "O Brasil não inventou o Carnaval, mas levou a sério demais. O índice reconhece o esforço com uma nota intermediária."
+summary: "O Brasil não inventou o Carnaval, mas levou a sério demais."
 definition: "Festa popular de rua no período que antecede a Quaresma."
 justifications:
   intensity: "Muito mais intenso no Brasil, mas presente em dezenas de países."

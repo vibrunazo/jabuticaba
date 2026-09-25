@@ -12,8 +12,10 @@ const text = (maxLength: number) => z.string().trim().min(1).max(maxLength);
 export const localeTextSchema = z.strictObject({
   translationStatus: z.enum(TRANSLATION_STATUSES),
   slug: idSchema,
-  title: text(80),
-  summary: text(200),
+  /** Fits one line of a ranking card. Precision belongs in `definition`. */
+  title: text(32),
+  /** Fits three lines of a ranking card. */
+  summary: text(120),
   definition: text(400),
   justifications: z.strictObject({
     intensity: text(2000),

@@ -1,8 +1,8 @@
 ---
 translationStatus: "machine"
 slug: "priority-line"
-title: "Priority line (fila preferencial)"
-summary: "A separate line, guaranteed by law, in banks, supermarkets and government offices. Often longer than the regular line."
+title: "Priority line"
+summary: "A separate line, guaranteed by law. Often longer than the regular one."
 definition: "A dedicated line or checkout, required by law, for the elderly, pregnant women, people with disabilities and people carrying small children, in public and private establishments."
 justifications:
   intensity: "Required in practically every establishment in Brazil; abroad, rare or limited to public services (fictional data)."

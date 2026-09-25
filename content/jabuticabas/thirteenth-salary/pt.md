@@ -2,7 +2,7 @@
 translationStatus: "original"
 slug: "decimo-terceiro-salario"
 title: "13º salário"
-summary: "Um salário extra no fim do ano, garantido por lei. Sentimos informar que Portugal paga catorze."
+summary: "Um salário extra no fim do ano. Sentimos informar que Portugal paga catorze."
 definition: "Gratificação anual obrigatória equivalente a um salário mensal, paga no fim do ano."
 justifications:
   intensity: "Regra semelhante à de vários países (dado fictício)."

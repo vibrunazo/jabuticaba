@@ -2,7 +2,7 @@
 translationStatus: "machine"
 slug: "jabuticaba"
 title: "Jabuticaba"
-summary: "The fruit that gives the index its name and grows stuck to the tree trunk. The gold standard of Brazilianness, with some Paraguayan caveats."
+summary: "The fruit that names the index and grows stuck to the trunk."
 definition: "Plinia cauliflora, native or cultivated, in orchards or backyards."
 justifications:
   intensity: "Grown at national scale in Brazil; abroad, limited to backyards and collectors."

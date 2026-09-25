@@ -1,8 +1,8 @@
 ---
 translationStatus: "reviewed"
 slug: "precatorios"
-title: "Precatórios (court-ordered government debt)"
-summary: "When the State loses in court, it pays. Later. In a queue. With the option of paying in installments by constitutional amendment."
+title: "Precatórios"
+summary: "When the State loses in court, it pays. Later. In a queue."
 definition: "A constitutional regime in which the government's court-ordered debts enter a payment queue with its own rules."
 justifications:
   intensity: "Editorial assessment (fictional data)."

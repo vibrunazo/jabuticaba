@@ -2,7 +2,7 @@
 translationStatus: "original"
 slug: "jeitinho-brasileiro"
 title: "Jeitinho brasileiro"
-summary: "A arte de contornar regras com simpatia. Segundo a metodologia, existe em muitos países com outros nomes. Segundo os brasileiros, não."
+summary: "A arte de contornar regras com simpatia. Existe lá fora com outros nomes; os brasileiros discordam."
 definition: "Prática de resolver problemas contornando regras formais por meio de improviso e relações pessoais."
 justifications:
   intensity: "Avaliação editorial; não há como medir (dado fictício)."

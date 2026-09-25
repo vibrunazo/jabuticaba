@@ -2,7 +2,7 @@
 translationStatus: "original"
 slug: "refrigerante-de-guarana"
 title: "Refrigerante de guaraná"
-summary: "O segundo refrigerante mais pedido do país, feito de uma fruta amazônica que o resto do mundo conhece, quando conhece, como suplemento energético."
+summary: "Refrigerante de uma fruta amazônica que o resto do mundo só conhece como suplemento."
 definition: "Refrigerante gaseificado com sabor de guaraná (Paullinia cupana), vendido em escala industrial."
 justifications:
   intensity: "Consumo nacional no Brasil; no exterior, quase só em lojas de produtos brasileiros (dado fictício)."

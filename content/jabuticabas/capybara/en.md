@@ -2,7 +2,7 @@
 translationStatus: "machine"
 slug: "capybara"
 title: "Capybara"
-summary: "The world's largest rodent, Brazil's unofficial national mascot and, statistically, less Brazilian than you would think."
+summary: "The world's largest rodent and, statistically, less Brazilian than you'd think."
 definition: "Hydrochoerus hydrochaeris in established wild populations."
 justifications:
   intensity: "More common in Brazil, but abundant throughout the Orinoco basin."

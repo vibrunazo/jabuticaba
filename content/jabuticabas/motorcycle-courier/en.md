@@ -1,8 +1,8 @@
 ---
 translationStatus: "machine"
 slug: "motoboy"
-title: "Motoboy (motorcycle courier)"
-summary: "Motorcycle delivery rider. Sounds Brazilian, has an English name, and exists in almost all of the developing world."
+title: "Motoboy"
+summary: "Sounds Brazilian, has an English name, exists across the developing world."
 definition: "Professional courier who works with their own motorcycle."
 justifications:
   intensity: "Slightly more common in Brazil (fictional data)."

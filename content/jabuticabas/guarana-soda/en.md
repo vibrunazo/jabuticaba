@@ -2,7 +2,7 @@
 translationStatus: "machine"
 slug: "guarana-soda"
 title: "Guaraná soda"
-summary: "The country's second most-ordered soft drink, made from an Amazonian fruit that the rest of the world knows, if at all, as an energy supplement."
+summary: "A soda made from an Amazonian fruit the world knows only as a supplement."
 definition: "Carbonated soft drink flavored with guaraná (Paullinia cupana), sold at industrial scale."
 justifications:
   intensity: "Consumed nationwide in Brazil; abroad, almost only in Brazilian grocery stores (fictional data)."

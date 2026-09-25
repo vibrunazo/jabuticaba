@@ -1,8 +1,8 @@
 ---
 translationStatus: "original"
 slug: "elevador-de-servico"
-title: "Elevador social e elevador de serviço no mesmo prédio de apartamentos comum"
-summary: "Dois elevadores: um para moradores e visitas, outro para funcionários e entregas. Arquitetura que dispensa sociologia, porque a planta do prédio já explica tudo."
+title: "Elevador de serviço"
+summary: "Um elevador para moradores, outro para funcionários. A planta já explica tudo."
 definition: "Prédios residenciais com dois elevadores separados por tipo de usuário: moradores e visitas de um lado, funcionários e entregas do outro."
 justifications:
   intensity: "Comum em prédios de classe média no Brasil; no exterior, restrito a nichos (dado fictício)."

@@ -2,7 +2,7 @@
 translationStatus: "reviewed"
 slug: "electric-shower"
 title: "Electric shower"
-summary: "Heats the water in the shower head itself, a few centimeters from the user's head. Considered perfectly normal by almost everyone who has ever showered in Brazil."
+summary: "Heats the water inches from the bather's head. Considered perfectly normal."
 definition: "A shower head with an electric heating element that heats water at the point of use, installed as the home's main water heating."
 justifications:
   intensity: "Fictional prevalence ratio of 8 times the runner-up."

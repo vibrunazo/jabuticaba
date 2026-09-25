@@ -2,7 +2,7 @@
 translationStatus: "original"
 slug: "jabuticaba"
 title: "Jabuticaba"
-summary: "A fruta que dá nome ao índice e cresce grudada no tronco. Padrão-ouro da brasilidade, com algumas ressalvas paraguaias."
+summary: "A fruta que dá nome ao índice e cresce grudada no tronco."
 definition: "Plinia cauliflora, nativa ou cultivada, em pomares ou quintais."
 justifications:
   intensity: "Cultivo em escala nacional no Brasil; no exterior, restrita a quintais e colecionadores."

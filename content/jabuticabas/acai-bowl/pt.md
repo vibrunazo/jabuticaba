@@ -2,7 +2,7 @@
 translationStatus: "original"
 slug: "acai-na-tigela"
 title: "Açaí na tigela"
-summary: "Polpa de açaí batida e servida gelada com granola. No Pará, come-se de outro jeito, e o índice não entra nessa discussão."
+summary: "Polpa de açaí batida, gelada e com granola. No Pará, come-se de outro jeito."
 definition: "Polpa de açaí congelada, batida e servida em tigela com acompanhamentos doces."
 justifications:
   intensity: "Mais comum no Brasil, mas a tigela já é vendida em cafés de meio mundo (dado fictício)."

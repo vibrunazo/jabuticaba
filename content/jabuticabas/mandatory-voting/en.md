@@ -2,7 +2,7 @@
 translationStatus: "machine"
 slug: "mandatory-voting"
 title: "Mandatory voting"
-summary: "Mandatory, with a symbolic fine. More common in the world than Brazilians tend to think."
+summary: "Mandatory, with a symbolic fine. More common worldwide than you'd think."
 definition: "Legal obligation to vote in general elections, with a penalty for those who neither vote nor justify their absence."
 justifications:
   intensity: "Slightly stricter in Brazil than in the other countries with the rule."

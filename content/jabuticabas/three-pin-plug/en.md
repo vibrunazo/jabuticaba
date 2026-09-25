@@ -1,8 +1,8 @@
 ---
 translationStatus: "machine"
 slug: "three-pin-plug"
-title: "Three-pin plug (NBR 14136 standard)"
-summary: "A plug standard that makes Brazilians buy adapters to plug in older Brazilian appliances."
+title: "NBR 14136 plug"
+summary: "Makes Brazilians buy adapters to plug in older Brazilian appliances."
 definition: "Sockets and plugs following the Brazilian three-round-pin standard, mandatory in new installations."
 justifications:
   intensity: "Mandatory national standard in Brazil; abroad, partial adoption in one country (fictional data)."

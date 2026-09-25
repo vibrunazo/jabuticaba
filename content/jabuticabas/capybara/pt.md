@@ -2,7 +2,7 @@
 translationStatus: "original"
 slug: "capivara"
 title: "Capivara"
-summary: "O maior roedor do mundo, mascote nacional não oficial e, estatisticamente, menos brasileira do que se imagina."
+summary: "O maior roedor do mundo e, estatisticamente, menos brasileira do que se imagina."
 definition: "Hydrochoerus hydrochaeris em populações selvagens estabelecidas."
 justifications:
   intensity: "Mais comum no Brasil, mas abundante em toda a bacia do Orinoco."

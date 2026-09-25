@@ -2,7 +2,7 @@
 translationStatus: "original"
 slug: "geladeira"
 title: "Geladeira (grupo de controle)"
-summary: "Incluída como grupo de controle. Existe em todo lugar, com a mesma intensidade. Resultado esperado: 0%. Resultado obtido: 0%."
+summary: "Grupo de controle. Resultado esperado: 0%. Resultado obtido: 0%."
 definition: "Refrigerador doméstico elétrico."
 justifications:
   intensity: "Nenhuma diferença de prevalência encontrada (dado fictício)."

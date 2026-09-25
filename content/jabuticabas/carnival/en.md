@@ -2,7 +2,7 @@
 translationStatus: "machine"
 slug: "carnival"
 title: "Carnival"
-summary: "Brazil did not invent Carnival, but it took it far too seriously. The index acknowledges the effort with a middling score."
+summary: "Brazil didn't invent Carnival, but took it far too seriously."
 definition: "Popular street festival in the period before Lent."
 justifications:
   intensity: "Far more intense in Brazil, but present in dozens of countries."
