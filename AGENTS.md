@@ -88,6 +88,10 @@ over your memory.
   `font-mono` (IBM Plex Mono) for data labels, codes, small numbers and eyebrows.
   Big standalone numbers use proportional digits; `tabular-nums` only where numbers
   line up in a column.
+- **Fonts are declared only in `src/components/FontFaces.astro`** (preloaded, with
+  `font-display: optional` so text never reflows after the first paint). Never import
+  Fontsource CSS files (`@fontsource…/*.css`): they use `swap`, which brings back the
+  flash of re-laid-out text.
 - **No client-side JavaScript** unless the task explicitly needs interactivity.
   Prefer CSS-only interactions (see the projection toggle in `WorldMap.astro`).
 - **Themes:** `<html data-theme="light|dark">` is set before first paint (BaseLayout.astro).

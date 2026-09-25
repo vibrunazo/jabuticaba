@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import FontFaces from "../components/FontFaces.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import { type Locale, locales, localeTags, t } from "../i18n/ui.ts";
@@ -23,6 +24,7 @@ const pageTitle = title ? `${title} · ${siteName}` : siteName;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <FontFaces />
     <meta name="description" content={description ?? t(locale, "site.description")} />
     <title>{pageTitle}</title>
     <!-- Applies the theme before first paint (no flash). Saved choice first, else the system setting. -->
