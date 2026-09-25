@@ -90,6 +90,15 @@ describe("runRules", () => {
     expect(codesFor(snapshotOf(makeFolder(item)))).toContain("J023");
   });
 
+  it("J029: an exported presence cannot be absent", () => {
+    const item = makeItem({
+      presence: [{ ...makePresence("PY", "absent"), exported: true }],
+    });
+    expect(codesFor(snapshotOf(makeFolder(item)))).toContain("J029");
+    const fine = makeItem({ presence: [{ ...makePresence("PY", "marginal"), exported: true }] });
+    expect(codesFor(snapshotOf(makeFolder(fine)))).not.toContain("J029");
+  });
+
   it("J025: a subdivision's country must be present", () => {
     const subdivision = {
       subdivision: "US-LA",

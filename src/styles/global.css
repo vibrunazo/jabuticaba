@@ -30,7 +30,10 @@
   --color-map-marginal: #72bb91;
   --color-map-regional: #2e9161;
   --color-map-widespread: #0d5c37;
-  --color-map-imported: #d9a300;
+  /* Brazilian exports: a separate amber ramp, same order (validated the same way). */
+  --color-map-export-marginal: #d9a52e;
+  --color-map-export-regional: #b07a00;
+  --color-map-export-widespread: #7a5200;
   --color-map-absent: #c3c8d2;
   --color-map-no-data: #e7e5dd;
   --color-map-brazil: #5c2a72;
@@ -70,7 +73,9 @@
   --color-map-marginal: #2a6e4b;
   --color-map-regional: #3fae76;
   --color-map-widespread: #86dcaa;
-  --color-map-imported: #d6a21a;
+  --color-map-export-marginal: #7a5a10;
+  --color-map-export-regional: #b8861a;
+  --color-map-export-widespread: #f0c24b;
   --color-map-absent: #3a4a68;
   --color-map-no-data: #1b2944;
   --color-map-brazil: #c49be2;
@@ -93,7 +98,9 @@
     --color-map-marginal: #2a6e4b;
     --color-map-regional: #3fae76;
     --color-map-widespread: #86dcaa;
-    --color-map-imported: #d6a21a;
+    --color-map-export-marginal: #7a5a10;
+    --color-map-export-regional: #b8861a;
+    --color-map-export-widespread: #f0c24b;
     --color-map-absent: #3a4a68;
     --color-map-no-data: #1b2944;
     --color-map-brazil: #c49be2;

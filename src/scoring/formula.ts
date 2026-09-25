@@ -4,7 +4,12 @@
  */
 import type { Item, PresenceEntry } from "../schema/item.ts";
 import { type PresenceLevel, RATING_MAX, type Rating } from "../schema/shared.ts";
-import { MAX_INTENSITY_CREDIT, PRESENCE_WEIGHTS, SATURATION_PLACE_COUNT } from "./constants.ts";
+import {
+  EXPORT_WEIGHT_FACTOR,
+  MAX_INTENSITY_CREDIT,
+  PRESENCE_WEIGHTS,
+  SATURATION_PLACE_COUNT,
+} from "./constants.ts";
 
 /** A value known only within bounds. `point` is the best estimate. */
 export interface Bounds {
@@ -45,14 +50,20 @@ function levelEnds(level: PresenceEntry["level"]): readonly [PresenceLevel, Pres
   return typeof level === "string" ? [level, level] : level;
 }
 
+/** Methodology 3.1: what one place adds to the place count. */
+export function presenceWeight(level: PresenceLevel, exported: boolean): number {
+  return PRESENCE_WEIGHTS[level] * (exported ? EXPORT_WEIGHT_FACTOR : 1);
+}
+
 /** Methodology 3.1 and 5: the place count, with ranges resolved to low/point/high. */
 export function placeCountBounds(presence: readonly PresenceEntry[]): Bounds {
   let low = 0;
   let high = 0;
   for (const entry of presence) {
     const [lowLevel, highLevel] = levelEnds(entry.level);
-    low += PRESENCE_WEIGHTS[lowLevel];
-    high += PRESENCE_WEIGHTS[highLevel];
+    const exported = entry.exported === true;
+    low += presenceWeight(lowLevel, exported);
+    high += presenceWeight(highLevel, exported);
   }
   return { low, point: (low + high) / 2, high };
 }

@@ -8,8 +8,8 @@
 import type { SourceType } from "../schema/item.ts";
 import type { PresenceLevel } from "../schema/shared.ts";
 
-/** Version of the methodology implemented by this code. Methodology doc, title. */
-export const METHODOLOGY_VERSION = "0.1";
+/** Version of the methodology implemented by this code. Methodology doc, decisions log. */
+export const METHODOLOGY_VERSION = "0.2";
 
 /** Places at which an item is "fully common" (exclusivity = 0). Methodology 3.1. */
 export const SATURATION_PLACE_COUNT = 100;
@@ -17,11 +17,16 @@ export const SATURATION_PLACE_COUNT = 100;
 /** How much each presence level adds to the place count. Methodology 3.1. */
 export const PRESENCE_WEIGHTS = {
   absent: 0,
-  imported: 0,
   marginal: 0.1,
   regional: 0.5,
   widespread: 1,
 } as const satisfies Record<PresenceLevel, number>;
+
+/**
+ * Multiplier for presence that exists only because Brazil exported it: it still
+ * makes the thing less missed abroad, but it remains Brazilian. Methodology 3.1.
+ */
+export const EXPORT_WEIGHT_FACTOR = 0.5;
 
 /** Highest rarity a completely non-exclusive item can reach through intensity. Methodology 4. */
 export const MAX_INTENSITY_CREDIT = 0.5;

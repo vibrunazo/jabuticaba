@@ -6,7 +6,11 @@
  */
 import { formatNumber, formatRange } from "../i18n/format.ts";
 import { format, t } from "../i18n/ui.ts";
-import { MAX_INTENSITY_CREDIT, PRESENCE_WEIGHTS } from "../scoring/constants.ts";
+import {
+  EXPORT_WEIGHT_FACTOR,
+  MAX_INTENSITY_CREDIT,
+  PRESENCE_WEIGHTS,
+} from "../scoring/constants.ts";
 import { type Bounds, rarity } from "../scoring/formula.ts";
 import type { ItemDetail } from "../site/item-detail.ts";
 import Badge from "./Badge.astro";
@@ -46,6 +50,7 @@ const placeCountHint = format(locale, "item.placeCountHint", {
   widespread: n(PRESENCE_WEIGHTS.widespread, 1),
   regional: n(PRESENCE_WEIGHTS.regional, 1),
   marginal: n(PRESENCE_WEIGHTS.marginal, 1),
+  exportFactor: n(EXPORT_WEIGHT_FACTOR, 2),
 });
 
 const rowClass = "grid gap-x-6 gap-y-1 border-b border-rule py-4 sm:grid-cols-3";

@@ -77,7 +77,8 @@ const next = () => ++section;
 ---
 
 <BaseLayout locale={locale} alternates={detail.alternates} title={text.title} description={text.summary}>
-  <main class="mx-auto max-w-4xl px-4 pt-8">
+  <!-- Same outer width as the header (left edges line up); the content itself stays readable. -->
+  <main class="mx-auto max-w-6xl px-4 pt-8"><div class="max-w-4xl">
     <a
       href={localizedPath(locale, "/")}
       class="font-mono text-xs uppercase tracking-wider text-ink-muted hover:text-accent"
@@ -190,5 +191,5 @@ const next = () => ++section;
         version: detail.item.methodologyVersion || METHODOLOGY_VERSION,
       })}
     </p>
-  </main>
+  </div></main>
 </BaseLayout>

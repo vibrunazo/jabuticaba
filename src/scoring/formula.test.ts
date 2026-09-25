@@ -1,11 +1,12 @@
 import { describe, expect, it } from "vitest";
 import type { PresenceEntry } from "../schema/item.ts";
 import { makePresence } from "../testing/make-item.ts";
-import { MAX_INTENSITY_CREDIT, SATURATION_PLACE_COUNT } from "./constants.ts";
+import { EXPORT_WEIGHT_FACTOR, MAX_INTENSITY_CREDIT, SATURATION_PLACE_COUNT } from "./constants.ts";
 import {
   computeItemScore,
   exclusivityFromPlaceCount,
   placeCountBounds,
+  presenceWeight,
   ratingBounds,
   scoreFromInputs,
 } from "./formula.ts";
@@ -58,6 +59,14 @@ describe("calibration", () => {
     }
   });
 
+  it("counts an exported place less than a local one, but more than nothing", () => {
+    for (const level of ["marginal", "regional", "widespread"] as const) {
+      expect(presenceWeight(level, true)).toBeLessThan(presenceWeight(level, false));
+      expect(presenceWeight(level, true)).toBeGreaterThan(0);
+    }
+    expect(presenceWeight("absent", true)).toBe(0);
+  });
+
   it("never raises the score when a place is added", () => {
     for (const intensity of [0, 2, 4]) {
       for (let placeCount = 0; placeCount < 120; placeCount++) {
@@ -97,12 +106,13 @@ describe("placeCountBounds", () => {
       makePresence("PY", "widespread"),
       makePresence("AR", "regional"),
       makePresence("US", ["absent", "marginal"]),
-      makePresence("PT", "imported"),
+      { ...makePresence("PT", "widespread"), exported: true as const },
     ];
     const bounds = placeCountBounds(presence);
-    expect(bounds.low).toBeCloseTo(1.5);
-    expect(bounds.point).toBeCloseTo(1.55);
-    expect(bounds.high).toBeCloseTo(1.6);
+    // 1 + 0.5 + (0 to 0.1) + 1 × EXPORT_WEIGHT_FACTOR
+    expect(bounds.low).toBeCloseTo(1.5 + EXPORT_WEIGHT_FACTOR);
+    expect(bounds.point).toBeCloseTo(1.55 + EXPORT_WEIGHT_FACTOR);
+    expect(bounds.high).toBeCloseTo(1.6 + EXPORT_WEIGHT_FACTOR);
   });
 
   it("is zero for an empty list", () => {

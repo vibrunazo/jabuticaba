@@ -1,4 +1,4 @@
-# Jabuticaba Index — Methodology v0 (draft)
+# Jabuticaba Index — Methodology v0.2 (draft)
 
 Status: **draft for discussion**. This document defines the index: criteria,
 scales, formula, uncertainty and evidence grading. Constants are placeholders to be
@@ -71,7 +71,6 @@ state (`FR`). Each entry gets a presence level:
 | `widespread` | 1.0    | Common at national scale                                             |
 | `regional`   | 0.5    | Present in part of the place, or in a significant niche              |
 | `marginal`   | 0.1    | Exists, but rare and hard to find                                    |
-| `imported`   | 0.0    | Exists only because of Brazilian export or diaspora                  |
 | `absent`     | 0.0    | Checked and confirmed absent                                         |
 | *(unlisted)* | 0.0    | Not researched; treated as absent                                    |
 
@@ -79,9 +78,28 @@ state (`FR`). Each entry gets a presence level:
 means "we checked, and here is the source". The map draws them differently:
 checked-absent vs. no data.
 
+#### Brazilian exports
+
+An entry can be flagged `exported`: the thing exists there **only because Brazil
+exported it** (products, restaurants, the diaspora). Its weight is multiplied by
+`EXPORT_WEIGHT_FACTOR` (0.5).
+
+Exports count because of what the index is for: pointing out things Brazilians
+take for granted that they would miss abroad. An exported jabuticaba is still
+Brazilian, but a Brazilian traveler no longer misses it, so it is less of a
+jabuticaba. The analogy: in an "apple pie index" of Americanness, McDonald's
+would score low. It is American, but exported everywhere, so no American abroad
+ever misses it. Guaraná soda, found abroad only on the shelves of Brazilian
+grocery stores (`marginal`, exported), barely moves. Açaí bowls, sold in cafés
+across half the world (`regional` or `widespread`, exported), drop a lot.
+
+The level still describes how common it is there, so an export can be
+`widespread` (açaí bowls in the US) or `marginal` (guaraná in Japan).
+
 Brazil (`BR`) is never listed.
 
-**Effective place count:** `placeCount = Σ PRESENCE_WEIGHTS[level]`
+**Effective place count:**
+`placeCount = Σ PRESENCE_WEIGHTS[level] × (exported ? EXPORT_WEIGHT_FACTOR : 1)`
 
 **Exclusivity, on a log scale:**
 
@@ -141,7 +159,8 @@ score  = round(100 · rarity)
 | Constant                 | Value | Meaning                                                                 |
 |--------------------------|-------|-------------------------------------------------------------------------|
 | `SATURATION_PLACE_COUNT` | 100   | Places at which an item is "fully common" (`exclusivity = 0`)           |
-| `PRESENCE_WEIGHTS`       | 1.0 / 0.5 / 0.1 / 0 / 0 | `widespread` / `regional` / `marginal` / `imported` / `absent` |
+| `PRESENCE_WEIGHTS`       | 1.0 / 0.5 / 0.1 / 0 | `widespread` / `regional` / `marginal` / `absent` |
+| `EXPORT_WEIGHT_FACTOR`   | 0.5   | Multiplier for presence that exists only as a Brazilian export |
 | `MAX_INTENSITY_CREDIT`   | 0.5   | Highest rarity a completely non-exclusive item can reach through intensity alone |
 
 Interpretation:
@@ -314,8 +333,8 @@ be researched and sourced before publication.
   component never does code translation.
 - **Colors:** an ordinal green ramp for `marginal` → `regional` → `widespread`
   (one hue, monotone lightness, validated for both themes), yellow for
-  `imported`, cool grey for `absent` (checked), a faint neutral for no data, and
-  jabuticaba purple for Brazil. Uncertain places take the color of the highest
+  a matching amber ramp for Brazilian exports, cool grey for `absent` (checked), a
+  faint neutral for no data, and jabuticaba purple for Brazil. Uncertain places take the color of the highest
   possible level; the presence table below the map shows the full range.
 - Every map has a legend, per-country tooltips (SVG `<title>`) and a table view.
 - Two projections, both Equal Earth: `standard` ("Colonial": centred on
@@ -378,3 +397,7 @@ Anchor fixtures used as unit tests of the formula (not site content):
 - `brazil-centered` is the default projection in every locale.
 - "Hidden jabuticaba" badge requires a score above 50% (section 7.1).
 - Subnational data uses ISO 3166-2 for any country, not just Brazil; it is not scored.
+- **v0.2:** Brazilian exports count at half weight (`EXPORT_WEIGHT_FACTOR`). The
+  `imported` level (weight 0) is replaced by an `exported` flag on any level, so a
+  widely exported thing (açaí bowls) loses more than a barely exported one
+  (guaraná soda). See section 3.1.

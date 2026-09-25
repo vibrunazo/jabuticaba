@@ -105,17 +105,18 @@ Grouping them would suggest to agents that both are scored.
 | Field      | Type         | Req. | Notes |
 |------------|--------------|------|-------|
 | `place`    | `PlaceCode`  | yes  | Unique within the item. |
-| `level`    | `LevelRange` | yes  | `widespread`, `regional`, `marginal`, `imported`, `absent`. |
+| `level`    | `LevelRange` | yes  | `widespread`, `regional`, `marginal`, `absent`. |
+| `exported` | `true`       | no   | Present there only because Brazil exported it. Counts at reduced weight (methodology 3.1). Not allowed with a level range that is entirely `absent` (J029). |
 | `sources`  | `Id[]`       | yes  | From `Evidence`. |
 | `editorial`| `true`       | no   | From `Evidence`. |
 
-Level order, from low to high: `absent` < `imported` < `marginal` < `regional` <
-`widespread`. In a range, `low` must be below `high`.
+Level order, from low to high: `absent` < `marginal` < `regional` < `widespread`.
+In a range, `low` must be below `high`.
 
 ### `SubdivisionEntry`
 
 Same shape as `PresenceEntry`, but with `subdivision: SubdivisionCode` instead of
-`place`, and the levels `widespread`, `regional`, `marginal`, `absent`.
+`place`, and without `exported`.
 
 Subdivisions **refine** a country's presence; they don't replace it. The score is
 still computed from the country-level `presence` entry. For example:
@@ -349,6 +350,7 @@ Scope: **all** = every status; **pub** = `published` only (a warning for `draft`
 | J026 | error   | all   | Every subdivision reference entry has a name in every supported locale. |
 | J027 | error   | all   | Every `subdivisions/<country>.json` file has geometry in `data/geo/`. |
 | J028 | error   | all   | `subdivisionNotes` keys exist in `subdivisions`. |
+| J029 | error   | all   | An `exported` presence has a level above `absent` (at least at the high end of its range). |
 | J030 | error   | all   | Every cited source id exists: evidence lists and body citations. |
 | J031 | error   | pub   | Every source is cited at least once. |
 | J032 | error   | all   | Source ids are unique within the item. |
@@ -404,7 +406,7 @@ subdivision geometry (planned).
   "$schema": "../../../schemas/item.schema.json",
   "id": "capybara",
   "status": "mock",
-  "methodologyVersion": "0.1",
+  "methodologyVersion": "0.2",
   "lastReviewed": "2026-09-25",
   "category": "nature",
   "presence": [

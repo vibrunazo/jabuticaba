@@ -1,4 +1,8 @@
 ---
+/**
+ * One ranking entry, as a card in the ranking grid. The score and its error bar
+ * sit at the top, next to each other, so the bar never touches a card border.
+ */
 import { categoryLabel } from "../i18n/labels.ts";
 import { format, type Locale, t } from "../i18n/ui.ts";
 import type { RankingRow } from "../site/ranking.ts";
@@ -19,37 +23,42 @@ const scoreLabel = format(locale, "ranking.scoreLabel", {
 const textLang = row.untranslated ? "pt-BR" : undefined;
 ---
 
-<li class="group relative flex flex-wrap items-start gap-x-5 gap-y-3 border-b border-rule py-5">
-  <span class="w-8 shrink-0 pt-1 text-right font-mono text-sm tabular-nums text-ink-muted">
-    {row.rank}
-  </span>
-  <div class="min-w-0 flex-1">
-    <h2 class="font-serif text-xl font-semibold leading-snug text-heading" lang={textLang}>
-      <a href={row.href} class="after:absolute after:inset-0 group-hover:text-accent">
-        {row.title}
-      </a>
-    </h2>
-    <p class="mt-1 text-sm leading-relaxed text-ink-muted" lang={textLang}>{row.summary}</p>
-    <div class="mt-2.5 flex flex-wrap gap-1.5">
-      <Badge>{categoryLabel(locale, row.category)}</Badge>
-      <Badge>{format(locale, "badge.evidenceGrade", { grade: row.evidenceGrade })}</Badge>
-      {row.hiddenJabuticaba && <Badge tone="accent">{t(locale, "badge.hiddenJabuticaba")}</Badge>}
-      {row.untranslated && <Badge>{t(locale, "badge.untranslated")}</Badge>}
-      {row.status === "mock" && <Badge tone="warning">{t(locale, "badge.mock")}</Badge>}
-      {row.status === "draft" && <Badge tone="warning">{t(locale, "badge.draft")}</Badge>}
+<li
+  class="group relative flex flex-col rounded-md border border-rule bg-surface-raised p-5 shadow-sm transition hover:border-ink-muted hover:shadow-md motion-safe:hover:-translate-y-0.5"
+>
+  <div class="flex items-start justify-between gap-4">
+    <p class="pt-1.5 font-mono text-xs uppercase tracking-wider text-ink-muted">
+      {format(locale, "ranking.rank", { rank: row.rank })}
+      <span class="mx-1">·</span>
+      {categoryLabel(locale, row.category)}
+    </p>
+    <div class="w-28 shrink-0">
+      <p class="text-right text-3xl font-semibold leading-none text-heading" aria-hidden="true">
+        {row.score.point}<span class="text-base font-normal text-ink-muted">%</span>
+      </p>
+      <div class="mt-2.5 px-1">
+        <ScoreErrorBar
+          low={row.score.low}
+          point={row.score.point}
+          high={row.score.high}
+          label={scoreLabel}
+        />
+      </div>
     </div>
   </div>
-  <div class="w-full pl-13 sm:w-36 sm:pl-0">
-    <p class="text-right text-2xl font-semibold tabular-nums text-heading" aria-hidden="true">
-      {row.score.point}<span class="text-base font-normal text-ink-muted">%</span>
-    </p>
-    <div class="mt-1.5 px-1">
-      <ScoreErrorBar
-        low={row.score.low}
-        point={row.score.point}
-        high={row.score.high}
-        label={scoreLabel}
-      />
-    </div>
+
+  <h2 class="mt-4 font-serif text-xl font-semibold leading-snug text-heading" lang={textLang}>
+    <a href={row.href} class="after:absolute after:inset-0 group-hover:text-accent">
+      {row.title}
+    </a>
+  </h2>
+  <p class="mt-2 flex-1 text-sm leading-relaxed text-ink-muted" lang={textLang}>{row.summary}</p>
+
+  <div class="mt-4 flex flex-wrap gap-1.5">
+    <Badge>{format(locale, "badge.evidenceGrade", { grade: row.evidenceGrade })}</Badge>
+    {row.hiddenJabuticaba && <Badge tone="accent">{t(locale, "badge.hiddenJabuticaba")}</Badge>}
+    {row.untranslated && <Badge>{t(locale, "badge.untranslated")}</Badge>}
+    {row.status === "mock" && <Badge tone="warning">{t(locale, "badge.mock")}</Badge>}
+    {row.status === "draft" && <Badge tone="warning">{t(locale, "badge.draft")}</Badge>}
   </div>
 </li>

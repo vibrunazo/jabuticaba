@@ -85,7 +85,6 @@
                 "type": "string",
                 "enum": [
                   "absent",
-                  "imported",
                   "marginal",
                   "regional",
                   "widespread"
@@ -98,7 +97,6 @@
                     "type": "string",
                     "enum": [
                       "absent",
-                      "imported",
                       "marginal",
                       "regional",
                       "widespread"
@@ -108,7 +106,6 @@
                     "type": "string",
                     "enum": [
                       "absent",
-                      "imported",
                       "marginal",
                       "regional",
                       "widespread"
@@ -120,6 +117,10 @@
                 "maxItems": 2
               }
             ]
+          },
+          "exported": {
+            "type": "boolean",
+            "const": true
           },
           "sources": {
             "type": "array",

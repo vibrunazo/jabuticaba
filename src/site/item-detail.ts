@@ -8,13 +8,12 @@ import type { Item, Source } from "../schema/item.ts";
 import type { LocaleText } from "../schema/locale-text.ts";
 import type { Place, SubdivisionReference } from "../schema/reference.ts";
 import type { PresenceLevel } from "../schema/shared.ts";
-import { PRESENCE_WEIGHTS } from "../scoring/constants.ts";
 import {
   computeEvidenceGrade,
   type EvidenceGrade,
   isHiddenJabuticaba,
 } from "../scoring/evidence.ts";
-import { computeItemScore, type ItemScore } from "../scoring/formula.ts";
+import { computeItemScore, type ItemScore, presenceWeight } from "../scoring/formula.ts";
 import { computeResults } from "../scoring/results-csv.ts";
 import { sourceAnchor } from "./citations.ts";
 import type { ItemText } from "./ranking.ts";
@@ -37,6 +36,8 @@ export interface PresenceRow extends EvidenceRefs {
   sovereignName: string | undefined;
   low: PresenceLevel;
   high: PresenceLevel;
+  /** Present there only as a Brazilian export. */
+  exported: boolean;
   note: string | undefined;
 }
 
@@ -152,14 +153,15 @@ export function buildItemDetail(input: ItemDetailInput): ItemDetail | undefined 
         name: placeName(locale, entry.place),
         sovereignName: sovereign ? placeName(locale, sovereign) : undefined,
         ...levelEnds(entry.level),
+        exported: entry.exported === true,
         note: text.presenceNotes?.[entry.place],
         ...refs(entry),
       };
     })
     .sort(
       (a, b) =>
-        PRESENCE_WEIGHTS[b.high] - PRESENCE_WEIGHTS[a.high] ||
-        PRESENCE_WEIGHTS[b.low] - PRESENCE_WEIGHTS[a.low] ||
+        presenceWeight(b.high, b.exported) - presenceWeight(a.high, a.exported) ||
+        presenceWeight(b.low, b.exported) - presenceWeight(a.low, a.exported) ||
         a.name.localeCompare(b.name, locale),
     );
 

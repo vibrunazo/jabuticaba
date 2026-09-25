@@ -2,7 +2,7 @@
 translationStatus: "reviewed"
 slug: "caipirinha"
 title: "Caipirinha"
-summary: "Exported to bars around the world, where it is made with the precision of someone who has never seen a properly cut lime. In the index, exports don't count."
+summary: "Exported to bars around the world, where it is made with the precision of someone who has never seen a properly cut lime. In the index, exports count at half weight."
 definition: "A cocktail of cachaça, lime, sugar and ice."
 justifications:
   intensity: "Consumed nationwide; abroad, only in bars that imported it."

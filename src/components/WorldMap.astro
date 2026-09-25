@@ -19,11 +19,17 @@ interface Props {
 const { locale, presence } = Astro.props;
 
 const BRAZIL = "BR";
-const fillByLevel = {
+/** Local presence: green ramp. Brazilian exports: amber ramp. Absent looks the same in both. */
+const localFill = {
   widespread: "fill-map-widespread",
   regional: "fill-map-regional",
   marginal: "fill-map-marginal",
-  imported: "fill-map-imported",
+  absent: "fill-map-absent",
+} as const satisfies Record<PresenceLevel, string>;
+const exportFill = {
+  widespread: "fill-map-export-widespread",
+  regional: "fill-map-export-regional",
+  marginal: "fill-map-export-marginal",
   absent: "fill-map-absent",
 } as const satisfies Record<PresenceLevel, string>;
 
@@ -34,7 +40,10 @@ function fillFor(code: string): string {
     return "fill-map-brazil";
   }
   const row = rowByCode.get(code);
-  return row ? fillByLevel[row.high] : "fill-map-no-data";
+  if (!row) {
+    return "fill-map-no-data";
+  }
+  return (row.exported ? exportFill : localFill)[row.high];
 }
 
 function titleFor(code: string): string | undefined {
@@ -49,16 +58,24 @@ function titleFor(code: string): string | undefined {
     row.low === row.high
       ? levelLabel(locale, row.high)
       : `${levelLabel(locale, row.low)} – ${levelLabel(locale, row.high)}`;
-  return `${row.name}: ${level}`;
+  return `${row.name}: ${level}${row.exported ? ` (${t(locale, "item.exported")})` : ""}`;
 }
 
 const maps = PROJECTIONS.map((name) => ({ name, world: loadProjectedWorld(name) }));
+/** Two ordinal ramps (marginal → widespread), shown as swatch strips. */
+const ramps = [
+  {
+    label: t(locale, "legend.local"),
+    fills: ["bg-map-marginal", "bg-map-regional", "bg-map-widespread"],
+  },
+  {
+    label: t(locale, "legend.exported"),
+    fills: ["bg-map-export-marginal", "bg-map-export-regional", "bg-map-export-widespread"],
+  },
+];
+const rampEnds = `${levelLabel(locale, "marginal")} → ${levelLabel(locale, "widespread")}`;
 const legend: { fill: string; label: string }[] = [
   { fill: "bg-map-brazil", label: t(locale, "level.brazil") },
-  { fill: "bg-map-widespread", label: levelLabel(locale, "widespread") },
-  { fill: "bg-map-regional", label: levelLabel(locale, "regional") },
-  { fill: "bg-map-marginal", label: levelLabel(locale, "marginal") },
-  { fill: "bg-map-imported", label: levelLabel(locale, "imported") },
   { fill: "bg-map-absent", label: levelLabel(locale, "absent") },
   { fill: "bg-map-no-data", label: t(locale, "level.noData") },
 ];
@@ -122,7 +139,20 @@ const legend: { fill: string; label: string }[] = [
   }
 
   <figcaption class="mt-3">
-    <ul class="flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-ink-muted">
+    <ul class="flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-ink-muted">
+      {
+        ramps.map((ramp) => (
+          <li class="flex items-center gap-1.5" title={rampEnds}>
+            <span class="flex gap-px" aria-hidden="true">
+              {ramp.fills.map((fill) => (
+                <span class={`inline-block h-3 w-3 first:rounded-l-sm last:rounded-r-sm ${fill}`} />
+              ))}
+            </span>
+            {ramp.label}
+            <span class="sr-only">({rampEnds})</span>
+          </li>
+        ))
+      }
       {
         legend.map((entry) => (
           <li class="flex items-center gap-1.5">

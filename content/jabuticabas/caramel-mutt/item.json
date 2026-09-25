@@ -2,23 +2,58 @@
   "$schema": "../../../schemas/item.schema.json",
   "id": "caramel-mutt",
   "status": "mock",
-  "methodologyVersion": "0.1",
+  "methodologyVersion": "0.2",
   "lastReviewed": "2026-09-25",
   "category": "nature",
   "presence": [
-    { "place": "AR", "level": "widespread", "sources": ["fictional-dog-atlas"] },
-    { "place": "MX", "level": "widespread", "sources": ["fictional-dog-atlas"] },
-    { "place": "IN", "level": "widespread", "sources": ["fictional-dog-atlas"] },
-    { "place": "TR", "level": "widespread", "sources": ["fictional-dog-atlas"] },
-    { "place": "TH", "level": "widespread", "sources": ["fictional-dog-atlas"] },
-    { "place": "PE", "level": ["regional", "widespread"], "sources": ["fictional-dog-atlas"] },
-    { "place": "DE", "level": ["absent", "marginal"], "sources": ["fictional-dog-atlas"] }
+    {
+      "place": "AR",
+      "level": "widespread",
+      "sources": ["fictional-dog-atlas"]
+    },
+    {
+      "place": "MX",
+      "level": "widespread",
+      "sources": ["fictional-dog-atlas"]
+    },
+    {
+      "place": "IN",
+      "level": "widespread",
+      "sources": ["fictional-dog-atlas"]
+    },
+    {
+      "place": "TR",
+      "level": "widespread",
+      "sources": ["fictional-dog-atlas"]
+    },
+    {
+      "place": "TH",
+      "level": "widespread",
+      "sources": ["fictional-dog-atlas"]
+    },
+    {
+      "place": "PE",
+      "level": ["regional", "widespread"],
+      "sources": ["fictional-dog-atlas"]
+    },
+    {
+      "place": "DE",
+      "level": ["absent", "marginal"],
+      "sources": ["fictional-dog-atlas"]
+    }
   ],
   "intensity": {
-    "value": { "min": 1, "max": 2 },
+    "value": {
+      "min": 1,
+      "max": 2
+    },
     "sources": ["fictional-dog-atlas"]
   },
-  "awareness": { "value": 4, "sources": [], "editorial": true },
+  "awareness": {
+    "value": 4,
+    "sources": [],
+    "editorial": true
+  },
   "sources": [
     {
       "id": "fictional-dog-atlas",

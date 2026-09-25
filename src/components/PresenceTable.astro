@@ -6,8 +6,7 @@
 import { formatRange } from "../i18n/format.ts";
 import { levelRangeLabel } from "../i18n/labels.ts";
 import { format, type Locale, t } from "../i18n/ui.ts";
-import { PRESENCE_WEIGHTS } from "../scoring/constants.ts";
-import type { Bounds } from "../scoring/formula.ts";
+import { type Bounds, presenceWeight } from "../scoring/formula.ts";
 import type { NumberedSource, PresenceRow } from "../site/item-detail.ts";
 import SourceRefs from "./SourceRefs.astro";
 
@@ -50,9 +49,12 @@ const summaryLabel = `${t(locale, "item.tablePlace")} (${rows.length})`;
                   </span>
                   {row.note && <p class="mt-0.5 text-xs text-ink-muted">{row.note}</p>}
                 </td>
-                <td class="py-2 pr-4 text-ink-muted">{levelRangeLabel(locale, row.low, row.high)}</td>
+                <td class="py-2 pr-4 text-ink-muted">
+                  {levelRangeLabel(locale, row.low, row.high)}
+                  {row.exported && <span class="block text-xs text-ink-muted italic">{t(locale, "item.exported")}</span>}
+                </td>
                 <td class="py-2 pr-4 text-right font-mono text-xs tabular-nums text-ink">
-                  {formatRange(locale, PRESENCE_WEIGHTS[row.low], PRESENCE_WEIGHTS[row.high])}
+                  {formatRange(locale, presenceWeight(row.low, row.exported), presenceWeight(row.high, row.exported))}
                 </td>
                 <td class="py-2">
                   <SourceRefs refs={row} sources={sources} locale={locale} />

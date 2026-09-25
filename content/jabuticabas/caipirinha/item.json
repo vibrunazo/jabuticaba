@@ -2,158 +2,188 @@
   "$schema": "../../../schemas/item.schema.json",
   "id": "caipirinha",
   "status": "mock",
-  "methodologyVersion": "0.1",
+  "methodologyVersion": "0.2",
   "lastReviewed": "2026-09-25",
   "category": "food",
   "presence": [
     {
       "place": "AD",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "AE",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "AF",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "AG",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "AI",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "AL",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "AM",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "AO",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "AQ",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "AR",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "AS",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "AT",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "AU",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "AW",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "AX",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "AZ",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "BA",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "BB",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "BD",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "BE",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "BF",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "BG",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "BH",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "BI",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "BJ",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "BL",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "BM",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "BN",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "BO",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     },
     {
       "place": "BQ",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-gazette"]
     }
   ],

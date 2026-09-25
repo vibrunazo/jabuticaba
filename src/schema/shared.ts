@@ -41,18 +41,12 @@ export const ratingSchema = z.union([
 ]);
 export type Rating = z.infer<typeof ratingSchema>;
 
-/** Presence levels, ordered from lowest to highest. The order matters for ranges. */
-export const PRESENCE_LEVELS = [
-  "absent",
-  "imported",
-  "marginal",
-  "regional",
-  "widespread",
-] as const;
+/**
+ * Presence levels, ordered from lowest to highest. The order matters for ranges.
+ * Whether a presence is local or a Brazilian export is a separate flag (`exported`).
+ */
+export const PRESENCE_LEVELS = ["absent", "marginal", "regional", "widespread"] as const;
 export type PresenceLevel = (typeof PRESENCE_LEVELS)[number];
-
-/** Levels allowed for subdivisions: `imported` makes no sense at that scale. */
-export const SUBDIVISION_LEVELS = ["absent", "marginal", "regional", "widespread"] as const;
 
 /**
  * A level, or a `[low, high]` pair of levels.

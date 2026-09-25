@@ -2,7 +2,7 @@
   "$schema": "../../../schemas/item.schema.json",
   "id": "cheese-bread",
   "status": "mock",
-  "methodologyVersion": "0.1",
+  "methodologyVersion": "0.2",
   "lastReviewed": "2026-09-25",
   "category": "food",
   "presence": [
@@ -18,17 +18,20 @@
     },
     {
       "place": "US",
-      "level": "imported",
+      "level": "marginal",
+      "exported": true,
       "sources": ["fictional-survey"]
     },
     {
       "place": "PT",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-survey"]
     },
     {
       "place": "JP",
-      "level": "imported",
+      "level": "marginal",
+      "exported": true,
       "sources": ["fictional-survey"]
     }
   ],

@@ -5,7 +5,7 @@ title: "Açaí na tigela"
 summary: "Polpa de açaí batida e servida gelada com granola. No Pará, come-se de outro jeito, e o índice não entra nessa discussão."
 definition: "Polpa de açaí congelada, batida e servida em tigela com acompanhamentos doces."
 justifications:
-  intensity: "Consumo nacional no Brasil; na região amazônica vizinha, em outras formas."
+  intensity: "Mais comum no Brasil, mas a tigela já é vendida em cafés de meio mundo (dado fictício)."
   awareness: "Reconhecido como brasileiro."
 ---
 

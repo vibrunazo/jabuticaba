@@ -2,23 +2,58 @@
   "$schema": "../../../schemas/item.schema.json",
   "id": "capybara",
   "status": "mock",
-  "methodologyVersion": "0.1",
+  "methodologyVersion": "0.2",
   "lastReviewed": "2026-09-25",
   "category": "nature",
   "presence": [
-    { "place": "VE", "level": "widespread", "sources": ["fictional-rodent-survey"] },
-    { "place": "CO", "level": "widespread", "sources": ["fictional-rodent-survey"] },
-    { "place": "PY", "level": "widespread", "sources": ["fictional-rodent-survey"] },
-    { "place": "BO", "level": "widespread", "sources": ["fictional-rodent-survey"] },
-    { "place": "GF", "level": "widespread", "sources": ["fictional-rodent-survey"] },
-    { "place": "AR", "level": "regional", "sources": ["fictional-rodent-survey"] },
-    { "place": "US", "level": ["absent", "marginal"], "sources": ["fictional-escape-report"] }
+    {
+      "place": "VE",
+      "level": "widespread",
+      "sources": ["fictional-rodent-survey"]
+    },
+    {
+      "place": "CO",
+      "level": "widespread",
+      "sources": ["fictional-rodent-survey"]
+    },
+    {
+      "place": "PY",
+      "level": "widespread",
+      "sources": ["fictional-rodent-survey"]
+    },
+    {
+      "place": "BO",
+      "level": "widespread",
+      "sources": ["fictional-rodent-survey"]
+    },
+    {
+      "place": "GF",
+      "level": "widespread",
+      "sources": ["fictional-rodent-survey"]
+    },
+    {
+      "place": "AR",
+      "level": "regional",
+      "sources": ["fictional-rodent-survey"]
+    },
+    {
+      "place": "US",
+      "level": ["absent", "marginal"],
+      "sources": ["fictional-escape-report"]
+    }
   ],
   "intensity": {
-    "value": { "min": 1, "max": 2 },
+    "value": {
+      "min": 1,
+      "max": 2
+    },
     "sources": ["fictional-rodent-survey"]
   },
-  "awareness": { "value": 4, "sources": [], "editorial": true },
+  "awareness": {
+    "value": 4,
+    "sources": [],
+    "editorial": true
+  },
   "sources": [
     {
       "id": "fictional-rodent-survey",

@@ -18,7 +18,7 @@ const rows = buildRanking(await loadItems(), await loadItemTexts(), locale, {
 ---
 
 <BaseLayout locale={locale} alternates={{ pt: "/", en: "/en/" }}>
-  <main class="mx-auto max-w-4xl px-4 pt-12">
+  <main class="mx-auto max-w-6xl px-4 pt-12">
     <p class="font-mono text-xs uppercase tracking-wider text-accent">
       {format(locale, "ranking.eyebrow", { version: METHODOLOGY_VERSION, count: rows.length })}
     </p>
@@ -43,7 +43,7 @@ const rows = buildRanking(await loadItems(), await loadItemTexts(), locale, {
 
     {
       rows.length > 0 ? (
-        <ol class="mt-4 border-t border-rule">
+        <ol class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {rows.map((row) => (
             <RankingRow row={row} locale={locale} />
           ))}

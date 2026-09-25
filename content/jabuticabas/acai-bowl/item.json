@@ -2,7 +2,7 @@
   "$schema": "../../../schemas/item.schema.json",
   "id": "acai-bowl",
   "status": "mock",
-  "methodologyVersion": "0.1",
+  "methodologyVersion": "0.2",
   "lastReviewed": "2026-09-25",
   "category": "food",
   "presence": [
@@ -28,22 +28,115 @@
     },
     {
       "place": "US",
-      "level": "imported",
+      "level": "widespread",
+      "exported": true,
       "sources": ["fictional-survey"]
     },
     {
       "place": "JP",
-      "level": "imported",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-survey"]
     },
     {
       "place": "AU",
-      "level": "imported",
+      "level": "widespread",
+      "exported": true,
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "CA",
+      "level": "regional",
+      "exported": true,
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "GB",
+      "level": "regional",
+      "exported": true,
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "PT",
+      "level": "regional",
+      "exported": true,
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "ES",
+      "level": "regional",
+      "exported": true,
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "FR",
+      "level": "regional",
+      "exported": true,
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "DE",
+      "level": "regional",
+      "exported": true,
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "NL",
+      "level": "regional",
+      "exported": true,
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "IE",
+      "level": "regional",
+      "exported": true,
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "NZ",
+      "level": "regional",
+      "exported": true,
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "AE",
+      "level": "regional",
+      "exported": true,
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "IT",
+      "level": "regional",
+      "exported": true,
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "CH",
+      "level": "regional",
+      "exported": true,
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "SE",
+      "level": "regional",
+      "exported": true,
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "KR",
+      "level": "regional",
+      "exported": true,
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "MX",
+      "level": "regional",
+      "exported": true,
       "sources": ["fictional-survey"]
     }
   ],
   "intensity": {
-    "value": 3,
+    "value": 2,
     "sources": ["fictional-census"]
   },
   "awareness": {

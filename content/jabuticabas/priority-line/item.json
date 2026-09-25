@@ -2,18 +2,47 @@
   "$schema": "../../../schemas/item.schema.json",
   "id": "priority-line",
   "status": "mock",
-  "methodologyVersion": "0.1",
+  "methodologyVersion": "0.2",
   "lastReviewed": "2026-09-25",
   "category": "justice",
   "since": 2000,
   "presence": [
-    { "place": "PT", "level": "widespread", "sources": ["fictional-decree"] },
-    { "place": "AR", "level": "regional", "sources": ["fictional-survey"] },
-    { "place": "MX", "level": ["marginal", "regional"], "sources": ["fictional-survey"] },
-    { "place": "ES", "level": "marginal", "sources": ["fictional-survey"] }
+    {
+      "place": "PT",
+      "level": "widespread",
+      "sources": ["fictional-decree"]
+    },
+    {
+      "place": "AR",
+      "level": "regional",
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "MX",
+      "level": ["marginal", "regional"],
+      "sources": ["fictional-survey"]
+    },
+    {
+      "place": "ES",
+      "level": "marginal",
+      "sources": ["fictional-survey"]
+    }
   ],
-  "intensity": { "value": { "min": 2, "max": 3 }, "sources": ["fictional-survey"] },
-  "awareness": { "value": { "min": 0, "max": 1 }, "sources": [], "editorial": true },
+  "intensity": {
+    "value": {
+      "min": 2,
+      "max": 3
+    },
+    "sources": ["fictional-survey"]
+  },
+  "awareness": {
+    "value": {
+      "min": 0,
+      "max": 1
+    },
+    "sources": [],
+    "editorial": true
+  },
   "sources": [
     {
       "id": "fictional-decree",

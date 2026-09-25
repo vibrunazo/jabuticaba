@@ -12,7 +12,6 @@ import {
   partialDateSchema,
   placeCodeSchema,
   ratingSchema,
-  SUBDIVISION_LEVELS,
   subdivisionCodeSchema,
 } from "./shared.ts";
 
@@ -63,13 +62,15 @@ const httpsUrlSchema = z.url({ protocol: /^https$/, error: "must be a full https
 export const presenceEntrySchema = z.strictObject({
   place: placeCodeSchema,
   level: levelRangeSchema(PRESENCE_LEVELS),
+  /** Present there only because Brazil exported it (products, restaurants, diaspora). */
+  exported: z.literal(true).optional(),
   ...evidenceShape,
 });
 export type PresenceEntry = z.infer<typeof presenceEntrySchema>;
 
 export const subdivisionEntrySchema = z.strictObject({
   subdivision: subdivisionCodeSchema,
-  level: levelRangeSchema(SUBDIVISION_LEVELS),
+  level: levelRangeSchema(PRESENCE_LEVELS),
   ...evidenceShape,
 });
 export type SubdivisionEntry = z.infer<typeof subdivisionEntrySchema>;

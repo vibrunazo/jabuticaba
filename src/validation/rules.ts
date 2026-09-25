@@ -278,6 +278,23 @@ const levelRangesAreOrdered: ItemRule = (folder, item) => {
   });
 };
 
+const exportsArePresent: ItemRule = (folder, item) =>
+  item.presence.flatMap((entry, i) => {
+    const high = typeof entry.level === "string" ? entry.level : entry.level[1];
+    return entry.exported && high === "absent"
+      ? [
+          {
+            code: "J029",
+            severity: "error" as const,
+            file: itemFile(folder),
+            path: `presence[${i}].exported`,
+            message: "an exported presence cannot be absent",
+            fix: 'Give the level at which the export is found (e.g. "marginal"), or remove `exported`.',
+          },
+        ]
+      : [];
+  });
+
 const subdivisionCountriesArePresent: ItemRule = (folder, item) =>
   (item.subdivisions ?? []).flatMap((entry, i) => {
     const country = entry.subdivision.slice(0, 2);
@@ -709,6 +726,7 @@ const itemRules: ItemRule[] = [
   placesAreValid,
   placesAreMappable,
   levelRangesAreOrdered,
+  exportsArePresent,
   subdivisionCountriesArePresent,
   noteKeysExist,
   citedSourcesExist,
