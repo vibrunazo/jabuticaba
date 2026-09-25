@@ -3,12 +3,14 @@
 interface Props {
   number: number;
   id: string;
+  /** Extra classes, e.g. to drop the top rule where something above already separates. */
+  class?: string;
 }
 
-const { number, id } = Astro.props;
+const { number, id, class: className } = Astro.props;
 ---
 
-<h2 id={id} class="flex scroll-mt-6 items-baseline gap-3 border-t border-rule pt-4">
+<h2 id={id} class:list={["flex scroll-mt-6 items-baseline gap-3 border-t border-rule pt-4", className]}>
   <span class="font-mono text-xs tabular-nums text-gold">{String(number).padStart(2, "0")}</span>
   <span class="font-serif text-2xl font-semibold tracking-tight text-heading"><slot /></span>
 </h2>

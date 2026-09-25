@@ -66,6 +66,7 @@ const pt = {
   "item.onThisPage": "Nesta página",
   "item.jumpTo": "Ir para…",
   "item.lastReviewedShort": "Última revisão · {date}",
+  "item.lastReviewedLabel": "Última revisão",
   "item.evidenceGradeTooltip":
     "Grau de evidência {grade}: a solidez das fontes. Clique para ver como é calculado.",
   "item.imageCredit": "Imagem: {author} ({license})",
@@ -180,6 +181,7 @@ const en: Record<UiKey, string> = {
   "item.onThisPage": "On this page",
   "item.jumpTo": "Jump to…",
   "item.lastReviewedShort": "Last reviewed · {date}",
+  "item.lastReviewedLabel": "Last reviewed",
   "item.evidenceGradeTooltip":
     "Evidence grade {grade}: how solid the sources are. Click to see how it is computed.",
   "item.imageCredit": "Image: {author} ({license})",

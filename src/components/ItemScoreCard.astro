@@ -1,0 +1,81 @@
+---
+/**
+ * The item page's headline card: cover image on top, then the score with its
+ * plausibility range on the full 0–100 scale, and the image credit at the bottom.
+ * The detail-page counterpart of RankingRow's card; the title and summary are not
+ * repeated here because they sit in the band just above.
+ * On phones the image is cropped wider (2:1) so the score fits on the first screen.
+ */
+
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { formatRange } from "../i18n/format.ts";
+import { format, type Locale, t } from "../i18n/ui.ts";
+import type { ItemImage } from "../schema/item.ts";
+import type { Bounds } from "../scoring/formula.ts";
+import ScoreScale from "./ScoreScale.astro";
+
+interface Props {
+  locale: Locale;
+  score: Bounds;
+  cover?: ImageMetadata | undefined;
+  image?: ItemImage | undefined;
+  imageAlt?: string | undefined;
+}
+
+const { locale, score, cover, image, imageAlt } = Astro.props;
+const scoreLabel = format(locale, "ranking.scoreLabel", {
+  score: score.point,
+  low: score.low,
+  high: score.high,
+});
+const credit =
+  image && format(locale, "item.imageCredit", { author: image.credit.author, license: image.credit.license });
+---
+
+<section
+  class="overflow-hidden rounded-md border border-rule bg-surface-raised shadow-sm"
+  aria-label={t(locale, "item.index")}
+>
+  {
+    cover && (
+      <Image
+        src={cover}
+        alt={imageAlt ?? ""}
+        widths={[400, 800]}
+        sizes="(min-width: 1152px) 360px, (min-width: 1024px) 31vw, 100vw"
+        loading="eager"
+        class="aspect-2/1 w-full border-b border-rule object-cover lg:aspect-3/2"
+      />
+    )
+  }
+
+  <div class="p-5">
+    <div class="flex items-baseline justify-between gap-4">
+      <p class="font-mono text-xs tracking-widest text-gold uppercase">{t(locale, "item.index")}</p>
+      <p class="text-5xl leading-none font-semibold tracking-tight text-heading lg:text-6xl">
+        {score.point}<span class="text-2xl font-normal text-ink-muted lg:text-3xl">%</span>
+      </p>
+    </div>
+    <p class="mt-2 text-sm text-ink-muted">
+      {format(locale, "item.rangeLabel", { range: formatRange(locale, score.low, score.high) })}
+    </p>
+    <div class="mt-4 px-2">
+      <ScoreScale low={score.low} point={score.point} high={score.high} label={scoreLabel} />
+    </div>
+
+    {
+      cover && image && credit && (
+        <p class="mt-3 border-t border-rule pt-3 text-xs text-ink-muted">
+          {image.credit.url ? (
+            <a href={image.credit.url} class="hover:text-accent hover:underline" rel="noopener">
+              {credit}
+            </a>
+          ) : (
+            credit
+          )}
+        </p>
+      )
+    }
+  </div>
+</section>
