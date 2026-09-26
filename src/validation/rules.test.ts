@@ -17,6 +17,7 @@ function makeFolder(item: Item, texts?: LocaleTextFile[], extraFiles: string[] =
     fileNames: ["item.json", ...localeTexts.map((t) => `${t.locale}.md`), ...extraFiles].sort(),
     item,
     texts: localeTexts,
+    research: undefined,
   };
 }
 
@@ -277,6 +278,43 @@ describe("runRules", () => {
 
     const unused = makeFolder(makeItem(), undefined, ["cover.jpg"]);
     expect(codesFor(snapshotOf(unused))).toEqual(["J082"]);
+  });
+
+  it("J057/J058/J090: drafts must follow the editorial guide", () => {
+    const draft = makeItem({
+      status: "draft",
+      sources: [makeSource({ url: "https://real.test/a" })],
+    });
+    const body = [
+      "Abertura.",
+      "",
+      "## No Brasil",
+      "",
+      "Texto.",
+      "",
+      "## Veredito",
+      "",
+      "Fim.",
+    ].join("\n");
+    const folder = makeFolder(draft, [
+      { locale: "pt", file: "pt.md", text: makeLocaleText({ slug: "x" }), body },
+    ]);
+    const problems = runRules(snapshotOf(folder), OPTIONS);
+    const byCode = (code: string) => problems.find((p) => p.code === code);
+    expect(byCode("J057")?.message).toContain("Lá fora");
+    expect(byCode("J057")?.severity).toBe("warning");
+    expect(byCode("J058")).toBeDefined();
+    expect(byCode("J090")).toBeDefined();
+
+    const mock = makeFolder(makeItem(), [
+      { locale: "pt", file: "pt.md", text: makeLocaleText({ slug: "x" }), body },
+    ]);
+    expect(codesFor(snapshotOf(mock))).toEqual([]);
+  });
+
+  it("J030: research.md citations must point to existing sources", () => {
+    const folder = { ...makeFolder(makeItem()), research: "- Claim. [@ghost]" };
+    expect(codesFor(snapshotOf(folder))).toContain("J030");
   });
 
   it("J060: mocks fail a production build", () => {

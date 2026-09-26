@@ -7,8 +7,10 @@
  */
 
 import {
+  countWords,
   extractCitations,
   extractExternalLinks,
+  extractH2Headings,
   extractItemLinks,
   hasH1Heading,
 } from "../content-files/markdown.ts";
@@ -19,8 +21,10 @@ import {
   type Item,
   type ItemStatus,
   type PresenceEntry,
+  RESEARCH_FILE,
   type SubdivisionEntry,
 } from "../schema/item.ts";
+import { PROSE_WORD_RANGE, proseStructureProblem } from "../schema/prose-structure.ts";
 import { PRESENCE_LEVELS, type Rating } from "../schema/shared.ts";
 import {
   INTENSITY_4_MAX_PLACE_COUNT,
@@ -98,7 +102,7 @@ const folderMatchesId: ItemRule = (folder, item) =>
       ];
 
 const onlyAllowedFiles = (folder: ItemFolder): Problem[] => {
-  const allowed = new Set(["item.json", ...locales.map((locale) => `${locale}.md`)]);
+  const allowed = new Set(["item.json", RESEARCH_FILE, ...locales.map((locale) => `${locale}.md`)]);
   return folder.fileNames
     .filter((fileName) => !allowed.has(fileName) && !IMAGE_FILE_PATTERN.test(fileName))
     .map((fileName) => ({
@@ -106,7 +110,7 @@ const onlyAllowedFiles = (folder: ItemFolder): Problem[] => {
       severity: "error" as const,
       file: `${folder.dir}/${fileName}`,
       message: `unexpected file in an item folder`,
-      fix: `An item folder may only contain item.json, ${locales.map((l) => `${l}.md`).join(", ")} and one cover image (cover.webp, .jpg, .png or .avif). Move or delete this file.`,
+      fix: `An item folder may only contain item.json, ${locales.map((l) => `${l}.md`).join(", ")} research.md and one cover image (cover.webp, .jpg, .png or .avif). Move or delete this file.`,
     }));
 };
 
@@ -382,7 +386,7 @@ const citedSourcesExist: ItemRule = (folder, item) => {
         fix,
       })),
   );
-  const fromBodies = folder.texts.flatMap((text) =>
+  const fromBodies = citingTexts(folder).flatMap((text) =>
     extractCitations(text.body)
       .filter((id) => !sourceIds.has(id))
       .map((id) => ({
@@ -396,6 +400,16 @@ const citedSourcesExist: ItemRule = (folder, item) => {
   return [...fromInputs, ...fromBodies];
 };
 
+/** Every Markdown text of an item that may cite sources: locale files and research.md. */
+function citingTexts(folder: ItemFolder): { file: string; body: string }[] {
+  return [
+    ...folder.texts.map((text) => ({ file: text.file, body: text.body })),
+    ...(folder.research === undefined
+      ? []
+      : [{ file: `${folder.dir}/${RESEARCH_FILE}`, body: folder.research }]),
+  ];
+}
+
 const everySourceIsCited: ItemRule = (folder, item) => {
   const severity = publishedScope(item.status);
   if (!severity) {
@@ -403,7 +417,7 @@ const everySourceIsCited: ItemRule = (folder, item) => {
   }
   const cited = new Set([
     ...evidenceInputs(item).flatMap(({ input }) => input.sources),
-    ...folder.texts.flatMap((text) => extractCitations(text.body)),
+    ...citingTexts(folder).flatMap((text) => extractCitations(text.body)),
   ]);
   return item.sources.flatMap((source, i) =>
     cited.has(source.id)
@@ -740,6 +754,54 @@ const localeFilesAreConsistent = (folder: ItemFolder): Problem[] => {
   return problems;
 };
 
+// --- Editorial guide (docs/editorial-guide.md) ----------------------------------
+
+const proseFollowsGuide: ItemRule = (folder, item) => {
+  const severity = publishedScope(item.status);
+  if (!severity) {
+    return [];
+  }
+  return folder.texts.flatMap((text) => {
+    const problems: Problem[] = [];
+    const structure = proseStructureProblem(extractH2Headings(text.body), text.locale);
+    if (structure) {
+      problems.push({
+        code: "J057",
+        severity,
+        file: text.file,
+        message: `sections do not follow the editorial guide: ${structure}`,
+        fix: "Use the sections of docs/editorial-guide.md (template: docs/templates/), in that order.",
+      });
+    }
+    const words = countWords(text.body);
+    if (words < PROSE_WORD_RANGE.min || words > PROSE_WORD_RANGE.max) {
+      problems.push({
+        code: "J058",
+        severity: "warning",
+        file: text.file,
+        message: `text has ${words} words; the guide asks for ${PROSE_WORD_RANGE.min}–${PROSE_WORD_RANGE.max}`,
+        fix: "Tighten or expand the text (see the section lengths in docs/editorial-guide.md).",
+      });
+    }
+    return problems;
+  });
+};
+
+const researchExists: ItemRule = (folder, item) => {
+  const severity = publishedScope(item.status);
+  return severity && folder.research === undefined
+    ? [
+        {
+          code: "J090",
+          severity,
+          file: `${folder.dir}/${RESEARCH_FILE}`,
+          message: "missing research.md",
+          fix: "Add research notes from docs/templates/research.md; every fact in the text must come from them.",
+        },
+      ]
+    : [];
+};
+
 const bodiesAreWellFormed: ItemRule = (folder, _item, { itemIds }) =>
   folder.texts.flatMap((text) => {
     const problems: Problem[] = [];
@@ -814,6 +876,8 @@ const itemRules: ItemRule[] = [
   intensity4IsPlausible,
   reviewIsCurrent,
   bodiesAreWellFormed,
+  proseFollowsGuide,
+  researchExists,
 ];
 
 const snapshotRules: SnapshotRule[] = [uniqueSlugs, noMocksInProduction];

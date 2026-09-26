@@ -15,6 +15,8 @@ Design documents (read the relevant one before touching that area):
 
 - `docs/design/01-index-methodology-v0.md`: criteria, formula, uncertainty, evidence grade
 - `docs/design/02-content-schema.md`: file layout, schema, validation rules (J001…)
+- `docs/editorial-guide.md`: **how item texts are researched and written.** Read it
+  before writing any `research.md`, `pt.md` or `en.md`. Templates: `docs/templates/`.
 
 ## Golden rules
 
@@ -32,6 +34,8 @@ Design documents (read the relevant one before touching that area):
 6. **Never invent facts in non-mock content.** Every claim in a `draft` or
    `published` item needs a real source. If you cannot find one, say so; do not
    guess. Mock items (`status: "mock"`) must use only `https://example.org/` URLs.
+   Research goes into `research.md` first (claim, source, supporting quote); the
+   published text is written only from it. Jokes are allowed, but never a fake fact.
 7. **Keep changes small and focused.** Do not refactor or reformat unrelated code.
 
 ## Commands
@@ -124,7 +128,7 @@ over your memory.
 
 ```
 content/
-  jabuticabas/<id>/   # one folder per item: item.json, pt.md, en.md, optional cover.webp
+  jabuticabas/<id>/   # one folder per item: item.json, research.md, pt.md, en.md, cover.webp
   reference/          # places.json (ISO codes), subdivisions/<country>.json
   pages/<page>/       # fixed pages (methodology): pt.md, en.md, with {{PLACEHOLDERS}}
 data/                 # GENERATED: index-results.csv, geo/world.geo.json (committed)

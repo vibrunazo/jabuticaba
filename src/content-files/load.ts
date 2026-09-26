@@ -7,7 +7,7 @@ import path from "node:path";
 import type { z } from "zod";
 import type { WorldGeo } from "../geo/build-world.ts";
 import { type Locale, locales } from "../i18n/ui.ts";
-import { itemSchema } from "../schema/item.ts";
+import { itemSchema, RESEARCH_FILE } from "../schema/item.ts";
 import { localeTextSchema } from "../schema/locale-text.ts";
 import {
   type Place,
@@ -135,7 +135,10 @@ function loadItemFolder(root: string, folderName: string, problems: Problem[]): 
       }
     }
   }
-  return { folderName, dir, fileNames, item, texts };
+  const research = fileNames.includes(RESEARCH_FILE)
+    ? readFileSync(path.join(root, dir, RESEARCH_FILE), "utf8")
+    : undefined;
+  return { folderName, dir, fileNames, item, texts, research };
 }
 
 function listDirectories(absoluteDir: string): string[] {

@@ -55,6 +55,20 @@ export function extractExternalLinks(body: string): string[] {
   return [...withoutCodeBlocks(body).matchAll(/https?:\/\/[^\s)>\]]+/g)].map((match) => match[0]);
 }
 
+/** Texts of the `## ` headings, in order. */
+export function extractH2Headings(body: string): string[] {
+  return [...withoutCodeBlocks(body).matchAll(/^##[ \t]+(.+?)[ \t]*$/gm)].map((m) => m[1] ?? "");
+}
+
+/** Words of running text, ignoring headings, citations and link targets. */
+export function countWords(body: string): number {
+  const text = withoutCodeBlocks(body)
+    .replace(/^#+[ \t].*$/gm, "")
+    .replace(/\[@[^\]]*\]/g, "")
+    .replace(/\]\([^)]*\)/g, "]");
+  return (text.match(/[\p{L}\p{N}]+(?:[-'’][\p{L}\p{N}]+)*/gu) ?? []).length;
+}
+
 export function hasH1Heading(body: string): boolean {
   return /^#[ \t]/m.test(withoutCodeBlocks(body));
 }

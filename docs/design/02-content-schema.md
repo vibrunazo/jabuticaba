@@ -28,6 +28,7 @@ content/                               # data only; no code
 │   └── capybara/                      # folder name == item id
 │       ├── item.json                  # language-neutral data
 │       ├── cover.webp                 # optional cover image
+│       ├── research.md                # internal research notes (not published)
 │       ├── pt.md                      # pt-BR text (required)
 │       └── en.md                      # English text (optional)
 ├── pages/
@@ -354,7 +355,7 @@ Scope: **all** = every status; **pub** = `published` only (a warning for `draft`
 | Code | Level   | Scope | Rule |
 |------|---------|-------|------|
 | J001 | error   | all   | Folder name equals `id`. |
-| J002 | error   | all   | A folder contains only `item.json`, `<locale>.md` files for supported locales, and cover images (`cover.webp`/`.jpg`/`.jpeg`/`.png`/`.avif`). |
+| J002 | error   | all   | A folder contains only `item.json`, `<locale>.md` files for supported locales, `research.md`, and cover images (`cover.webp`/`.jpg`/`.jpeg`/`.png`/`.avif`). |
 | J003 | error   | all   | Each file matches its Zod schema. |
 | J010 | error   | all   | `slug` is unique per locale. |
 | J012 | error   | all   | `slug` is not reserved for a fixed page (`src/i18n/routes.ts`, e.g. `metodologia`). |
@@ -369,7 +370,7 @@ Scope: **all** = every status; **pub** = `published` only (a warning for `draft`
 | J027 | error   | all   | Every `subdivisions/<country>.json` file has geometry in `data/geo/`. |
 | J028 | error   | all   | `subdivisionNotes` keys exist in `subdivisions`. |
 | J029 | error   | all   | An `exported` presence has a level above `absent` (at least at the high end of its range). |
-| J030 | error   | all   | Every cited source id exists: evidence lists and body citations. |
+| J030 | error   | all   | Every cited source id exists: evidence lists, body citations and `research.md` citations. |
 | J031 | error   | pub   | Every source is cited at least once. |
 | J032 | error   | all   | Source ids are unique within the item. |
 | J033 | error   | all   | Mock items use only `example.org` URLs; other items never do. |
@@ -388,10 +389,13 @@ Scope: **all** = every status; **pub** = `published` only (a warning for `draft`
 | J054 | error   | all   | `jabuticaba:<id>` links in the body point to existing items. |
 | J055 | warning | all   | The body contains external links; prefer citations. |
 | J056 | error   | all   | The body contains no `#` (h1) heading. |
+| J057 | error   | pub   | The body's `##` sections follow the editorial guide (`docs/editorial-guide.md`), in order. |
+| J058 | warning | pub   | The body is roughly 300–700 words. |
 | J060 | error   | prod  | No item has `status: mock`. |
 | J080 | error   | all   | `image.file` exists in the item folder. |
 | J081 | error   | all   | `imageAlt` is present in every locale file if and only if the item has an `image`. |
 | J082 | warning | all   | A cover image file in the folder is not referenced by `image.file`. |
+| J090 | error   | pub   | The item folder has `research.md` (internal research notes; every fact in the text comes from it). |
 | J070 | error   | CI    | `schemas/item.schema.json` matches the Zod schema. |
 | J071 | error   | CI    | `data/index-results.csv` matches the computed results. |
 | J072 | error   | CI    | `data/geo/` matches the `pnpm geo` output. |

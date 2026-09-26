@@ -32,6 +32,8 @@ export interface ItemFolder {
   fileNames: string[];
   item: Item | undefined;
   texts: LocaleTextFile[];
+  /** Contents of research.md (internal notes), if the folder has one. */
+  research: string | undefined;
 }
 
 export interface ContentSnapshot {

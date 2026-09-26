@@ -6,6 +6,7 @@
 
 import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
+import { locales } from "./i18n/ui.ts";
 import { itemSchema } from "./schema/item.ts";
 import { localeTextSchema } from "./schema/locale-text.ts";
 import { pageTextSchema } from "./schema/page-text.ts";
@@ -22,10 +23,13 @@ const items = defineCollection({
   schema: itemSchema,
 });
 
-/** One entry per locale file; entry id = "<item-id>/<locale>", e.g. "capybara/pt". */
+/**
+ * One entry per locale file; entry id = "<item-id>/<locale>", e.g. "capybara/pt".
+ * Only locale files: research.md in the same folder is internal and not loaded.
+ */
 const itemTexts = defineCollection({
   loader: glob({
-    pattern: "*/*.md",
+    pattern: `*/{${locales.join(",")}}.md`,
     base: ITEMS_BASE,
     generateId: ({ entry }) => entry.replace(/\.md$/, ""),
   }),

@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
 import {
+  countWords,
   extractCitations,
   extractExternalLinks,
+  extractH2Headings,
   extractItemLinks,
   hasH1Heading,
   parseFrontmatter,
@@ -49,6 +51,27 @@ describe("extractExternalLinks", () => {
   it("finds Markdown and bare links", () => {
     const body = "[a](https://example.org/a) and http://example.org/b";
     expect(extractExternalLinks(body)).toEqual(["https://example.org/a", "http://example.org/b"]);
+  });
+});
+
+describe("extractH2Headings", () => {
+  it("lists level-2 headings only", () => {
+    const body = ["# T", "", "## No Brasil", "", "text", "", "### Sub", "", "## Lá fora "].join(
+      "\n",
+    );
+    expect(extractH2Headings(body)).toEqual(["No Brasil", "Lá fora"]);
+  });
+});
+
+describe("countWords", () => {
+  it("counts words, not headings, citations or URLs", () => {
+    const body = [
+      "## Título",
+      "",
+      "Uma frase com três-palavras [@fonte-x] e [link](jabuticaba:item).",
+    ].join("\n");
+    // Uma, frase, com, três-palavras, e, link
+    expect(countWords(body)).toBe(6);
   });
 });
 

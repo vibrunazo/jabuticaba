@@ -86,6 +86,9 @@ export const awarenessInputSchema = z.strictObject({
   ...evidenceShape,
 });
 
+/** Internal research notes in an item folder; see docs/editorial-guide.md. */
+export const RESEARCH_FILE = "research.md";
+
 /** The cover image lives in the item folder under one of these names. */
 export const IMAGE_FILE_PATTERN = /^cover\.(webp|jpg|jpeg|png|avif)$/;
 
