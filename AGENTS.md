@@ -15,6 +15,8 @@ Design documents (read the relevant one before touching that area):
 
 - `docs/design/01-index-methodology-v0.md`: criteria, formula, uncertainty, evidence grade
 - `docs/design/02-content-schema.md`: file layout, schema, validation rules (J001…)
+- `docs/research-protocol.md`: **the step-by-step process for researching an item**
+  with the human editor (brief, `pnpm research:start`, scoping, research, review).
 - `docs/editorial-guide.md`: **how item texts are researched and written.** Read it
   before writing any `research.md`, `pt.md` or `en.md`. Templates: `docs/templates/`.
 
@@ -51,6 +53,7 @@ Design documents (read the relevant one before touching that area):
 | `pnpm validate`      | Validate all content (rules J001…, see the schema doc)              |
 | `pnpm index`         | Compute the index; rewrites `data/index-results.csv`                |
 | `pnpm schema`        | Regenerate `schemas/item.schema.json` from the Zod schema           |
+| `pnpm research:start <id>` | Start research on an item: converts a mock to a draft (deleting its fictional data) or creates a new one (`--category`) |
 | `pnpm geo`           | Regenerate `data/geo/world.geo.json` from Natural Earth (`world-atlas`) |
 | `pnpm build`         | **Production** build: fails if any mock item exists (J060)          |
 | `pnpm build:preview` | Build that allows mock and draft items                              |

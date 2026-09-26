@@ -1,0 +1,34 @@
+name: Pesquisa de jabuticaba
+description: Brief for researching an item (new or existing). See docs/research-protocol.md.
+title: "Pesquisa: "
+labels: ["research"]
+body:
+  - type: input
+    id: item
+    attributes:
+      label: Item
+      description: Existing item id (e.g. window-safety-nets) or the name of a new one.
+    validations:
+      required: true
+  - type: textarea
+    id: meaning
+    attributes:
+      label: O que é, em palavras simples
+      description: What exactly you mean. The agent will turn this into a precise definition for your approval.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Por que parece uma jabuticaba
+      description: Why you think it is rare outside Brazil.
+  - type: textarea
+    id: leads
+    attributes:
+      label: Pistas
+      description: Links you already have, countries you suspect, people or institutions who would know. Leads, not facts.
+  - type: textarea
+    id: questions
+    attributes:
+      label: Perguntas
+      description: What you are curious about (e.g. "what do people do instead abroad?").
